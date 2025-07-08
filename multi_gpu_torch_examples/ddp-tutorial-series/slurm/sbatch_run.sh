@@ -18,7 +18,8 @@
 #SBATCH --time=00:10:00
 
 module purge
-module load anaconda/3/2023.03 pytorch/gpu-cuda-12.1/2.2.0
+module load anaconda/3/2023.03 cuda/12.1 openmpi_gpu/5.0
+module load pytorch/gpu-cuda-12.1/2.2.0
 
 # nodes=( $( scontrol show hostnames $SLURM_JOB_NODELIST ) )
 # nodes_array=($nodes)
