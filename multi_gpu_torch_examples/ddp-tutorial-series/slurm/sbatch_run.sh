@@ -6,7 +6,7 @@
 
 #SBATCH --job-name=multinode-example
 #SBATCH --nodes=1
-#SBATCH --constraints=gpu
+#SBATCH --constraint=gpu
 #SBATCH --ntasks-per-node=4
 
 #SBATCH --gres=gpu:a100:4
