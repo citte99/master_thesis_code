@@ -20,4 +20,4 @@ srun torchrun \
 --rdzv_id $RANDOM \
 --rdzv_backend c10d \
 --rdzv_endpoint $head_node_ip:29500 \
-/shared/examples/multinode_torchrun.py 50 10
+../multinode_torchrun.py 50 10
