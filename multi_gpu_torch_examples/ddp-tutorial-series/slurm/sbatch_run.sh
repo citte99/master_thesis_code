@@ -1,10 +1,23 @@
-#!/bin/bash
+#!/bin/bash -l
+
+#SBATCH -o ./job.out.%j
+#SBATCH -e ./job.err.%j
+#SBATCH -D ../
 
 #SBATCH --job-name=multinode-example
-#SBATCH --nodes=4
-#SBATCH --ntasks=4
-#SBATCH --gpus-per-task=1
-#SBATCH --cpus-per-task=4
+#SBATCH --nodes=1
+#SBATCH --constraints=gpu
+#SBATCH --ntasks-per-node=4
+
+#SBATCH --gres=gpu:a100:4
+#SBATCH --nvps
+
+#SBATCH --mail-type=none
+#SBATCH --mail-user=userid@example.mpg.de
+#SBATCH --time=00:10:00
+
+module purge
+module load anaconda/3/2023.03 pytorch/gpu-cuda-12.1/2.2.0
 
 nodes=( $( scontrol show hostnames $SLURM_JOB_NODELIST ) )
 nodes_array=($nodes)
@@ -20,4 +33,4 @@ srun torchrun \
 --rdzv_id $RANDOM \
 --rdzv_backend c10d \
 --rdzv_endpoint $head_node_ip:29500 \
-../multinode_torchrun.py 50 10
+multinode_torchrun.py 50 10
