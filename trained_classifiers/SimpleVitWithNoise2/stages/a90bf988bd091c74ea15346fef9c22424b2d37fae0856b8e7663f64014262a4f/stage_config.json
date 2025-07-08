@@ -1,0 +1,61 @@
+{
+    "stage_id": "a90bf988bd091c74ea15346fef9c22424b2d37fae0856b8e7663f64014262a4f",
+    "parent_stage_id": "c521dd06ed519793a03d511cdc6603f149e3f58ad746b8aeb240edd9e27032ee",
+    "training_catalog": "resamp_theta5_big",
+    "validation_like_train_catalog": "resamp_theta5_val",
+    "dataset_class_str": "NoNoiseDataset",
+    "NN_datatype": "float32",
+    "dataset_config": {
+        "grid_width_arcsec": 10.0,
+        "grid_pixel_side": 120,
+        "broadcasting": true,
+        "final_transform": false
+    },
+    "samples_used_for_training": 1000000,
+    "samples_used_for_validation": 3000,
+    "epochs": 2,
+    "batch_size": 1024,
+    "learning_rate": 5.097100074635818e-07,
+    "optimizer": "Adam",
+    "loss_function": "Binary_cross_entropy",
+    "active_val_cats_live": [
+        [
+            "resamp_theta5_big",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 10.0,
+                "grid_pixel_side": 120,
+                "broadcasting": true,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "resamp_theta5_val",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 10.0,
+                "grid_pixel_side": 120,
+                "broadcasting": true,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ]
+    ],
+    "validation_metrics": [
+        "accuracy",
+        "f1_score",
+        "precision",
+        "recall"
+    ],
+    "jump_batch_val": 100,
+    "validation_catalogs_training_completed": "",
+    "validation_metrics_training_completed": [
+        "accuracy",
+        "f1_score",
+        "precision",
+        "recall"
+    ],
+    "early_stopping": null,
+    "is_trained": true
+}

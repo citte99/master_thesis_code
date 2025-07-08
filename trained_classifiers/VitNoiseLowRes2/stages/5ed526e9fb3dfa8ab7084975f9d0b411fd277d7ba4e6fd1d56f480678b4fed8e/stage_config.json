@@ -1,0 +1,103 @@
+{
+    "stage_id": "5ed526e9fb3dfa8ab7084975f9d0b411fd277d7ba4e6fd1d56f480678b4fed8e",
+    "parent_stage_id": "b26b1258df4910e7d640f8878f5f89962af2cb27912ba0a477110dde21fdf5fa",
+    "training_catalog": "conor_train_gauss_source_10e11_resample_theta_train",
+    "validation_like_train_catalog": "conor_train_gauss_source_10e11_resample_theta_val",
+    "dataset_class_str": "SingleTelescopeNoiseDataset",
+    "NN_datatype": "float32",
+    "dataset_config": {
+        "grid_width_arcsec": 8.0,
+        "grid_pixel_side": 100,
+        "broadcasting": true,
+        "sky_level": 0.05,
+        "kernel_size": 5,
+        "kernel_sigma": 1.0,
+        "gain": 500.0,
+        "final_transform": false
+    },
+    "samples_used_for_training": 1000000,
+    "samples_used_for_validation": 3000,
+    "epochs": 3,
+    "batch_size": 1024,
+    "learning_rate": 3.543467028066516e-06,
+    "optimizer": "Adam",
+    "loss_function": "Binary_cross_entropy",
+    "active_val_cats_live": [
+        [
+            "conor_train_gauss_source_10e11_resample_theta_train",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e11_resample_theta_val",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e10_resample_theta_train",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e10_resample_theta_val",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ]
+    ],
+    "validation_metrics": [
+        "accuracy",
+        "f1_score",
+        "precision",
+        "recall"
+    ],
+    "jump_batch_val": 400,
+    "validation_catalogs_training_completed": "",
+    "validation_metrics_training_completed": [
+        "accuracy",
+        "f1_score",
+        "precision",
+        "recall"
+    ],
+    "early_stopping": null,
+    "is_trained": true
+}

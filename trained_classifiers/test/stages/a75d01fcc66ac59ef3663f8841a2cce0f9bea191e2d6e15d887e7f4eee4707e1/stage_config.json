@@ -1,0 +1,71 @@
+{
+    "stage_id": "a75d01fcc66ac59ef3663f8841a2cce0f9bea191e2d6e15d887e7f4eee4707e1",
+    "parent_stage_id": "f41a52ac505a044d2fef27d2d757b525696f13b52202004b22ea42ad381b7a24",
+    "training_catalog": "conor_similar_cat_min_10e11_val_no_shear_small_high_conc.json",
+    "validation_like_train_catalog": "conor_similar_cat_min_10e11_val_no_shear_small_high_conc.json",
+    "dataset_class_str": "SingleTelescopeNoiseDataset",
+    "NN_datatype": "float32",
+    "dataset_config": {
+        "grid_width_arcsec": 8.0,
+        "grid_pixel_side": 100,
+        "broadcasting": false,
+        "sky_level": 0.05,
+        "kernel_size": 5,
+        "kernel_sigma": 1.0,
+        "gain": 100.0,
+        "final_transform": true
+    },
+    "samples_used_for_training": 1000,
+    "samples_used_for_validation": 3000,
+    "epochs": 1,
+    "batch_size": 256,
+    "learning_rate": 0.0008617738634347916,
+    "optimizer": "Adam",
+    "loss_function": "Binary_cross_entropy",
+    "active_val_cats_live": [
+        [
+            "SIS_10e10_sub_val",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": false,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 100.0
+            }
+        ],
+        [
+            "conor_similar_cat_min_10e11_val_no_shear_small_high_conc.json",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": false,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 100.0,
+                "final_transform": true,
+                "samples_used": 3000
+            }
+        ]
+    ],
+    "validation_metrics": [
+        "accuracy",
+        "f1_score",
+        "precision",
+        "recall"
+    ],
+    "jump_batch_val": 1,
+    "validation_catalogs_training_completed": "",
+    "validation_metrics_training_completed": [
+        "accuracy",
+        "f1_score",
+        "precision",
+        "recall"
+    ],
+    "early_stopping": null,
+    "is_trained": true
+}

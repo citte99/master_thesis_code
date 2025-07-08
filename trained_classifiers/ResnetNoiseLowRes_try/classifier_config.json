@@ -1,0 +1,40 @@
+{
+    "classifier_name": "ResnetNoiseLowRes_try",
+    "NN_model": "ResNet50",
+    "NN_config": {
+        "num_classes": 2
+    },
+    "active_stage_id": "f8a7d832e6dc0ce13f27e87566e18c06006e3322b0d3b15629e270f320c20a78",
+    "active_val_cats_live": [
+        [
+            "conor_train_gauss_source_10e11_resample_theta_train",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e11_resample_theta_val",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ]
+    ]
+}

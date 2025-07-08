@@ -1,0 +1,25 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore virtual environment directories
+venv/
+.env/
+
+# Ignore build and distribution directories
+build/
+dist/
+
+#Ignore pre computed images
+catalogs/*
+# Ignore log files
+*.log
+# Ignore parameters files pth
+*.pth
+
+notebooks/dataloaders_performance/*.ipynb
+notebooks/**/.ipynb_checkpoints/
+notebooks/dataloaders_performance/*.ipynb
+notebooks/**/.ipynb_checkpoints/
+*checkpoints*
+*wandb*

@@ -1,0 +1,35 @@
+{
+    "classifier_name": "simple_vit1",
+    "NN_model": "VisionTransformer",
+    "NN_config": {
+        "img_size": 100,
+        "patch_size": 10,
+        "in_channels": 1,
+        "num_classes": 2,
+        "embed_dim": 512,
+        "depth": 8,
+        "num_heads": 8,
+        "mlp_ratio": 4.0,
+        "qkv_bias": true,
+        "drop_rate": 0.0
+    },
+    "active_val_cats_live": [
+        [
+            "SIS_10e9_sub_test",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 6.0,
+                "grid_pixel_side": 100
+            }
+        ],
+        [
+            "SIS_10e8_sub_test",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 6.0,
+                "grid_pixel_side": 100
+            }
+        ]
+    ],
+    "active_stage_id": null
+}

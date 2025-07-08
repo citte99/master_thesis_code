@@ -1,0 +1,41 @@
+{
+    "classifier_name": "SimpleVitWithNoise2",
+    "NN_model": "VisionTransformer",
+    "NN_config": {
+        "img_size": 120,
+        "patch_size": 12,
+        "in_channels": 1,
+        "num_classes": 2,
+        "embed_dim": 512,
+        "depth": 8,
+        "num_heads": 8,
+        "mlp_ratio": 4.0,
+        "qkv_bias": true,
+        "drop_rate": 0.0
+    },
+    "active_stage_id": "a90bf988bd091c74ea15346fef9c22424b2d37fae0856b8e7663f64014262a4f",
+    "active_val_cats_live": [
+        [
+            "resamp_theta5_big",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 10.0,
+                "grid_pixel_side": 120,
+                "broadcasting": true,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "resamp_theta5_val",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 10.0,
+                "grid_pixel_side": 120,
+                "broadcasting": true,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ]
+    ]
+}

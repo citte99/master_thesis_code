@@ -1,0 +1,139 @@
+{
+    "classifier_name": "VitNoiseHighRes",
+    "NN_model": "VisionTransformer",
+    "NN_config": {
+        "img_size": 200,
+        "patch_size": 20,
+        "in_channels": 1,
+        "num_classes": 2,
+        "embed_dim": 512,
+        "depth": 8,
+        "num_heads": 8,
+        "mlp_ratio": 4.0,
+        "qkv_bias": true,
+        "drop_rate": 0.0
+    },
+    "active_stage_id": "ed144197c62e4e90d88e1dfdbe95132ab111ae44c420a0f2e235585093b37394",
+    "active_val_cats_live": [
+        [
+            "conor_train_gauss_source_10e11_resample_theta_train",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 200,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e11_resample_theta_val",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 200,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e10_resample_theta_train",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 200,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e10_resample_theta_val",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 200,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e9_resample_theta_train",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e9_resample_theta_val",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e8_6_resample_theta_train",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ],
+        [
+            "conor_train_gauss_source_10e8_6_resample_theta_val",
+            "SingleTelescopeNoiseDataset",
+            {
+                "grid_width_arcsec": 8.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true,
+                "sky_level": 0.05,
+                "kernel_size": 5,
+                "kernel_sigma": 1.0,
+                "gain": 500.0,
+                "final_transform": false,
+                "samples_used": 3000
+            }
+        ]
+    ]
+}

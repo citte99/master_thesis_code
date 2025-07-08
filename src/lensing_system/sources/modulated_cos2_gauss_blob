@@ -1,0 +1,27 @@
+import torch
+
+from .source_model import SourceModel
+from .util import _translate_rotate
+
+class ModulatedCos2GaussianBlob(SourceModel):
+    """
+    """
+    def __init__(self, config_dict, precomp_dict, device):
+        super().__init__()
+        self.device = device
+        self.I=config_dict["I"]
+        self.position = config_dict["position_rad"]
+        self.orient_rad = config_dict["orient_rad"]
+        self.q = config_dict["q"]
+        self.std_kpc = config_dict["std_kpc"]
+        self.D_s = precomp_dict["D_s"]*1000. # Mpc to kpc
+        self.std_rad = self.std_kpc/self.D_s
+
+    def forward(self, source_grid):
+        #use a torch method to translate and rotate the grid
+        xrel = _translate_rotate(source_grid, self.position, th_rad=self.orient_rad)
+        rs2 = self.q**2 * xrel[..., 0]**2 + xrel[..., 1]**2
+        
+        sb = torch.exp(-0.5 * rs2 / self.std_rad**2)*torch.cos(4*torch.pi*rs2 / self.std_rad)*self.I
+        self.surface_brightness = sb
+        return sb

@@ -1,0 +1,1 @@
+from .gaussian_blob_static import GaussianBlobStatic

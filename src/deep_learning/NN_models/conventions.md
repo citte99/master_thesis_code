@@ -1,0 +1,1 @@
+every NN model must get, as a parameter of initialization, the datatype.
