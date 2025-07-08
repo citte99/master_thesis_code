@@ -10,7 +10,7 @@
 #SBATCH --ntasks-per-node=4
 
 #SBATCH --gres=gpu:a100:4
-#SBATCH --nvps
+#SBATCH --nvmps
 
 #SBATCH --mail-type=none
 #SBATCH --mail-user=userid@example.mpg.de
