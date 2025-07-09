@@ -17,6 +17,8 @@ catalogs/*
 # Ignore parameters files pth
 *.pth
 
+*.sif
+
 notebooks/dataloaders_performance/*.ipynb
 notebooks/**/.ipynb_checkpoints/
 notebooks/dataloaders_performance/*.ipynb

@@ -1,8 +1,8 @@
 #!/bin/bash -l
 
-#SBATCH -o ./job.out.%j
-#SBATCH -e ./job.err.%j
-#SBATCH -D ../
+#SBATCH -o ./job_outs/job.out.%j
+#SBATCH -e ./job_outs/job.err.%j
+#SBATCH -D ../py_scripts_ex/
 
 #SBATCH --job-name=multinode-example
 #SBATCH --nodes=1

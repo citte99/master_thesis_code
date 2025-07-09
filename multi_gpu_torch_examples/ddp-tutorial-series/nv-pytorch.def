@@ -1,0 +1,9 @@
+BootStrap: docker
+From: nvcr.io/nvidia/pytorch:25.05-py3
+
+%labels
+  author Piero Coronica
+  version 1.0
+
+%help
+  The converted Docker image from NVIDIAs PyTorch (version 25.01).
