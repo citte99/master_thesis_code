@@ -1,16 +1,15 @@
-Hello World!
                                   
 ================================= 
 Global information about the job: 
 ================================= 
   
 Job owner: fcitterio(76052)
-Job name:  PYTHON_SEQ
-Node list: ravc4115
-Job start: Mon Jul  7 22:35:03 CEST 2025
-Job end:   Mon Jul  7 22:35:07 CEST 2025
-Work dir:  /u/fcitterio/master_thesis_code/multi_gpu_sbatch_trial/python_sequential_example/./
-Command:   /raven/u/fcitterio/master_thesis_code/multi_gpu_sbatch_trial/python_sequential_example/single_core_job.slurm
+Job name:  multinode-example
+Node list: ravg1002
+Job start: Wed Jul  9 17:14:37 CEST 2025
+Job end:   Wed Jul  9 17:14:39 CEST 2025
+Work dir:  /u/fcitterio/master_thesis_code/multi_gpu_torch_examples/ddp-tutorial-series/py_scripts_ex/job_outs/../py_scripts_ex/
+Command:   ../../slurm/sbatch_run2.sh
   
   
   
@@ -21,9 +20,8 @@ tasks of the per-task memory high-water marks; cf. "man sacct"):
   
 JobID            JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode
 ------------- ---------- ------ ------ ------ ------------ ------------ ---------- --------
-20282656      PYTHON_SEQ      1             2                             00:00:04      0:0
-20282656.0       python3      1      1      2        1.63M        1.63M   00:00:02      0:0
+20307811      multinode-      1           144                             00:00:02    127:0
   
-Maximum memory per node: 0.001707 GB (defined as MaxRSS*Ntasks/NNodes)
+Maximum memory per node: 0.002385 GB (defined as MaxRSS*Ntasks/NNodes)
 CPU utilization: 0.0 %
   

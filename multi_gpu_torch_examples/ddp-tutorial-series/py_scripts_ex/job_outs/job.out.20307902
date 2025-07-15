@@ -1,0 +1,322 @@
+Loading snapshot
+Loading snapshot
+Loading snapshot
+Resuming training from snapshot at Epoch 40Resuming training from snapshot at Epoch 40
+
+Resuming training from snapshot at Epoch 40
+Loading snapshot
+Resuming training from snapshot at Epoch 40
+ravg1002:75025:75025 [0] NCCL INFO Bootstrap: Using ib0:10.181.140.2<0>
+ravg1002:75025:75025 [0] NCCL INFO cudaDriverVersion 12090
+ravg1002:75025:75025 [0] NCCL INFO NCCL version 2.26.5+cuda12.9
+ravg1002:75025:75025 [0] NCCL INFO Comm config Blocking set to 1
+ravg1002:75027:75027 [2] NCCL INFO cudaDriverVersion 12090
+ravg1002:75026:75026 [1] NCCL INFO cudaDriverVersion 12090
+ravg1002:75027:75027 [2] NCCL INFO Bootstrap: Using ib0:10.181.140.2<0>
+ravg1002:75027:75027 [2] NCCL INFO NCCL version 2.26.5+cuda12.9
+ravg1002:75026:75026 [1] NCCL INFO Bootstrap: Using ib0:10.181.140.2<0>
+ravg1002:75026:75026 [1] NCCL INFO NCCL version 2.26.5+cuda12.9
+ravg1002:75028:75028 [3] NCCL INFO cudaDriverVersion 12090
+ravg1002:75027:75027 [2] NCCL INFO Comm config Blocking set to 1
+ravg1002:75026:75026 [1] NCCL INFO Comm config Blocking set to 1
+ravg1002:75028:75028 [3] NCCL INFO Bootstrap: Using ib0:10.181.140.2<0>
+ravg1002:75028:75028 [3] NCCL INFO NCCL version 2.26.5+cuda12.9
+ravg1002:75028:75028 [3] NCCL INFO Comm config Blocking set to 1
+ravg1002:75026:75073 [1] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v10 (v10)
+ravg1002:75026:75073 [1] NCCL INFO NET/Plugin: Loaded collnet plugin NCCL RDMA Plugin v10 (v10)
+ravg1002:75026:75073 [1] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+ravg1002:75026:75073 [1] NCCL INFO P2P plugin v10 IBext_v10
+ravg1002:75028:75074 [3] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v10 (v10)
+ravg1002:75027:75072 [2] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v10 (v10)
+ravg1002:75028:75074 [3] NCCL INFO NET/Plugin: Loaded collnet plugin NCCL RDMA Plugin v10 (v10)
+ravg1002:75025:75071 [0] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v10 (v10)
+ravg1002:75027:75072 [2] NCCL INFO NET/Plugin: Loaded collnet plugin NCCL RDMA Plugin v10 (v10)
+ravg1002:75028:75074 [3] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+ravg1002:75025:75071 [0] NCCL INFO NET/Plugin: Loaded collnet plugin NCCL RDMA Plugin v10 (v10)
+ravg1002:75028:75074 [3] NCCL INFO P2P plugin v10 IBext_v10
+ravg1002:75027:75072 [2] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+ravg1002:75027:75072 [2] NCCL INFO P2P plugin v10 IBext_v10
+ravg1002:75025:75071 [0] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+ravg1002:75025:75071 [0] NCCL INFO P2P plugin v10 IBext_v10
+ravg1002:75027:75072 [2] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/RoCE [RO]; OOB ib0:10.181.140.2<0>
+ravg1002:75028:75074 [3] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/RoCE [RO]; OOB ib0:10.181.140.2<0>
+ravg1002:75025:75071 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/RoCE [RO]; OOB ib0:10.181.140.2<0>
+ravg1002:75026:75073 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/RoCE [RO]; OOB ib0:10.181.140.2<0>
+ravg1002:75027:75072 [2] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+ravg1002:75027:75072 [2] NCCL INFO Using network IBext_v10
+ravg1002:75028:75074 [3] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+ravg1002:75028:75074 [3] NCCL INFO Using network IBext_v10
+ravg1002:75026:75073 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+ravg1002:75026:75073 [1] NCCL INFO Using network IBext_v10
+ravg1002:75025:75071 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+ravg1002:75025:75071 [0] NCCL INFO Using network IBext_v10
+ravg1002:75027:75072 [2] NCCL INFO ncclCommInitRankConfig comm 0xf878c20 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId ca000 commId 0x535043d3d47dd526 - Init START
+ravg1002:75028:75074 [3] NCCL INFO ncclCommInitRankConfig comm 0x3d0a6e70 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId e3000 commId 0x535043d3d47dd526 - Init START
+ravg1002:75026:75073 [1] NCCL INFO ncclCommInitRankConfig comm 0x2c7eb8d0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 4b000 commId 0x535043d3d47dd526 - Init START
+ravg1002:75025:75071 [0] NCCL INFO ncclCommInitRankConfig comm 0x2261bc50 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 31000 commId 0x535043d3d47dd526 - Init START
+ravg1002:75027:75072 [2] NCCL INFO RAS client listening socket at ::1<28028>
+ravg1002:75028:75074 [3] NCCL INFO RAS client listening socket at ::1<28028>
+ravg1002:75025:75071 [0] NCCL INFO RAS client listening socket at ::1<28028>
+ravg1002:75026:75073 [1] NCCL INFO RAS client listening socket at ::1<28028>
+ravg1002:75027:75072 [2] NCCL INFO Bootstrap timings total 0.005708 (create 0.000027, send 0.000087, recv 0.000847, ring 0.000769, delay 0.000000)
+ravg1002:75028:75074 [3] NCCL INFO Bootstrap timings total 0.005056 (create 0.000034, send 0.000131, recv 0.000859, ring 0.000099, delay 0.000001)
+ravg1002:75026:75073 [1] NCCL INFO Bootstrap timings total 0.004464 (create 0.000037, send 0.000143, recv 0.000078, ring 0.000071, delay 0.000001)
+ravg1002:75025:75071 [0] NCCL INFO Bootstrap timings total 0.004445 (create 0.000036, send 0.000122, recv 0.000341, ring 0.000108, delay 0.000001)
+ravg1002:75028:75074 [3] NCCL INFO Setting affinity for GPU 3 to ffff,fffff000,000000ff,fffffff0,00000000
+ravg1002:75026:75073 [1] NCCL INFO Setting affinity for GPU 1 to 0fff,ffffff00,0000000f,ffffffff
+ravg1002:75025:75071 [0] NCCL INFO Setting affinity for GPU 0 to 0fff,ffffff00,0000000f,ffffffff
+ravg1002:75028:75074 [3] NCCL INFO NVLS multicast support is not available on dev 3
+ravg1002:75025:75071 [0] NCCL INFO NVLS multicast support is not available on dev 0
+ravg1002:75026:75073 [1] NCCL INFO NVLS multicast support is not available on dev 1
+ravg1002:75027:75072 [2] NCCL INFO Setting affinity for GPU 2 to ffff,fffff000,000000ff,fffffff0,00000000
+ravg1002:75027:75072 [2] NCCL INFO NVLS multicast support is not available on dev 2
+ravg1002:75025:75071 [0] NCCL INFO comm 0x2261bc50 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+ravg1002:75028:75074 [3] NCCL INFO comm 0x3d0a6e70 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+ravg1002:75026:75073 [1] NCCL INFO comm 0x2c7eb8d0 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+ravg1002:75027:75072 [2] NCCL INFO comm 0xf878c20 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+ravg1002:75025:75071 [0] NCCL INFO Channel 00/24 : 0 1 2 3
+ravg1002:75028:75074 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->1 [5] -1/-1/-1->3->1 [6] -1/-1/-1->3->1 [7] -1/-1/-1->3->1 [8] 2/-1/-1->3->0 [9] 2/-1/-1->3->0 [10] 2/-1/-1->3->0 [11] 2/-1/-1->3->0 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->1 [17] -1/-1/-1->3->1 [18] -1/-1/-1->3->1 [19] -1/-1/-1->3->1 [20] 2/-1/-1->3->0 [21] 2/-1/-1->3->0 [22] 2/-1/-1->3->0 [23] 2/-1/-1->3->0
+ravg1002:75025:75071 [0] NCCL INFO Channel 01/24 : 0 1 3 2
+ravg1002:75028:75074 [3] NCCL INFO P2P Chunksize set to 524288
+ravg1002:75026:75073 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 3/-1/-1->1->2 [5] 3/-1/-1->1->2 [6] 3/-1/-1->1->2 [7] 3/-1/-1->1->2 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 3/-1/-1->1->2 [17] 3/-1/-1->1->2 [18] 3/-1/-1->1->2 [19] 3/-1/-1->1->2 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
+ravg1002:75025:75071 [0] NCCL INFO Channel 02/24 : 0 2 3 1
+ravg1002:75027:75072 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 1/-1/-1->2->0 [5] 1/-1/-1->2->0 [6] 1/-1/-1->2->0 [7] 1/-1/-1->2->0 [8] -1/-1/-1->2->3 [9] -1/-1/-1->2->3 [10] -1/-1/-1->2->3 [11] -1/-1/-1->2->3 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 1/-1/-1->2->0 [17] 1/-1/-1->2->0 [18] 1/-1/-1->2->0 [19] 1/-1/-1->2->0 [20] -1/-1/-1->2->3 [21] -1/-1/-1->2->3 [22] -1/-1/-1->2->3 [23] -1/-1/-1->2->3
+ravg1002:75026:75073 [1] NCCL INFO P2P Chunksize set to 524288
+ravg1002:75025:75071 [0] NCCL INFO Channel 03/24 : 0 2 1 3
+ravg1002:75027:75072 [2] NCCL INFO P2P Chunksize set to 524288
+ravg1002:75025:75071 [0] NCCL INFO Channel 04/24 : 0 3 1 2
+ravg1002:75025:75071 [0] NCCL INFO Channel 05/24 : 0 3 2 1
+ravg1002:75025:75071 [0] NCCL INFO Channel 06/24 : 0 1 2 3
+ravg1002:75025:75071 [0] NCCL INFO Channel 07/24 : 0 1 3 2
+ravg1002:75025:75071 [0] NCCL INFO Channel 08/24 : 0 2 3 1
+ravg1002:75025:75071 [0] NCCL INFO Channel 09/24 : 0 2 1 3
+ravg1002:75025:75071 [0] NCCL INFO Channel 10/24 : 0 3 1 2
+ravg1002:75025:75071 [0] NCCL INFO Channel 11/24 : 0 3 2 1
+ravg1002:75025:75071 [0] NCCL INFO Channel 12/24 : 0 1 2 3
+ravg1002:75025:75071 [0] NCCL INFO Channel 13/24 : 0 1 3 2
+ravg1002:75025:75071 [0] NCCL INFO Channel 14/24 : 0 2 3 1
+ravg1002:75025:75071 [0] NCCL INFO Channel 15/24 : 0 2 1 3
+ravg1002:75025:75071 [0] NCCL INFO Channel 16/24 : 0 3 1 2
+ravg1002:75025:75071 [0] NCCL INFO Channel 17/24 : 0 3 2 1
+ravg1002:75025:75071 [0] NCCL INFO Channel 18/24 : 0 1 2 3
+ravg1002:75025:75071 [0] NCCL INFO Channel 19/24 : 0 1 3 2
+ravg1002:75025:75071 [0] NCCL INFO Channel 20/24 : 0 2 3 1
+ravg1002:75025:75071 [0] NCCL INFO Channel 21/24 : 0 2 1 3
+ravg1002:75025:75071 [0] NCCL INFO Channel 22/24 : 0 3 1 2
+ravg1002:75025:75071 [0] NCCL INFO Channel 23/24 : 0 3 2 1
+ravg1002:75025:75071 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 2/-1/-1->0->-1 [5] 2/-1/-1->0->-1 [6] 2/-1/-1->0->-1 [7] 2/-1/-1->0->-1 [8] 3/-1/-1->0->1 [9] 3/-1/-1->0->1 [10] 3/-1/-1->0->1 [11] 3/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 2/-1/-1->0->-1 [17] 2/-1/-1->0->-1 [18] 2/-1/-1->0->-1 [19] 2/-1/-1->0->-1 [20] 3/-1/-1->0->1 [21] 3/-1/-1->0->1 [22] 3/-1/-1->0->1 [23] 3/-1/-1->0->1
+ravg1002:75025:75071 [0] NCCL INFO P2P Chunksize set to 524288
+ravg1002:75028:75089 [3] NCCL INFO [Proxy Service UDS] Device 3 CPU core 110
+ravg1002:75028:75088 [3] NCCL INFO [Proxy Service] Device 3 CPU core 70
+ravg1002:75027:75091 [2] NCCL INFO [Proxy Service UDS] Device 2 CPU core 41
+ravg1002:75027:75090 [2] NCCL INFO [Proxy Service] Device 2 CPU core 111
+ravg1002:75025:75071 [0] NCCL INFO Check P2P Type intraNodeP2pSupport 1 directMode 0
+ravg1002:75026:75092 [1] NCCL INFO [Proxy Service] Device 1 CPU core 1
+ravg1002:75026:75093 [1] NCCL INFO [Proxy Service UDS] Device 1 CPU core 74
+ravg1002:75025:75095 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 5
+ravg1002:75025:75094 [0] NCCL INFO [Proxy Service] Device 0 CPU core 1
+ravg1002:75028:75074 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ravg1002:75028:75074 [3] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+ravg1002:75027:75072 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ravg1002:75027:75072 [2] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+ravg1002:75025:75071 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ravg1002:75025:75071 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+ravg1002:75025:75071 [0] NCCL INFO CC Off, workFifoBytes 1048576
+ravg1002:75026:75073 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ravg1002:75026:75073 [1] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+ravg1002:75028:75074 [3] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+ravg1002:75025:75071 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+ravg1002:75027:75072 [2] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+ravg1002:75028:75074 [3] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v4 symbol.
+ravg1002:75025:75071 [0] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v4 symbol.
+ravg1002:75028:75074 [3] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v3 symbol.
+ravg1002:75027:75072 [2] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v4 symbol.
+ravg1002:75025:75071 [0] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v3 symbol.
+ravg1002:75028:75074 [3] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v2 symbol, using internal tuner instead.
+ravg1002:75027:75072 [2] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v3 symbol.
+ravg1002:75025:75071 [0] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v2 symbol, using internal tuner instead.
+ravg1002:75028:75074 [3] NCCL INFO ncclCommInitRankConfig comm 0x3d0a6e70 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId e3000 commId 0x535043d3d47dd526 - Init COMPLETE
+ravg1002:75027:75072 [2] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v2 symbol, using internal tuner instead.
+ravg1002:75025:75071 [0] NCCL INFO ncclCommInitRankConfig comm 0x2261bc50 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 31000 commId 0x535043d3d47dd526 - Init COMPLETE
+ravg1002:75028:75074 [3] NCCL INFO Init timings - ncclCommInitRankConfig: rank 3 nranks 4 total 0.67 (kernels 0.31, alloc 0.21, bootstrap 0.01, allgathers 0.01, topo 0.10, graphs 0.00, connections 0.02, rest 0.01)
+ravg1002:75027:75072 [2] NCCL INFO ncclCommInitRankConfig comm 0xf878c20 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId ca000 commId 0x535043d3d47dd526 - Init COMPLETE
+ravg1002:75025:75071 [0] NCCL INFO Init timings - ncclCommInitRankConfig: rank 0 nranks 4 total 0.68 (kernels 0.33, alloc 0.20, bootstrap 0.00, allgathers 0.00, topo 0.10, graphs 0.01, connections 0.02, rest 0.01)
+ravg1002:75027:75072 [2] NCCL INFO Init timings - ncclCommInitRankConfig: rank 2 nranks 4 total 0.67 (kernels 0.31, alloc 0.20, bootstrap 0.01, allgathers 0.01, topo 0.10, graphs 0.01, connections 0.02, rest 0.01)
+ravg1002:75026:75073 [1] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+ravg1002:75026:75073 [1] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v4 symbol.
+ravg1002:75026:75073 [1] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v3 symbol.
+ravg1002:75026:75073 [1] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v2 symbol, using internal tuner instead.
+ravg1002:75026:75073 [1] NCCL INFO ncclCommInitRankConfig comm 0x2c7eb8d0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 4b000 commId 0x535043d3d47dd526 - Init COMPLETE
+ravg1002:75026:75073 [1] NCCL INFO Init timings - ncclCommInitRankConfig: rank 1 nranks 4 total 0.67 (kernels 0.31, alloc 0.20, bootstrap 0.00, allgathers 0.00, topo 0.10, graphs 0.01, connections 0.02, rest 0.01)
+ravg1002:75028:75096 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 02/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 03/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 08/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 09/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 02/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 14/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 04/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 15/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 08/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 10/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 20/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 01/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 01/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 14/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 21/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 16/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 03/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 04/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 20/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 22/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 07/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 07/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 10/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 09/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 13/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 13/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 16/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 15/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 19/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 19/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 22/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 21/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 04/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 05/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 10/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 11/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 16/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 17/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 22/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1002:75027:75097 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1002:75025:75098 [0] NCCL INFO Channel 23/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1002:75026:75099 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1002:75028:75096 [3] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ravg1002:75026:75099 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ravg1002:75025:75098 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ravg1002:75027:75097 [2] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+[GPU0] Epoch 40 | Batchsize: 32 | Steps: 16
+[GPU3] Epoch 40 | Batchsize: 32 | Steps: 16[GPU2] Epoch 40 | Batchsize: 32 | Steps: 16
+
+[GPU1] Epoch 40 | Batchsize: 32 | Steps: 16
+[GPU2] Epoch 41 | Batchsize: 32 | Steps: 16
+[GPU3] Epoch 41 | Batchsize: 32 | Steps: 16
+[GPU1] Epoch 41 | Batchsize: 32 | Steps: 16Epoch 40 | Training snapshot saved at snapshot.pt
+
+[GPU0] Epoch 41 | Batchsize: 32 | Steps: 16
+[GPU3] Epoch 42 | Batchsize: 32 | Steps: 16
+[GPU2] Epoch 42 | Batchsize: 32 | Steps: 16
+[GPU1] Epoch 42 | Batchsize: 32 | Steps: 16[GPU0] Epoch 42 | Batchsize: 32 | Steps: 16
+
+[GPU1] Epoch 43 | Batchsize: 32 | Steps: 16
+[GPU3] Epoch 43 | Batchsize: 32 | Steps: 16
+[GPU0] Epoch 43 | Batchsize: 32 | Steps: 16
+[GPU2] Epoch 43 | Batchsize: 32 | Steps: 16
+[GPU0] Epoch 44 | Batchsize: 32 | Steps: 16
+[GPU3] Epoch 44 | Batchsize: 32 | Steps: 16
+[GPU2] Epoch 44 | Batchsize: 32 | Steps: 16
+[GPU1] Epoch 44 | Batchsize: 32 | Steps: 16
+[GPU2] Epoch 45 | Batchsize: 32 | Steps: 16[GPU1] Epoch 45 | Batchsize: 32 | Steps: 16
+
+[GPU3] Epoch 45 | Batchsize: 32 | Steps: 16
+[GPU0] Epoch 45 | Batchsize: 32 | Steps: 16
+[GPU2] Epoch 46 | Batchsize: 32 | Steps: 16[GPU1] Epoch 46 | Batchsize: 32 | Steps: 16
+
+[GPU3] Epoch 46 | Batchsize: 32 | Steps: 16
+[GPU0] Epoch 46 | Batchsize: 32 | Steps: 16
+[GPU0] Epoch 47 | Batchsize: 32 | Steps: 16
+[GPU3] Epoch 47 | Batchsize: 32 | Steps: 16
+[GPU2] Epoch 47 | Batchsize: 32 | Steps: 16
+[GPU1] Epoch 47 | Batchsize: 32 | Steps: 16
+[GPU0] Epoch 48 | Batchsize: 32 | Steps: 16[GPU2] Epoch 48 | Batchsize: 32 | Steps: 16[GPU3] Epoch 48 | Batchsize: 32 | Steps: 16
+
+
+[GPU1] Epoch 48 | Batchsize: 32 | Steps: 16
+[GPU1] Epoch 49 | Batchsize: 32 | Steps: 16[GPU2] Epoch 49 | Batchsize: 32 | Steps: 16[GPU0] Epoch 49 | Batchsize: 32 | Steps: 16
+
+
+[GPU3] Epoch 49 | Batchsize: 32 | Steps: 16
+ravg1002:75028:75153 [3] NCCL INFO comm 0x3d0a6e70 rank 3 nranks 4 cudaDev 3 busId e3000 - Destroy COMPLETE
+ravg1002:75027:75150 [2] NCCL INFO comm 0xf878c20 rank 2 nranks 4 cudaDev 2 busId ca000 - Destroy COMPLETE
+ravg1002:75025:75151 [0] NCCL INFO comm 0x2261bc50 rank 0 nranks 4 cudaDev 0 busId 31000 - Destroy COMPLETE
+ravg1002:75026:75152 [1] NCCL INFO comm 0x2c7eb8d0 rank 1 nranks 4 cudaDev 1 busId 4b000 - Destroy COMPLETE
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: fcitterio(76052)
+Job name:  multinode-example
+Node list: ravg1002
+Job start: Wed Jul  9 17:24:49 CEST 2025
+Job end:   Wed Jul  9 17:25:27 CEST 2025
+Work dir:  /u/fcitterio/master_thesis_code/multi_gpu_torch_examples/ddp-tutorial-series/slurm/../py_scripts_ex/
+Command:   /raven/u/fcitterio/master_thesis_code/multi_gpu_torch_examples/ddp-tutorial-series/slurm/sbatch_run2.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID            JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode
+------------- ---------- ------ ------ ------ ------------ ------------ ---------- --------
+20307902      multinode-      1           144                             00:00:38      0:0
+  
+Maximum memory per node: 3.493679 GB (defined as MaxRSS*Ntasks/NNodes)
+CPU utilization: 1.6 %
+  
