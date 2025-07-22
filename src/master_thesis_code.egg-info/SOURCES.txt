@@ -74,10 +74,10 @@ src/lensing_system_compiled/sources/__init__.py
 src/lensing_system_compiled/sources/gaussian_blob_static.py
 src/lensing_system_compiled/sources/source_model.py
 src/lensing_system_compiled/sources/util.py
-src/my_package.egg-info/PKG-INFO
-src/my_package.egg-info/SOURCES.txt
-src/my_package.egg-info/dependency_links.txt
-src/my_package.egg-info/top_level.txt
+src/master_thesis_code.egg-info/PKG-INFO
+src/master_thesis_code.egg-info/SOURCES.txt
+src/master_thesis_code.egg-info/dependency_links.txt
+src/master_thesis_code.egg-info/top_level.txt
 src/noise_applicator/__init__.py
 src/noise_applicator/noise_applicator.py
 src/noise_applicator/psf_kernels/__init__.py

@@ -74,8 +74,13 @@ class CatalogManager:
         if os.path.exists(self.json_path):
                 #for security, I require to delaete the file manually
                 raise FileExistsError(f"File already exists at {self.json_path}. Please delete it manually.")
+        
+        print(1)
+        print(mode_mapping.keys)
+        print(2)
 
 
+        
         self.catalog = {
             "Description": description,
             "Used_mode": mode_mapping[self.sampling_mode],

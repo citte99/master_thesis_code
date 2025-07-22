@@ -1,0 +1,265 @@
+from abc import ABC, abstractmethod
+from noise_applicator.registry import NOISERS_REGISTRY, INSTRUMENTS_REGISTRY
+import torch
+from typing import Union, Any
+from dataclasses import dataclass
+import math
+
+class BaseNoiser(ABC):
+    """
+        A noiser takes as input a tensor image or a tensor batch of images, are applies noise.
+        Some arguments will be allowed, for example to choose a particular PSF.
+
+    """
+
+    @abstractmethod
+    def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
+        """
+            This method has to be implemented by every child class.
+            But a base logic of checking the correct form of image_s is implemented here, and must be called with super.
+            For ease of implementation of the child classes, single images shape will be augmented to [batch, channels, N_x, N_y]
+
+        """
+
+        return _to_batch_shape(image_s)
+
+        
+
+
+def _to_batch_shape(image_s):
+    
+        if image_s.dim() == 2:
+            image_s= image_s[None, None, ...]
+
+        elif image_s.dim() == 3:
+             "here we should know if the dimension already there is channel or batch."
+             image_s= image_s[None, ...]
+        elif image_s.dim() > 4:
+             raise ValueError(f"The dimension of the provided images, shape {image_s.shape} is bigger than 4.")
+        
+        return image_s
+
+
+
+@NOISERS_REGISTRY.register()
+class GaussNoiser(BaseNoiser):
+    def __init__(self, sigma: Union[float, torch.Tensor]):
+        
+         self.sigma= torch.as_tensor(sigma)
+     
+    def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
+        images= super().__call__(image_s)
+        B, C, H, W = images.shape
+
+        # make gauss noise matching shape of image_s
+        noise = torch.randn( B, C, H, W)*self.sigma
+        noisy_images = images + noise
+        return noisy_images
+
+
+
+"""
+    Instrument response:
+
+    -convolve with psf,
+    -add uniform sky brighness (M_vis is given, how to convert to surface brighness?)
+    -expected counts from
+        -zero point (given in magnitudes)
+        -exposure time
+
+    Starting from I in W/m^2/sr,
+    the photon counts per square meter per second of each pixel are given by
+    B = I * pixel_arcsec_sa/ photon energy
+    B * A is then the photon count per per second, that we multiply by the exposure time to get
+    P = T * A * B the total expected photon count per pixel, if there was no loss of photons
+    
+
+    which we need to multiply by the troughput and quantum efficiency to get the real expected photon counts
+"""
+class PSF(ABC):
+    @abstractmethod
+    def get_tensor_psf(pixel_scale):
+        pass
+    pass
+
+
+
+class AnalyticPSF():
+     #pixel_scale, pixel_size
+    def get_tensor_psf(pixel_scale):
+        pass
+    pass
+
+
+class GaussPSF(AnalyticPSF):
+    def __init__(self, FWHM_arcsec: float, n_sigma_trunc: float = 4.0):
+        self.FWHM_arcsec    = FWHM_arcsec
+        self.sigma_arcsec   = FWHM_arcsec / (2 * math.sqrt(2 * math.log(2)))
+        self.n_sigma_trunc  = n_sigma_trunc
+
+    def get_tensor_psf(self, pixel_scale: float) -> torch.Tensor:
+        # how far out (in arcsec) to truncate the Gaussian
+        radius_arcsec = self.n_sigma_trunc * self.sigma_arcsec
+
+        # 2) convert to "half‐width in pixels", rounding to nearest int
+        half_pix = int(radius_arcsec / pixel_scale + 0.5)
+        npix     = 2 * half_pix + 1
+        coords = torch.arange(npix, dtype=torch.float32) - half_pix  # [..., -half_pix, ... , +half_pix]
+        yy, xx = torch.meshgrid(coords, coords, indexing="ij")       # shape (npix, npix)
+        xx = xx * pixel_scale
+        yy = yy * pixel_scale
+        rsq = xx**2 + yy**2
+        psf  = torch.exp(-0.5 * rsq / (self.sigma_arcsec**2))
+        psf = psf / psf.sum()
+        return psf.unsqueeze(0).unsqueeze(0)  # shape (1,1,npix,npix)
+
+
+class FitsPSF(PSF):
+     def get_tensor_psf(pixel_scale):
+          #here we will have to check that the pixel size matches
+          #the fits file, or eventually make an interpolation but not very meaningful
+          pass
+     pass
+
+
+
+@dataclass
+class Instrument:
+    t_obs : torch.Tensor
+    pixel_arcsec : torch.Tensor
+    zero_point : torch.Tensor
+    sky_mag : torch.Tensor
+    psf: PSF
+
+
+EuclidVis = Instrument(
+    t_obs        = torch.tensor(1695), #s
+    pixel_arcsec = torch.tensor(0.1),
+    zero_point   = torch.tensor(25.2),
+    sky_mag      = torch.tensor(22.2),
+    psf          = GaussPSF(FWHM_arcsec=0.16, n_sigma_trunc=3)
+)
+INSTRUMENTS_REGISTRY.add_instance("EuclidVis",EuclidVis)
+
+
+
+
+
+@NOISERS_REGISTRY.register()
+class PoissonNoiser(BaseNoiser):
+    """
+        We need to convert an intensity into photon counts per pixel, and apply the shot 
+        noise to them, then convert back to an intensity
+    """
+    def __init__(self, Instrument: Instrument):
+        self.instrument = Instrument
+
+    def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
+        images = super().__call__(image_s)
+        B, C, H, W = images.shape
+
+        # assuming the input is a surface brighness AB magnitude
+        R = 10**(-0.4 * (images - self.instrument.zero_point)) # ADU/s/ arcsec^2
+        R_sky = 10**(-0.4 * (self.instrument.sky_mag - self.instrument.zero_point)) 
+        R_pix = (R+ R_sky) * self.instrument.pixel_arcsec**2
+
+        exp_phot      = R_pix * self.instrument.t_obs
+        pois_sample   = torch.poisson(exp_phot)
+        Adu_per_sec = pois_sample / self.instrument.t_obs
+        # avoid log10(0)
+        Adu_per_sec = Adu_per_sec.clamp(min=1e-10)
+        m_ab = -2.5 * torch.log10(Adu_per_sec) + self.instrument.zero_point
+
+        return m_ab
+
+
+
+
+
+
+
+
+
+
+import torch.nn.functional as F 
+
+@NOISERS_REGISTRY.register()
+class PSFConvolveNoiser(BaseNoiser):
+    def __init__(self, psf : PSF, pixel_scale: float):
+         self.PSF = psf
+         self.tensor_PSF_filter = psf.get_tensor_psf(pixel_scale)
+      
+
+    def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
+        images = super().__call__(image_s)
+        B, C, H, W = images.shape
+        convolved = F.conv2d(images, self.tensor_PSF_filter, padding="same")
+        return convolved
+
+
+@NOISERS_REGISTRY.register()
+class EuclidNoiser(BaseNoiser):
+    def __init__(self):
+        self.conv_noiser=PSFConvolveNoiser(
+            psf=EuclidVis.psf, pixel_scale=EuclidVis.pixel_arcsec
+        )
+        self.poisson_noiser = PoissonNoiser(EuclidVis)
+
+
+    def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
+        images = super().__call__(image_s)
+        B, C, H, W = images.shape
+        
+        conv_images = self.conv_noiser(images)
+        poiss_images = self.poisson_noiser(conv_images)
+
+        return (poiss_images)
+        
+
+class AlmaNoiser(BaseNoiser):
+     pass
+
+
+
+if __name__ == "__main__":
+    from skimage import data
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    img = data.camera()
+    img = -(img/img.max()*1)+20
+    m0=20
+    
+
+
+    plt.imshow(img[0][0])
+    plt.colorbar()
+    plt.show()
+    
+    print("Gaussian")
+    Noiser= GaussNoiser(sigma= torch.tensor(0.1))
+    img_tensor = torch.tensor (img).float()
+    noisy_image = Noiser(img_tensor)
+
+    plt.imshow(noisy_image[0][0])
+    plt.show()
+
+    print("Poisson")
+    Noiser = PoissonNoiser(Instrument= EuclidVis)
+    noisy_image = Noiser(img_tensor)
+    plt.imshow(noisy_image[0][0])
+    plt.show()
+
+    print("Psf gauss")
+    psf= GaussPSF(FWHM_arcsec=0.03, n_sigma_trunc=3)
+    Noiser = PSFConvolveNoiser(psf, 0.01)
+    noisy_image = Noiser(img_tensor)
+    plt.imshow(noisy_image[0][0])
+    plt.show()
+
+    
+    print("Euclid")
+    Noiser = EuclidNoiser()
+    noisy_image = Noiser(img_tensor)
+    plt.imshow(noisy_image[0][0])
+    plt.show()
