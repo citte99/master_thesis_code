@@ -22,6 +22,7 @@ from .distributions import log_uniform_prior, random_pos_in_circle, resample_the
 from shared_utils import units
 from shared_utils import _arcsec_to_rad
 from config import CATALOGS_DIR
+import os
 # the idea here is that we will write 
 # to a file both the methods used for
 # sampling and their parameters
@@ -145,7 +146,7 @@ class PEMD_params(LensParams):
         dict={
             "PEMD":
                 {
-                    "params" : torch.stack([torch.as_tensor(a) for a in [self.pos[:, 0], self.pos[:, 1], self.z, self.vel_disp, self.slope, self.orient, self.q]], dim = 1),
+                    "params" : torch.stack([torch.as_tensor(a, dtype=torch.float32) for a in [self.pos[:, 0], self.pos[:, 1], self.z, self.vel_disp, self.slope, self.orient, self.q]], dim = 1),
                     "param_map" :   ['pos_x', 'pos_y', 'redshift', 'vel_disp', 'slope', 'orient', 'q'],
                     "sys_idx" : torch.arange(self.q.shape[0]) # NOTE: to use this model as sub, you need to wrap it in sub params,
                                                 # and in particular this sys idx has to be taken care of 
@@ -169,7 +170,7 @@ class EXT_Shear_params(GenericMass_params):
         dict={
             "ExternalPotential":
                 {
-                    "params" : torch.stack([torch.as_tensor(a) for a in [np.zeros(self.s.shape), np.zeros(self.s.shape), self.s, self.d]], dim = 1),
+                    "params" : torch.stack([torch.as_tensor(a, dtype=torch.float32) for a in [np.zeros(self.s.shape), np.zeros(self.s.shape), self.s, self.d]], dim = 1),
                     # the position does not make sense, has to be there but is just irrelevant
                     "param_map" :   ['shear_x','shear_y','shear_strength','shear_angle_rad'],
                     "sys_idx" : torch.arange(self.s.shape[0]) # NOTE: to use this model as sub, you need to wrap it in sub params,
@@ -224,7 +225,7 @@ class Sub_NFW(SubParams):
         dict={
             "NFW":
                 {
-                    "params" : torch.stack([torch.as_tensor(a) for a in [self.pos_abs[:, 0], self.pos_abs[:, 1], self.M_max, self.r_max, zs]], dim = 1),
+                    "params" : torch.stack([torch.as_tensor(a, dtype=torch.float32) for a in [self.pos_abs[:, 0], self.pos_abs[:, 1], self.M_max, self.r_max, zs]], dim = 1),
                     # the position does not make sense, has to be there but is just irrelevant
                     "param_map" :   ['pos_x', 'pos_y','mass_max','r_max_kpc','redshift'],
                     "sys_idx" : torch.tensor(self.belonging_index)
@@ -280,7 +281,7 @@ class Gauss_params(SourceParams):
         dict={
             "Gaussian_blob":
                 {
-                    "params" : torch.stack([torch.as_tensor(a) for a in [self.pos_abs[:, 0], self.pos_abs[:, 1], self.I, self.orient, self.q, self.std_kpc, self.z ]], dim = 1),
+                    "params" : torch.stack([torch.as_tensor(a, dtype=torch.float32) for a in [self.pos_abs[:, 0], self.pos_abs[:, 1], self.I, self.orient, self.q, self.std_kpc, self.z ]], dim = 1),
                     "param_map" :   ['position_rad_x', 'position_rad_y', 'I' ,'orient_rad','q','std_kpc','redshift'],
                     "sys_idx" : torch.arange(self.I.shape[0])
                 }
@@ -313,7 +314,7 @@ class Precomp:
         dict={
             "precomputed":
                 {
-                    "params" : torch.stack([torch.as_tensor(a) for a in [self.D_l, self.D_s, self.D_ls, self.theta_E]], dim = 1),
+                    "params" : torch.stack([torch.as_tensor(a, dtype=torch.float32) for a in [self.D_l, self.D_s, self.D_ls, self.theta_E]], dim = 1),
                     "param_map" :   ['D_l', 'D_s', 'D_ls', 'Theta_E'],
                     "sys_idx" : torch.arange(self.D_l.shape[0])
                 }
@@ -424,7 +425,8 @@ def RedVelDispTrainSampler(
     max_einstein_angle = Theta_E_max
     redshifts_pool_lens = sample_redshift_comoving_volume(Nsamples * overSampFac)
     redshifts_pool_source = sample_redshift_comoving_volume(Nsamples * overSampFac)
-    vel_disp_pool = uniform_prior(Nsamples * overSampFac, 100, 400)
+    
+    vel_disp_pool = uniform_prior(Nsamples * overSampFac, sampling_inputs.prior_lens_VelDisp[0], sampling_inputs.prior_lens_VelDisp[1])
     
     # Swap pairs where the lens redshift is greater than the source redshift.
     swap_mask = redshifts_pool_lens > redshifts_pool_source
@@ -744,8 +746,9 @@ class SourcePosModes(Enum):
 def Sampler(
         Pipeline : list, #List of sampler functions, FullSysConf -> FullSysConf
         sampling_inputs : SamplingInputs,
-        N_samples : int
-        ):
+        N_samples : int,
+        cat_name : str
+    ):
     #Initialize systems configurations
     full_sys_conf = FullSysConfig(
         precomp     = Precomp(),
@@ -757,13 +760,52 @@ def Sampler(
     for sampler in Pipeline:
         full_sys_conf = sampler(full_sys_conf, N_samples, sampling_inputs)
     
+    cat_path =  os.path.join(CATALOGS_DIR, ("testin.pth")
+    full_sys_conf.
     return full_sys_conf
 
 
 
+class SampModes(Enum): # currrently not working, poprobably this jupyter is not working with the suggestions
+    REDSHIFTVELDISP = RedshiftsVelDispModes,
+    MAINLENS        = MainLensModes,
+    SECONDARYLENS   = SecondaryLensModes,
+    SUB             = SubStrucModes,
+    SOURCE          = SourceModes,
+    SOURCEPOS       = SourcePosModes
 
 
 
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
 
 def test():
 
@@ -844,6 +886,11 @@ def test():
 
     image = next(iterator)
 
-    print(image.shape)
+    print(image[0].shape)
+    
+    import matplotlib.pyplot as plt
+    
+    plt.imshow(image[0].cpu().numpy()[0][0])
+    plt.show()
     
     return full_sys_conf
