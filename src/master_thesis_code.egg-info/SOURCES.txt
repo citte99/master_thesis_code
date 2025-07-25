@@ -4,6 +4,7 @@ src/catalog_manager/__init__.py
 src/catalog_manager/archived_modes.py
 src/catalog_manager/catalog_manager.py
 src/catalog_manager/distributions.py
+src/catalog_manager/make_system_dicts_new.py
 src/catalog_manager/make_systems_dicts.py
 src/deep_learning/__init__.py
 src/deep_learning/registry.py
@@ -80,6 +81,9 @@ src/master_thesis_code.egg-info/dependency_links.txt
 src/master_thesis_code.egg-info/top_level.txt
 src/noise_applicator/__init__.py
 src/noise_applicator/noise_applicator.py
+src/noise_applicator/registry.py
+src/noise_applicator/noisers/__init__.py
+src/noise_applicator/noisers/base_noiser.py
 src/noise_applicator/psf_kernels/__init__.py
 src/noise_applicator/psf_kernels/gauss_kernel.py
 src/sensitivity_map/__init__.py

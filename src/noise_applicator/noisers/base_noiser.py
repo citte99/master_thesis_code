@@ -129,6 +129,8 @@ class Instrument:
     pixel_arcsec : torch.Tensor
     zero_point : torch.Tensor
     sky_mag : torch.Tensor
+    gain : torch.Tensor
+    eff_with_f: torch.Tensor
     psf: PSF
 
 
@@ -137,6 +139,8 @@ EuclidVis = Instrument(
     pixel_arcsec = torch.tensor(0.1),
     zero_point   = torch.tensor(25.2),
     sky_mag      = torch.tensor(22.2),
+    gain         = torch.tensor(1.5),
+    eff_with_f   = torch.tensor(2.12e14), # Hz
     psf          = GaussPSF(FWHM_arcsec=0.16, n_sigma_trunc=3)
 )
 INSTRUMENTS_REGISTRY.add_instance("EuclidVis",EuclidVis)
@@ -148,29 +152,54 @@ INSTRUMENTS_REGISTRY.add_instance("EuclidVis",EuclidVis)
 @NOISERS_REGISTRY.register()
 class PoissonNoiser(BaseNoiser):
     """
-        We need to convert an intensity into photon counts per pixel, and apply the shot 
+        We need to convert an intensity I over the band into photon counts per pixel, and apply the shot 
         noise to them, then convert back to an intensity
     """
     def __init__(self, Instrument: Instrument):
         self.instrument = Instrument
+        self.K = (
+            10 ** (0.4 * (self.instrument.zero_point + 48.60))
+            * self.instrument.pixel_arcsec**2
+            * self.instrument.gain
+        )
+
 
     def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
         images = super().__call__(image_s)
         B, C, H, W = images.shape
 
+
+        # converting surface brighness [erg s^-1 cm ^ -2 arcsec^ -2 ]
+        # divide by effective f band width
+        I_nu  = images / self.instrument.eff_with_f
+        # to AB magnitude [mag / arcsec ^ -2]
+        m_ab = -2.5*torch.log10(I_nu)-48.60
+
+
+
         # assuming the input is a surface brighness AB magnitude
-        R = 10**(-0.4 * (images - self.instrument.zero_point)) # ADU/s/ arcsec^2
+        R = 10**(-0.4 * (m_ab - self.instrument.zero_point)) # ADU/s/ arcsec^2
+        # convert ADU to electron count
+
+
+
         R_sky = 10**(-0.4 * (self.instrument.sky_mag - self.instrument.zero_point)) 
         R_pix = (R+ R_sky) * self.instrument.pixel_arcsec**2
 
-        exp_phot      = R_pix * self.instrument.t_obs
+        exp_phot      = R_pix * self.instrument.t_obs * self.instrument.gain
         pois_sample   = torch.poisson(exp_phot)
-        Adu_per_sec = pois_sample / self.instrument.t_obs
+        phot_per_sec = pois_sample / self.instrument.t_obs
         # avoid log10(0)
-        Adu_per_sec = Adu_per_sec.clamp(min=1e-10)
-        m_ab = -2.5 * torch.log10(Adu_per_sec) + self.instrument.zero_point
+        phot_per_sec = phot_per_sec.clamp(min=1e-10)
+        #m_ab = -2.5 * torch.log10(Adu_per_sec) + self.instrument.zero_point
+        
+        # invert: I_nu = phot_per_sec / K
+        I_nu_rec = phot_per_sec / self.K
 
-        return m_ab
+        # back to surface brightness units:
+        I_rec = I_nu_rec * self.instrument.eff_with_f
+        
+        return I_rec
 
 
 
@@ -226,13 +255,32 @@ if __name__ == "__main__":
     import numpy as np
     import matplotlib.pyplot as plt
 
-    img = data.camera()
-    img = -(img/img.max()*1)+20
-    m0=20
+    # img = data.camera()
+    # img = -(img/img.max()*1)+20
+    # m0=20
     
+    # lets make a fake image, having appropriate ab magnitude around 22-24
+    # for euclid a fast chat gpt search gives ~ 28 ab per arcsec
+
+    # lets make a ring , 
+    pixel_scale = 0.01 #arcsec,
+    FOV_arcsec = 8 #arcsec
+    npix = int(FOV_arcsec / pixel_scale)
+    coords = np.linspace (-4., 4., npix)
+    xx, yy = np.meshgrid(coords, coords, indexing='xy')
+    R = xx**2 + yy**2
+
+    # m pix+ = mu - 2.5 log10 A_pix
+    #referece_mag_bright_pix = 28-2.5*np.log10(pixel_scale**2)
+    SB =1./((np.abs(R-2.0))**4+1e-4)*1e-18 #[ erg s-1 cm -2 arcsec -2]
+
+    print(SB.max()) #gives 10-14, which makes sense with the I vis expected
+
+    img= SB
 
 
-    plt.imshow(img[0][0])
+
+    plt.imshow(img)
     plt.colorbar()
     plt.show()
     

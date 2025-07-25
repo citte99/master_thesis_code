@@ -10,8 +10,8 @@ class ExternalPotential(MassComponent):
     def __init__(self, param_tensor: torch.Tensor, precomputed_dict: dict, device="cuda", dtype=torch.float32):
         """
         For the ExternalPotential, the input tensor is expected to be of shape [B, 4]:
-            [[shear_center_x, shear_center_y, shear_strength, shear_angle_arcsec],
-             [shear_center_x, shear_center_y, shear_strength, shear_angle_arcsec],
+            [[shear_center_x, shear_center_y, shear_strength, shear_angle_rad],
+             [shear_center_x, shear_center_y, shear_strength, shear_angle_rad],
              ...]
         """
         super().__init__(device, dtype=dtype)
@@ -24,7 +24,7 @@ class ExternalPotential(MassComponent):
         # shear_strength: shape [B]
         self.ss = param_tensor[:, 2]
         # Convert shear angle from arcseconds to radians.
-        self.sa = _arcsec_to_rad(param_tensor[:, 3])
+        self.sa = param_tensor[:, 3]
         self.compute_dtype = torch.float32
         # Pre-compute doubled angles and their trig functions
         self.sa2 = 2 * self.sa
