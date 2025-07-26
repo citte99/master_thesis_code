@@ -8,7 +8,9 @@ from .directed_graph import DirectedGraph
 import json
 import shutil
 from .shared_data_structures import LiveMetrics, TrainingCompletedMetrics
-from .training_stage_development import Stage
+#from .training_stage_development import Stage
+from .training_stage_multi import Stage
+
 
 
 @dataclass

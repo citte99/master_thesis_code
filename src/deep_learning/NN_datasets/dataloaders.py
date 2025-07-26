@@ -79,3 +79,45 @@ def custom_dataloader(dataset, batch_size=32, shuffle=True, **kwargs):
 #         num_workers=0,
 #         **{k: v for k, v in kwargs.items() if k not in ("batch_size","shuffle")}
 #     )
+
+from torch.utils.data import DataLoader, BatchSampler
+from torch.utils.data.distributed import DistributedSampler
+
+def distributed_dataloader(dataset, batch_size=32, shuffle=False, **kwargs):
+    """
+    Like custom_dataloader, but shards batches across ranks via DistributedSampler.
+    """
+    # 1) Build an index-only dataset
+    class IndexDataset:
+        def __init__(self, length):
+            self.length = length
+        def __len__(self):
+            return self.length
+        def __getitem__(self, idx):
+            return idx
+
+    index_dataset = IndexDataset(len(dataset))
+
+    # 2) Create a DistributedSampler on that index‐only dataset
+    #    By default it will read world_size & rank from torch.distributed
+    sampler = DistributedSampler(
+        index_dataset,
+        shuffle=shuffle,
+        drop_last=False   # or True if you want every rank to see exactly floor(N/world_size)*world_size samples
+    )
+
+    # 3) Wrap it in a BatchSampler to produce lists of indices of size batch_size
+    batch_sampler = BatchSampler(
+        sampler,
+        batch_size=batch_size,
+        drop_last=False
+    )
+
+    # 4) DataLoader that uses our batch_sampler + direct get_batch()
+    return DataLoader(
+        index_dataset,
+        batch_sampler=batch_sampler,
+        collate_fn=lambda indices: dataset.get_batch(indices),
+        num_workers=0,
+        **{k: v for k, v in kwargs.items() if k not in ['batch_size', 'shuffle']}
+    )

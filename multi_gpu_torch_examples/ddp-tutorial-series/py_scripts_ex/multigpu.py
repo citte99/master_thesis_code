@@ -102,3 +102,8 @@ if __name__ == "__main__":
 
     world_size = torch.cuda.device_count()
     mp.spawn(main, args=(world_size, args.save_every, args.total_epochs, args.batch_size), nprocs=world_size)
+
+
+
+# rank = int(os.environ['RANK'])
+# world_size = int(os.environ['WORLD_SIZE'])

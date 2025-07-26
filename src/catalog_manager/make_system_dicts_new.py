@@ -23,6 +23,7 @@ from shared_utils import units
 from shared_utils import _arcsec_to_rad
 from config import CATALOGS_DIR
 import os
+import json
 # the idea here is that we will write 
 # to a file both the methods used for
 # sampling and their parameters
@@ -30,9 +31,12 @@ import os
 
 @dataclass
 class SamplingInputs:
+    z_min : Optional[torch.Tensor] = None
+    z_max : Optional[torch.Tensor] = None
+
     ThetaE_min   : np.float64 = np.float64(0.)
     ThetaE_max   : np.float64 = np.inf
-    prior_ThetaE : Optional[torch.Tensor] = None
+    prior_lens_ThetaE : Optional[torch.Tensor] = None
     prior_lens_pos: Optional[torch.Tensor] = None
     prior_lens_VelDisp: Optional[torch.Tensor] = None
     prior_lens_q      : Optional[torch.Tensor] = None
@@ -412,12 +416,14 @@ from astropy.cosmology import Planck18 as cosmo
 
 
 
-def RedVelDispTrainSampler(
+def RedVelDispNoResampleSampler(
     full_sys_conf   : FullSysConfig,
     Nsamples        : int,
     sampling_inputs : SamplingInputs,
     overSampFac     : int = 20,
 )-> FullSysConfig:
+    
+    print ("redveldispnoresamplesampler is slow, and can be made faster if reimplenmented following resample mehtod. I may as well be wrong.")
     
     Theta_E_min     = units._arcsec_to_rad(sampling_inputs.ThetaE_min)  # Convert Theta_E_min to radians
     Theta_E_max     = units._arcsec_to_rad(sampling_inputs.ThetaE_max)  # Convert Theta_E_max to radians
@@ -471,18 +477,60 @@ def RedVelDispTrainSampler(
             f"Not enough valid pairs found. Percentage of valid pairs: {percentage_valid:.2%}. "
             f"Suggested new oversampling factor: {new_oversampling_factor}"
         )
-def RedVelDispRealSampler(
+
+
+#sampling
+
+def resample_theta_sampler(     
+        full_sys_conf   : FullSysConfig,
+        Nsamples        : int,
+        sampling_inputs : SamplingInputs,
+        overSampFac     : int = 100,
+    )-> FullSysConfig:
+
+    ThetaE_prior = _arcsec_to_rad(np.array(sampling_inputs.prior_lens_ThetaE))
+    zmin, zmax = sampling_inputs.z_min, sampling_inputs.z_max
+
+
+    from astropy.cosmology import Planck18 as cosmo
+    from .distributions import resample_theta_revised
     
-):
-    raise NotImplementedError("Implement RedVelDispRealSampler!")
+    Nz         = 10_000
+    z_grid     = np.linspace(zmin, zmax, Nz)
+    # comoving volume V(z) and comoving distance χ(z):
+    vol_grid   = cosmo.comoving_volume(z_grid).value
+    chi_grid   = cosmo.comoving_distance(z_grid).value
+    
+    c= units.c
+
+
+    z_l,  z_s,  vel,  D_l,  D_s,  D_ls, theta = resample_theta_revised(Nsamples, overSampFac,
+           ThetaE_prior, c,
+           z_grid, vol_grid, chi_grid)
+    # hardcode 4 arcsec in radians
+
+    full_sys_conf.lens_par.z = z_l
+    full_sys_conf.source_par.z = z_s
+    full_sys_conf.lens_par.vel_disp= vel
+    full_sys_conf.precomp.D_l = D_l
+    full_sys_conf.precomp.D_s = D_s
+    full_sys_conf.precomp.D_ls = D_ls
+    full_sys_conf.precomp.theta_E = theta
+
+    return full_sys_conf
+
+
+
+                            
+
 
 class RedshiftsVelDispModes(Enum):
     # Parameters : vel disp prior,
     #              min theta E
     #              max theta E
     #              direct theta prior
-    REALISTIC_DISTRIBUTION = RedVelDispRealSampler
-    TRAINING_DISTRIBUTION  = RedVelDispTrainSampler
+    REALISTIC_DISTRIBUTION = RedVelDispNoResampleSampler
+    RESAMPLE_THETA  = resample_theta_sampler
 
 #=======================================================================MAIN LENS SAMPLING========================================================================
 
@@ -760,8 +808,20 @@ def Sampler(
     for sampler in Pipeline:
         full_sys_conf = sampler(full_sys_conf, N_samples, sampling_inputs)
     
-    cat_path =  os.path.join(CATALOGS_DIR, ("testin.pth")
-    full_sys_conf.
+    cat_path = os.path.join(CATALOGS_DIR, f"{cat_name}.pth")
+    config_path = os.path.join(CATALOGS_DIR, "sampling_configs", f"{cat_name}.pth")
+    full_sys_conf.get_pth(save_path=cat_path)
+
+    config_dict = asdict(sampling_inputs)
+    config_dict['sampling pipeline'] = [x.__name__  for x in Pipeline]
+
+    #now write config dict to config path
+    os.makedirs(os.path.dirname(config_path), exist_ok=True)
+    with open(config_path.replace('.pth', '.json'), 'w') as json_file:
+        json.dump(config_dict, json_file, indent=4)
+    print(f"Sampling configuration written to {config_path}")
+
+
     return full_sys_conf
 
 

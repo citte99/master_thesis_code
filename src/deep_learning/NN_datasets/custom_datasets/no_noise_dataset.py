@@ -21,7 +21,7 @@ class NoNoiseDataset(CustomDatasetBase):
     """
     Example implementation of a custom dataset.
     """
-    def __init__(self, catalog_name=None, catalog_dict=None, samples_used="all", image_data_type=torch.float32, grid_width_arcsec=None, grid_pixel_side=None, upscaling=None, final_transform=False, broadcasting=False, device=None):
+    def __init__(self, catalog_name=None, catalog_dict=None, samples_used="all", image_data_type=torch.float32, grid_width_arcsec=None, grid_pixel_side=None, upscaling=None, final_transform=False, broadcasting=False,  final_norm= False, device=None):
 
         super().__init__(catalog_name, 
                          catalog_dict=catalog_dict, 
@@ -31,7 +31,7 @@ class NoNoiseDataset(CustomDatasetBase):
         self.device = device if device is not None else torch.device("cuda" if torch.cuda.is_available() else "cpu")
         
         self.upscaling=upscaling
-        
+        self.final_norm = final_norm
         
         
         
@@ -231,7 +231,8 @@ class NoNoiseDataset(CustomDatasetBase):
 #         # zero-centre & scale:  (x - 0.5) / 0.5
 #         #images_batch = T.functional.normalize(images_batch, mean=[0.5], std=[0.5])
 
-        images_batch = self.unit_max(images_batch, use_log=False)   # or True
+        if self.final_norm:
+            images_batch = self.unit_max(images_batch, use_log=False)   # or True
 
 
         return images_batch, labels_batch

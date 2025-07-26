@@ -213,9 +213,9 @@ def get_main_lens_dict(main_lens_mode, z, vel_disp):
                 "type": "ExternalPotential",
                 "is_substructure": False,
                 "params": {
-                    "shear_center": [0.0, 0.0],
+                    "shear_center": [0.0, 0.0], # center does not make sense !!!!!
                     "shear_strength": uniform_prior(n_samples=1, min_value=0.00, max_value=0.1).tolist(),
-                    "shear_angle_arcsec": uniform_prior(n_samples=1, min_value=0, max_value=2*np.pi).tolist(),
+                    "shear_angle_rad": uniform_prior(n_samples=1, min_value=0, max_value=2*np.pi).tolist(),
                 }
             }
         ]

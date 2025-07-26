@@ -214,10 +214,10 @@ import torch.nn.functional as F
 
 @NOISERS_REGISTRY.register()
 class PSFConvolveNoiser(BaseNoiser):
-    def __init__(self, psf : PSF, pixel_scale: float):
+    def __init__(self, psf : PSF, pixel_scale: float, device = "cuda"):
          self.PSF = psf
          self.tensor_PSF_filter = psf.get_tensor_psf(pixel_scale)
-      
+         self.tensor_PSF_filter=self.tensor_PSF_filter.to(device)
 
     def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
         images = super().__call__(image_s)
@@ -228,9 +228,9 @@ class PSFConvolveNoiser(BaseNoiser):
 
 @NOISERS_REGISTRY.register()
 class EuclidNoiser(BaseNoiser):
-    def __init__(self):
+    def __init__(self, device= 'cuda'):
         self.conv_noiser=PSFConvolveNoiser(
-            psf=EuclidVis.psf, pixel_scale=EuclidVis.pixel_arcsec
+            psf=EuclidVis.psf, pixel_scale=EuclidVis.pixel_arcsec, device=device
         )
         self.poisson_noiser = PoissonNoiser(EuclidVis)
 

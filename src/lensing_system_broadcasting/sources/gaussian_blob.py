@@ -124,6 +124,8 @@ class GaussianBlob(SourceModel):
         exponent = -0.5 * rs2 / (std_rad * std_rad)
 
 
+        #print(f"max exponential = {torch.max(torch.exp(exponent))}, max of the I tensor is {torch.max(self.I_tensor)}")
+        
         sb       = torch.exp(exponent) * self.I_tensor.view(B, 1, 1)
 
         return sb  # shape (B, H, W)

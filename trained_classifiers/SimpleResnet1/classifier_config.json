@@ -1,0 +1,48 @@
+{
+    "classifier_name": "SimpleResnet5",
+    "NN_model": "ResNet50",
+    "NN_config": {
+        "num_classes": 2
+    },
+    "active_stage_id": null,
+    "active_val_cats_live": [
+        [
+            "SIS_10e10_sub_val_extended",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 6.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true
+            }
+        ],
+        [
+            "SIS_10e9_sub_val_extended",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 6.0,
+                "grid_pixel_side": 100,
+                "broadcasting": true
+            }
+        ],
+        [
+            "test2",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 6.0,
+                "grid_pixel_side": 100,
+                "broadcasting": false,
+                "samples_used": 10
+            }
+        ],
+        [
+            "test_catalog",
+            "NoNoiseDataset",
+            {
+                "grid_width_arcsec": 6.0,
+                "grid_pixel_side": 100,
+                "broadcasting": false,
+                "samples_used": 10
+            }
+        ]
+    ]
+}

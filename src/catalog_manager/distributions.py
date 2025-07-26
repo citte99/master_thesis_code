@@ -229,9 +229,103 @@ def resample_theta(num_samples, oversampling_factor,
         theta
     )
 
+
+
+
+@njit(parallel=True)
+def resample_theta_revised(num_samples, oversampling_factor,
+           ThetaE_prior, c,
+           z_grid, vol_grid, chi_grid):
+    # hardcode 4 arcsec in radians
+    min_einstein_angle = ThetaE_prior[0]
+    max_einstein_angle = ThetaE_prior[1]
+
+    # 1) Oversample redshifts
+    N      = int(num_samples * oversampling_factor)
+    z_lens = sample_redshift_comoving_volume_jit(N, z_grid, vol_grid)
+    z_src  = sample_redshift_comoving_volume_jit(N, z_grid, vol_grid)
+
+    # 2) lens < source
+    mask = z_lens < z_src
+    M    = mask.sum()
+    if M <= num_samples:
+        raise ValueError("Too low oversampling rate at redshift ordering")
+    z_l = z_lens[mask]
+    z_s = z_src [mask]
+
+    # 3) velocity dispersions
+    vel = np.random.uniform(50.0, 400.0, M)
+
+    # 4) compute D_l, D_s, D_ls
+    D_l  = np.empty(M)
+    D_s  = np.empty(M)
+    D_ls = np.empty(M)
+    for i in prange(M):
+        chi_l    = _interp1d(z_l[i], z_grid, chi_grid)
+        chi_s    = _interp1d(z_s[i], z_grid, chi_grid)
+        D_l [i]  = chi_l / (1.0 + z_l[i])
+        D_s [i]  = chi_s / (1.0 + z_s[i])
+        D_ls[i]  = (chi_s - chi_l) / (1.0 + z_s[i])
+
+    # 5) Einstein angles
+    theta_E = 4.0 * np.pi * (vel / c)**2 * D_ls / D_s
+
+    # 6) global θ_E cuts
+    keep2 = (theta_E >= min_einstein_angle) & (theta_E <= max_einstein_angle)
+    K     = keep2.sum()
+    if K <= num_samples:
+        raise ValueError("Too low oversampling rate at θ_E masking")
+    z_l      = z_l     [keep2]
+    z_s      = z_s     [keep2]
+    vel      = vel     [keep2]
+    D_l      = D_l     [keep2]
+    D_s      = D_s     [keep2]
+    D_ls     = D_ls    [keep2]
+    theta    = theta_E [keep2]
+
+    # 7) area-weighting ∝ θ^2
+    theta_max = theta.max()
+    p_keep    = (theta * theta) / (theta_max * theta_max)
+    r         = np.random.random(p_keep.shape)
+    keep3     = r < p_keep
+    L         = keep3.sum()
+    if L < num_samples:
+        raise ValueError("Too low oversampling rate after weighting")
+    
+    #Finally, resample theta and get vel disp as a function of it
+    
+    z_l=z_l  [keep3][:num_samples]
+    z_s=z_s  [keep3][:num_samples]
+    D_l=D_l  [keep3][:num_samples]
+    D_s=D_s  [keep3][:num_samples]
+    D_ls=D_ls [keep3][:num_samples]
+    
+    theta =np.random.uniform(min_einstein_angle, max_einstein_angle, num_samples)
+    vel  = np.sqrt(theta*c**2*D_s/(D_ls*4*np.pi))
+    
+    #theta[keep3][:num_samples]
+    #vel  [keep3][:num_samples]
+    
+    
+    
+    
+    # 8) final selection
+    return (
+        z_l,  
+        z_s,  
+        vel,  
+        D_l,  
+        D_s,  
+        D_ls, 
+        theta
+    )
+
 # Usage example:
 # results = helper(
 #     num_samples, oversampling_factor,
 #     min_einstein_angle, c_value,
 #     z_grid, vol_grid, chi_grid
 # )
+
+
+
