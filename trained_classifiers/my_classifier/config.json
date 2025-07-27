@@ -1,0 +1,19 @@
+{
+    "model": {
+        "model": "ResNet50",
+        "model_init": {
+            "num_classes": 2
+        }
+    },
+    "training_settings": {
+        "optimizer": "type",
+        "first_lr": 0.01,
+        "following_lr": 0.001,
+        "patience_lr": 5,
+        "patience_stage": 10,
+        "max_epochs": 50,
+        "batch_size": 2,
+        "test_every_n_batches": 2,
+        "compile_model": false
+    }
+}
