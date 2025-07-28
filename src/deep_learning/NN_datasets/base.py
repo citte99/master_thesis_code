@@ -13,10 +13,11 @@ class CustomDatasetBase(Dataset):
     The base dataset class. Noise, transformations, and other specific functionality
     should be implemented by inheriting classes.
     """
-    def __init__(self, catalog_name=None, catalog_dict=None, samples_used="all",broadcasting=False, image_data_type=torch.float32, config=None):
+    def __init__(self, catalog_name=None, catalog_dict=None, samples_used="all",broadcasting=False, image_data_type=torch.float32, config=None, device = 'cuda'):
         self.catalog_name = catalog_name
         self.samples_used = samples_used
         self.image_data_type = image_data_type
+        self.device = device if device is not None else torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         # Check that the catalog exists via the catalog manager
         if catalog_name is not None and catalog_dict is not None:
@@ -30,6 +31,8 @@ class CustomDatasetBase(Dataset):
         # Set the attribute len and perform slicing 
             
             if broadcasting==False:
+               
+                
                 catalog_manager=CatalogManager(self.catalog_name)
                 self.catalog = catalog_manager.catalog
                 catalog_len = catalog_manager.len()
@@ -46,6 +49,8 @@ class CustomDatasetBase(Dataset):
             elif broadcasting==True:
                 # we need the file pth. 
                 #if there is a final json remove it
+                # this will be made to not rely on the catalog manager
+                # which right now is only used to get the len, then sliced, and used for what else?
                 
                 file_path = os.path.join(CATALOGS_DIR, (catalog_name+".pth"))
                 self.data=torch.load(file_path)
@@ -70,14 +75,14 @@ class CustomDatasetBase(Dataset):
                 
                     
                 mask= (precomputed_data['sys_idx']>=m)& (precomputed_data['sys_idx']< m+n)
-                precomputed_data['sys_idx'] = precomputed_data['sys_idx'][mask].to(device='cuda:0')
-                precomputed_data['params'] = precomputed_data['params'][mask].to(device='cuda:0')
+                precomputed_data['sys_idx'] = precomputed_data['sys_idx'][mask].to(device=self.device)
+                precomputed_data['params'] = precomputed_data['params'][mask].to(device=self.device)
                 
                                         
                 labels_data=self.data['labels']
                 mask= (labels_data['sys_idx']>=m)& (labels_data['sys_idx']< m+n)
-                labels_data['sys_idx'] = labels_data['sys_idx'][mask].to(device='cuda:0')
-                labels_data['label_values'] = labels_data['label_values'][mask].to(device='cuda:0')
+                labels_data['sys_idx'] = labels_data['sys_idx'][mask].to(device=self.device)
+                labels_data['label_values'] = labels_data['label_values'][mask].to(device=self.device)
 
                 
 
@@ -96,8 +101,8 @@ class CustomDatasetBase(Dataset):
                 for mtype, data in masses_data.items():
                     # Convert to CUDA tensors
                     mask= (masses_data[mtype]['sys_idx']>=m) & (masses_data[mtype]['sys_idx']< m+n)
-                    masses_data[mtype]['params'] = data['params'].to(device='cuda:0')
-                    masses_data[mtype]['sys_idx'] = data['sys_idx'].to(device='cuda:0')
+                    masses_data[mtype]['params'] = data['params'].to(device=self.device)
+                    masses_data[mtype]['sys_idx'] = data['sys_idx'].to(device=self.device)
                     
                 
                                         
@@ -112,8 +117,8 @@ class CustomDatasetBase(Dataset):
                 for stype, data in source_data.items():
                     # Convert to CUDA tensors
                     mask= (source_data[stype]['sys_idx']>=m) & (source_data[stype]['sys_idx']< m+n)
-                    source_data[stype]['params'] = data['params'][mask].to(device='cuda:0')
-                    source_data[stype]['sys_idx'] = data['sys_idx'][mask].to(device='cuda:0')
+                    source_data[stype]['params'] = data['params'][mask].to(device=self.device)
+                    source_data[stype]['sys_idx'] = data['sys_idx'][mask].to(device=self.device)
 
                 self.data={
                     'mass_components': masses_data,
@@ -137,7 +142,7 @@ class CustomDatasetBase(Dataset):
         """
         self.catalog = catalog_dict
         self.len = len(catalog_dict["SL_systems"])
-        device = "cuda"
+        device = self.device
         self.catalog = recursive_to_tensor(self.catalog, device)
 
 

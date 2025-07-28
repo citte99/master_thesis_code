@@ -23,7 +23,8 @@ class BaseNoiser(ABC):
 
         return _to_batch_shape(image_s)
 
-        
+    def set_device(self, device):
+        self.device = device
 
 
 def _to_batch_shape(image_s):
@@ -233,7 +234,12 @@ class EuclidNoiser(BaseNoiser):
             psf=EuclidVis.psf, pixel_scale=EuclidVis.pixel_arcsec, device=device
         )
         self.poisson_noiser = PoissonNoiser(EuclidVis)
-
+    
+    def set_device(self, device):
+        self.device = device
+        self.conv_noiser=PSFConvolveNoiser(
+            psf=EuclidVis.psf, pixel_scale=EuclidVis.pixel_arcsec, device=self.device
+        )
 
     def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
         images = super().__call__(image_s)

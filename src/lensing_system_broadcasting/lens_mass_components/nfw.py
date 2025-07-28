@@ -3,7 +3,7 @@ import torch
 from .mass_component import MassComponent
 import shared_utils.units as units
 
-DEFAULT_DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+DEFAULT_DEVICE = torch.device("cpu")
 print(DEFAULT_DEVICE)
 DEFAULT_DTYPE  = torch.float32
 
@@ -50,15 +50,15 @@ class NFW(MassComponent):
 
 
         # Constants in compute precision
-        self.const      = CONST
-        self.pi         = PI
-        self.G          = G
-        self.c_squared  = C_SQUARED
-        self.epsilon    = EPSILON
-        self.four       = FOUR
-        self.two        = TWO
-        self.one        = ONE
-        self.zero       = ZERO
+        self.const      = CONST.to(device)
+        self.pi         = PI.to(device)
+        self.G          = G.to(device)
+        self.c_squared  = C_SQUARED.to(device)
+        self.epsilon    = EPSILON.to(device)
+        self.four       = FOUR.to(device)
+        self.two        = TWO.to(device)
+        self.one        = ONE.to(device)
+        self.zero       = ZERO.to(device)
         # Pre-compute derivable parameters (all in compute precision)
         # r_s calculation
         self.r_s = self.r_max_kpc / self.const

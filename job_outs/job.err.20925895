@@ -1,0 +1,126 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+W0728 17:30:51.053000 99409 torch/distributed/run.py:766] 
+W0728 17:30:51.053000 99409 torch/distributed/run.py:766] *****************************************
+W0728 17:30:51.053000 99409 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0728 17:30:51.053000 99409 torch/distributed/run.py:766] *****************************************
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/workspace/to_submit_torchrun.py", line 474, in <module>
+[rank2]:     trainer.Train()
+[rank2]:   File "/workspace/to_submit_torchrun.py", line 432, in Train
+[rank2]:     checkpoint = self._train_stage(stage, index_stage=i, checkpoint=checkpoint)
+[rank2]:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/workspace/to_submit_torchrun.py", line 417, in _train_stage
+[rank2]:     endstage, checkpoint, last_test_loss=  _run_epoch(epoch, patient_traker=pat_trak)
+[rank2]:                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/workspace/to_submit_torchrun.py", line 382, in _run_epoch
+[rank2]:     b_sz = len(next(iter(train_loader))[0])
+[rank2]:                ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 733, in __next__
+[rank2]:     data = self._next_data()
+[rank2]:            ^^^^^^^^^^^^^^^^^
+[rank2]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 789, in _next_data
+[rank2]:     data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/_utils/fetch.py", line 55, in fetch
+[rank2]:     return self.collate_fn(data)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/workspace/src/deep_learning/NN_datasets/dataloaders.py", line 120, in <lambda>
+[rank2]:     collate_fn=lambda indices: dataset.get_batch(indices),
+[rank2]:                                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/workspace/src/deep_learning/NN_datasets/custom_datasets/no_noise_dataset.py", line 147, in get_batch
+[rank2]:     mask     = (sys_idx.unsqueeze(1) == selected_idxs.unsqueeze(0)).any(dim=1)
+[rank2]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]: RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cuda:2!
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/workspace/to_submit_torchrun.py", line 474, in <module>
+[rank3]:     trainer.Train()
+[rank3]:   File "/workspace/to_submit_torchrun.py", line 432, in Train
+[rank3]:     checkpoint = self._train_stage(stage, index_stage=i, checkpoint=checkpoint)
+[rank3]:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/workspace/to_submit_torchrun.py", line 417, in _train_stage
+[rank3]:     endstage, checkpoint, last_test_loss=  _run_epoch(epoch, patient_traker=pat_trak)
+[rank3]:                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/workspace/to_submit_torchrun.py", line 382, in _run_epoch
+[rank3]:     b_sz = len(next(iter(train_loader))[0])
+[rank3]:                ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 733, in __next__
+[rank3]:     data = self._next_data()
+[rank3]:            ^^^^^^^^^^^^^^^^^
+[rank3]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 789, in _next_data
+[rank3]:     data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/_utils/fetch.py", line 55, in fetch
+[rank3]:     return self.collate_fn(data)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/workspace/src/deep_learning/NN_datasets/dataloaders.py", line 120, in <lambda>
+[rank3]:     collate_fn=lambda indices: dataset.get_batch(indices),
+[rank3]:                                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/workspace/src/deep_learning/NN_datasets/custom_datasets/no_noise_dataset.py", line 147, in get_batch
+[rank3]:     mask     = (sys_idx.unsqueeze(1) == selected_idxs.unsqueeze(0)).any(dim=1)
+[rank3]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]: RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cuda:3!
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/workspace/to_submit_torchrun.py", line 474, in <module>
+[rank1]:     trainer.Train()
+[rank1]:   File "/workspace/to_submit_torchrun.py", line 432, in Train
+[rank1]:     checkpoint = self._train_stage(stage, index_stage=i, checkpoint=checkpoint)
+[rank1]:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/workspace/to_submit_torchrun.py", line 417, in _train_stage
+[rank1]:     endstage, checkpoint, last_test_loss=  _run_epoch(epoch, patient_traker=pat_trak)
+[rank1]:                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/workspace/to_submit_torchrun.py", line 382, in _run_epoch
+[rank1]:     b_sz = len(next(iter(train_loader))[0])
+[rank1]:                ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 733, in __next__
+[rank1]:     data = self._next_data()
+[rank1]:            ^^^^^^^^^^^^^^^^^
+[rank1]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 789, in _next_data
+[rank1]:     data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/_utils/fetch.py", line 55, in fetch
+[rank1]:     return self.collate_fn(data)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/workspace/src/deep_learning/NN_datasets/dataloaders.py", line 120, in <lambda>
+[rank1]:     collate_fn=lambda indices: dataset.get_batch(indices),
+[rank1]:                                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/workspace/src/deep_learning/NN_datasets/custom_datasets/no_noise_dataset.py", line 147, in get_batch
+[rank1]:     mask     = (sys_idx.unsqueeze(1) == selected_idxs.unsqueeze(0)).any(dim=1)
+[rank1]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]: RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cuda:1!
+W0728 17:31:36.536000 99409 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 99632 closing signal SIGTERM
+W0728 17:31:36.539000 99409 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 99633 closing signal SIGTERM
+W0728 17:31:36.541000 99409 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 99635 closing signal SIGTERM
+E0728 17:31:37.209000 99409 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 2 (pid: 99634) of binary: /usr/bin/python
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.8.0a0+5228986c39.nv25.5', 'console_scripts', 'torchrun')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+to_submit_torchrun.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-07-28_17:31:36
+  host      : ravg1002.hpc.mpcdf.mpg.de
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 99634)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

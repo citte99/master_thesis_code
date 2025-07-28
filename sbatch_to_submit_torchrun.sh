@@ -1,23 +1,23 @@
 #!/bin/bash -l
 
+#SBATCH --qos=debug
 #SBATCH -o ./job_outs/job.out.%j
 #SBATCH -e ./job_outs/job.err.%j
-#SBATCH -D ../py_scripts_ex/
+#SBATCH -D ./
 
 #SBATCH --job-name=multinode-example
 #SBATCH --nodes=1
 #SBATCH --constraint=gpu
 #SBATCH --ntasks-per-node=1
-##SBATCH --partition=gpudev
-#SBATCH --partition=robin
+#SBATCH --partition=gpudev
 
 
 #SBATCH --gres=gpu:a100:4
-##SBATCH --nvmps
+#SBATCH --nvmps
 
 #SBATCH --mail-type=none
-#SBATCH --mail-user=userid@example.mpg.de
-#SBATCH --time=00:10:00
+#SBATCH --mail-user=francescocitterio99@gmail.com
+#SBATCH --time=00:05:00
 
 module purge
 module load apptainer/1.3.6  
@@ -58,7 +58,7 @@ apptainer exec --nv \
 
 #     # 3) Run your DDP script on GPU 0
 #     torchrun --standalone --nproc_per_node=1 to_submit_torchrun.py
-#   '
+#    '
 
 
 # apptainer exec --nv nv-pytorch.sif torchrun \

@@ -21,6 +21,8 @@ from config import TRAINED_CLASSIFIERS_DIR
 import json
 from datetime import datetime
 import argparse
+import gc
+
 
 class ImgLastProc(ABC):
     @abstractmethod
@@ -110,14 +112,54 @@ class TrainerConfig:
 #========================================================================EXAMPLE TRAINING CONFIG ============================================================
 from noise_applicator.noisers.base_noiser import EuclidNoiser
 
+samp_used = 10
+samp_used_test = 10
+batch_size = 8
+
 first_stage = InputData(
-    catalog_name_train="test_catalog",
-    catalog_name_test="test_catalog",
-    samples_used=10,
-    samples_used_test=10,
-    img_size=128,
+    catalog_name_train="min_mass_10e11",
+    catalog_name_test="min_mass_10e11_test",
+    samples_used=samp_used,
+    samples_used_test=samp_used_test,
+    img_size=80,
     img_width=8.0,
-    upscaling=1,
+    upscaling=5,
+    noiser=EuclidNoiser(),  # Replace with an actual implementation of BaseNoiser
+    last_image_proc=Normalizer()
+)
+
+second_stage = InputData(
+    catalog_name_train="min_mass_10e10",
+    catalog_name_test="min_mass_10e10_test",
+    samples_used=samp_used,
+    samples_used_test=samp_used_test,
+    img_size=80,
+    img_width=8.0,
+    upscaling=5,
+    noiser=EuclidNoiser(),  # Replace with an actual implementation of BaseNoiser
+    last_image_proc=Normalizer()
+)
+
+third_stage = InputData(
+    catalog_name_train="min_mass_10e9",
+    catalog_name_test="min_mass_10e9_test",
+    samples_used=samp_used,
+    samples_used_test=samp_used_test,
+    img_size=80,
+    img_width=8.0,
+    upscaling=5,
+    noiser=EuclidNoiser(),  # Replace with an actual implementation of BaseNoiser
+    last_image_proc=Normalizer()
+)
+
+fourth_stage = InputData(
+    catalog_name_train="min_mass_10e8_6",
+    catalog_name_test="min_mass_10e8_6_test",
+    samples_used=samp_used,
+    samples_used_test=samp_used_test,
+    img_size=80,
+    img_width=8.0,
+    upscaling=5,
     noiser=EuclidNoiser(),  # Replace with an actual implementation of BaseNoiser
     last_image_proc=Normalizer()
 )
@@ -129,18 +171,18 @@ choosen_model = ChoosenModel(
 
 training_settings = TrainingSettings(
     optimizer=torch.optim.SGD,
-    first_lr=0.01,
-    following_lr=0.001,
-    patience_lr=5,
-    patience_stage=10,
+    first_lr=0.001,
+    following_lr=0.0001,
+    patience_lr=10,
+    patience_stage=30,
     max_epochs=50,
-    batch_size=2,
+    batch_size=batch_size,
     test_every_n_batches=2,
     compile_model=False
 )
 
 trainer_config = TrainerConfig(
-    stages=[first_stage],
+    stages=[first_stage, second_stage, third_stage, fourth_stage],
     choosen_model=choosen_model,
     training_settings=training_settings
 )
@@ -267,12 +309,12 @@ class Trainer:
             model.load_state_dict(checkpoint) # NOTE : add here the correct loading
 
         model = model.to(self.gpu_id) 
-        model = DDP(model, device_ids=[self.gpu_id])
+        
         
         if self.train_config.training_settings.compile_model: 
                          # Move to the correct GPU first
             model = torch.compile(model)              # Then compile for that GPU
-            
+        model = DDP(model, device_ids=[self.gpu_id])
         return model
 
     def _save_stage_conf(self, stage: InputData, index: int):
@@ -334,6 +376,7 @@ class Trainer:
         train_loader, test_loader = self._load_loaders(stage)
 
         noiser = stage.noiser
+        noiser.set_device(self.gpu_id)
         normalizer = stage.last_image_proc # could even not be just a normalizer
 
         """
@@ -419,7 +462,10 @@ class Trainer:
         if not endstage:
             # this saves the model if the training went on for all the ephocs
             self._save_checkpoint( stage, index_stage, epoch, model, optimizer, last_test_loss, current_lr['value'], is_last = True)
-
+        
+        del model, optimizer, train_loader, test_loader
+        torch.cuda.empty_cache()
+        gc.collect()
         return checkpoint
     
     
@@ -430,6 +476,7 @@ class Trainer:
         checkpoint = None
         for i, stage in enumerate(self.train_config.stages):
             checkpoint = self._train_stage(stage, index_stage=i, checkpoint=checkpoint)
+            
 
 
 

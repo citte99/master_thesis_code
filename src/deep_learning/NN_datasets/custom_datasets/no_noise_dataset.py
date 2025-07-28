@@ -27,8 +27,10 @@ class NoNoiseDataset(CustomDatasetBase):
                          catalog_dict=catalog_dict, 
                          samples_used=samples_used, 
                          image_data_type=image_data_type, 
-                         broadcasting=broadcasting)    
-        self.device = device if device is not None else torch.device("cuda" if torch.cuda.is_available() else "cpu")
+                         broadcasting=broadcasting,
+                         device = device)    
+        # the following line is done in the base class
+        #self.device = device if device is not None else torch.device("cuda" if torch.cuda.is_available() else "cpu")
         
         self.upscaling=upscaling
         self.final_norm = final_norm

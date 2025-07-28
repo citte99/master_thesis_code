@@ -7,12 +7,12 @@
     },
     "training_settings": {
         "optimizer": "type",
-        "first_lr": 0.01,
-        "following_lr": 0.001,
-        "patience_lr": 5,
-        "patience_stage": 10,
+        "first_lr": 0.001,
+        "following_lr": 0.0001,
+        "patience_lr": 10,
+        "patience_stage": 30,
         "max_epochs": 50,
-        "batch_size": 2,
+        "batch_size": 8,
         "test_every_n_batches": 2,
         "compile_model": false
     }

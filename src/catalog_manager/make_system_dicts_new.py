@@ -690,7 +690,7 @@ def nfw_subs_free_r_max(
     # then set the unset r_max
     tot_subs = len (full_sys_conf.sub_par.belonging_index)
     
-    r_max = uniform_prior(tot_subs, min_value=sampling_inputs.prior_sub_r_max[0], max_value=sampling_inputs.prior_sub_r_max[12])
+    r_max = uniform_prior(tot_subs, min_value=sampling_inputs.prior_sub_r_max[0], max_value=sampling_inputs.prior_sub_r_max[1])
 
     full_sys_conf.sub_par.r_max = r_max
     return full_sys_conf
