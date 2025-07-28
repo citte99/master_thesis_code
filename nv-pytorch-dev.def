@@ -1,0 +1,30 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/pytorch:25.05-py3
+
+%labels
+    Author   Francesco Citterio
+    Version  0.1.0-dev
+
+%environment
+    # use the conda Python in the base image
+    export PATH=/opt/conda/bin:$PATH
+    # ignore any host ~/.local site‑packages
+    export PYTHONNOUSERSITE=1
+    # make /workspace/src importable
+    export PYTHONPATH=/workspace/src:$PYTHONPATH
+
+%post
+    set -eux
+    # make sure pip is available
+    conda install -y pip || true
+
+    # install all your 3rd‑party libraries (torch, astropy, ...)
+    # requirements.txt lives next to this def file
+    pip install --no-cache-dir -r /mnt/build/requirements.txt
+
+    # cleanup to slim down the image
+    conda clean -afy
+    rm -rf /root/.cache/pip
+
+%files
+    requirements.txt /mnt/build/requirements.txt

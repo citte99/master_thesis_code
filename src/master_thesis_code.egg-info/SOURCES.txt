@@ -78,6 +78,7 @@ src/lensing_system_compiled/sources/util.py
 src/master_thesis_code.egg-info/PKG-INFO
 src/master_thesis_code.egg-info/SOURCES.txt
 src/master_thesis_code.egg-info/dependency_links.txt
+src/master_thesis_code.egg-info/requires.txt
 src/master_thesis_code.egg-info/top_level.txt
 src/noise_applicator/__init__.py
 src/noise_applicator/noise_applicator.py
@@ -93,6 +94,7 @@ src/sensitivity_map/sensitivity_map_maker.py
 src/sensitivity_map/sensitivity_map_maker_development.py
 src/shared_utils/__init__.py
 src/shared_utils/gridding_and_plotting.py
+src/shared_utils/physics_relations.py
 src/shared_utils/units.py
 src/shared_utils/util.py
 src/substructure_classifier/__init__.py
@@ -104,4 +106,5 @@ src/substructure_classifier/substructure_classifier_development.py
 src/substructure_classifier/training_stage.py
 src/substructure_classifier/training_stage_clean.py
 src/substructure_classifier/training_stage_development.py
+src/substructure_classifier/training_stage_multi.py
 src/substructure_classifier/util.py

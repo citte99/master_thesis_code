@@ -14,5 +14,14 @@ setup(
   version="0.1.0",
   packages=find_packages(where="src"),     # <-- include every package under src/
   package_dir={"": "src"},                # <-- map the root to src/
- # install_requires=[…],
+  install_requires=[
+      'wandb',
+      'astropy',
+ #     'torch'
+  ],
+  entry_points = { # these I do not need for now
+      # 'console_scripts' : [
+      #     'train = my_package.train:main'
+      # ]
+  }
 )
