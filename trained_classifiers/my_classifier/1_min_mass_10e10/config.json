@@ -1,8 +1,8 @@
 {
     "catalog_name_train": "min_mass_10e10",
     "catalog_name_test": "min_mass_10e10_test",
-    "samples_used": 10,
-    "samples_used_test": 10,
+    "samples_used": 4096,
+    "samples_used_test": 4096,
     "img_size": 80,
     "img_width": 8.0,
     "upscaling": 5,

@@ -1,0 +1,53 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+W0729 01:09:04.147000 21696 torch/distributed/run.py:766] 
+W0729 01:09:04.147000 21696 torch/distributed/run.py:766] *****************************************
+W0729 01:09:04.147000 21696 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0729 01:09:04.147000 21696 torch/distributed/run.py:766] *****************************************
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/workspace/to_submit_torchrun.py", line 525, in <module>
+[rank0]:     trainer.Train()
+[rank0]:   File "/workspace/to_submit_torchrun.py", line 475, in Train
+[rank0]:     self._save_classifier_conf()
+[rank0]:   File "/workspace/to_submit_torchrun.py", line 334, in _save_classifier_conf
+[rank0]:     path.mkdir(exist_ok=False)
+[rank0]:   File "/usr/lib/python3.12/pathlib.py", line 1313, in mkdir
+[rank0]:     os.mkdir(self, mode)
+[rank0]: FileExistsError: [Errno 17] File exists: '/workspace/trained_classifiers/my_classifier'
+[rank0]:[W729 01:09:55.722550552 ProcessGroupNCCL.cpp:1505] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0729 01:10:00.009000 21696 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 21920 closing signal SIGTERM
+W0729 01:10:00.011000 21696 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 21921 closing signal SIGTERM
+W0729 01:10:00.014000 21696 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 21922 closing signal SIGTERM
+E0729 01:10:01.346000 21696 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 21919) of binary: /usr/bin/python
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.8.0a0+5228986c39.nv25.5', 'console_scripts', 'torchrun')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+to_submit_torchrun.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-07-29_01:10:00
+  host      : ravg1033.hpc.mpcdf.mpg.de
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 21919)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

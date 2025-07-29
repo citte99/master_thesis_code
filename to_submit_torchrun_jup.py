@@ -612,7 +612,7 @@ if __name__ == "__main__":
 
     # Now build and launch your trainer
     trainer = Trainer(
-        classifier_name="RUN1",
+        classifier_name="RUN1-JUP",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,
@@ -621,7 +621,7 @@ if __name__ == "__main__":
     trainer.Train()
     
     trainer = Trainer(
-        classifier_name="RUN2",
+        classifier_name="RUN2-JUP",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,

@@ -1,0 +1,31 @@
+cpu
+cpucpucpu
+
+
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: fcitterio(76052)
+Job name:  multinode-example
+Node list: ravg1033
+Job start: Tue Jul 29 01:08:28 CEST 2025
+Job end:   Tue Jul 29 01:10:01 CEST 2025
+Work dir:  /u/fcitterio/master_thesis_code/./
+Command:   /raven/u/fcitterio/master_thesis_code/sbatch_to_submit_torchrun.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID            JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode
+------------- ---------- ------ ------ ------ ------------ ------------ ---------- --------
+20950554      multinode-      1           144                             00:01:33      1:0
+  
+Maximum memory per node: 2.444206 GB (defined as MaxRSS*Ntasks/NNodes)
+CPU utilization: 0.9 %
+  
