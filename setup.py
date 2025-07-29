@@ -17,6 +17,10 @@ setup(
   install_requires=[
       'wandb',
       'astropy',
+      'shapely',
+      'h5py',
+      'scikit-learn',
+      'numba'
  #     'torch'
   ],
   entry_points = { # these I do not need for now
