@@ -188,6 +188,13 @@ class PoissonNoiser(BaseNoiser):
         R_pix = (R+ R_sky) * self.instrument.pixel_arcsec**2
 
         exp_phot      = R_pix * self.instrument.t_obs * self.instrument.gain
+        neg_count = neg_count = (exp_phot < 0).sum().item()
+
+        if neg_count:
+            print(f"[WARN] Clamping {neg_count} negative λ’s to zero.")
+            
+        exp_phot = torch.clamp(exp_phot, min=0.0)
+
         pois_sample   = torch.poisson(exp_phot)
         phot_per_sec = pois_sample / self.instrument.t_obs
         # avoid log10(0)

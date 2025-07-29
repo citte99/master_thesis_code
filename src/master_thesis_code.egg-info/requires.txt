@@ -1,2 +1,8 @@
 wandb
 astropy
+shapely
+h5py
+scikit-learn
+numba
+matplotlib
+pandas

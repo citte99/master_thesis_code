@@ -5,5 +5,5 @@ from deep_learning.registry import MODEL_REGISTRY
 from .resnet18 import ResNet18
 from .resnet50 import ResNet50
 from .transformer import VisionTransformer
-from .efficient_net_B0 import EfficientNetB0
+#from .efficient_net_B0 import EfficientNetB0
 #from .sparse_resnet50 import SparseResNet50

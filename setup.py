@@ -20,7 +20,9 @@ setup(
       'shapely',
       'h5py',
       'scikit-learn',
-      'numba'
+      'numba',
+      'matplotlib',
+      'pandas'
  #     'torch'
   ],
   entry_points = { # these I do not need for now
