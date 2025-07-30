@@ -1,6 +1,6 @@
 {
-    "catalog_name_train": "min_mass_10e8_6",
-    "catalog_name_test": "min_mass_10e8_6_test",
+    "catalog_name_train": "min_mass_10e11",
+    "catalog_name_test": "min_mass_10e11_test",
     "samples_used": 2000000,
     "samples_used_test": 10000,
     "img_size": 80,

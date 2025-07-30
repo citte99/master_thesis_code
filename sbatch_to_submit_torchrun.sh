@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-#SBATCH --qos=debug
+##SBATCH --qos=debug
 #SBATCH -o ./job_outs/job.out.%j
 #SBATCH -e ./job_outs/job.err.%j
 #SBATCH -D ./
@@ -15,9 +15,9 @@
 #SBATCH --gres=gpu:a100:4
 #SBATCH --nvmps
 
-#SBATCH --mail-type=none
+#SBATCH --mail-type=ALL
 #SBATCH --mail-user=francescocitterio99@gmail.com
-#SBATCH --time=00:15:00
+#SBATCH --time=6:00:00
 
 module purge
 module load apptainer/1.3.6  

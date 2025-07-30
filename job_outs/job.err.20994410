@@ -1,0 +1,115 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+W0730 04:23:56.055000 50412 torch/distributed/run.py:766] 
+W0730 04:23:56.055000 50412 torch/distributed/run.py:766] *****************************************
+W0730 04:23:56.055000 50412 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0730 04:23:56.055000 50412 torch/distributed/run.py:766] *****************************************
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+/workspace/to_submit_torchrun.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/native/Scalar.cpp:22.)
+  "train/batch_loss": float(loss.item()),
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [352,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [353,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [354,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9478,0,0], thread: [0,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9478,0,0], thread: [1,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9478,0,0], thread: [2,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [430,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [431,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [432,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [433,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [434,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [270,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [271,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [272,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [273,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [274,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [350,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [351,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [510,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9477,0,0], thread: [511,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9478,0,0], thread: [78,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9478,0,0], thread: [79,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9478,0,0], thread: [80,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9478,0,0], thread: [81,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+/opt/pytorch/pytorch/aten/src/ATen/native/cuda/Distributions.cu:50: operator(): block: [9478,0,0], thread: [82,0,0] Assertion `lambda >= 0 && "invalid Poisson rate, expected rate to be non-negative"` failed.
+[rank0]:[E730 05:10:38.472875369 ProcessGroupNCCL.cpp:1923] [PG ID 0 PG GUID 0(default_pg) Rank 0] Process group watchdog thread terminated with exception: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+Exception raised from c10_cuda_check_implementation at /opt/pytorch/pytorch/c10/cuda/CUDAException.cpp:43 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x88 (0x14a6c2794568 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x55 (0x14a6c2730221 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+frame #2: c10::cuda::c10_cuda_check_implementation(int, char const*, char const*, int, bool) + 0x3e2 (0x14a7313b3c82 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10_cuda.so)
+frame #3: c10d::ProcessGroupNCCL::WorkNCCL::finishedGPUExecutionInternal() const + 0x56 (0x14a6c354bf46 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #4: c10d::ProcessGroupNCCL::WorkNCCL::isCompleted() + 0x70 (0x14a6c355ba50 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #5: c10d::ProcessGroupNCCL::watchdogHandler() + 0x76c (0x14a6c355d09c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #6: c10d::ProcessGroupNCCL::ncclCommWatchdog() + 0x14d (0x14a6c355e9bd in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #7: <unknown function> + 0xecdb4 (0x14a6a84ecdb4 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+frame #8: <unknown function> + 0x9caa4 (0x14a732a9caa4 in /lib/x86_64-linux-gnu/libc.so.6)
+frame #9: <unknown function> + 0x129c3c (0x14a732b29c3c in /lib/x86_64-linux-gnu/libc.so.6)
+
+terminate called after throwing an instance of 'c10::DistBackendError'
+  what():  [PG ID 0 PG GUID 0(default_pg) Rank 0] Process group watchdog thread terminated with exception: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+Exception raised from c10_cuda_check_implementation at /opt/pytorch/pytorch/c10/cuda/CUDAException.cpp:43 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x88 (0x14a6c2794568 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x55 (0x14a6c2730221 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+frame #2: c10::cuda::c10_cuda_check_implementation(int, char const*, char const*, int, bool) + 0x3e2 (0x14a7313b3c82 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10_cuda.so)
+frame #3: c10d::ProcessGroupNCCL::WorkNCCL::finishedGPUExecutionInternal() const + 0x56 (0x14a6c354bf46 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #4: c10d::ProcessGroupNCCL::WorkNCCL::isCompleted() + 0x70 (0x14a6c355ba50 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #5: c10d::ProcessGroupNCCL::watchdogHandler() + 0x76c (0x14a6c355d09c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #6: c10d::ProcessGroupNCCL::ncclCommWatchdog() + 0x14d (0x14a6c355e9bd in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #7: <unknown function> + 0xecdb4 (0x14a6a84ecdb4 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+frame #8: <unknown function> + 0x9caa4 (0x14a732a9caa4 in /lib/x86_64-linux-gnu/libc.so.6)
+frame #9: <unknown function> + 0x129c3c (0x14a732b29c3c in /lib/x86_64-linux-gnu/libc.so.6)
+
+Exception raised from ncclCommWatchdog at /opt/pytorch/pytorch/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:1929 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x88 (0x14a6c2794568 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0xd2e68e (0x14a6c352e68e in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #2: <unknown function> + 0x93b377 (0x14a6c313b377 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so)
+frame #3: <unknown function> + 0xecdb4 (0x14a6a84ecdb4 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+frame #4: <unknown function> + 0x9caa4 (0x14a732a9caa4 in /lib/x86_64-linux-gnu/libc.so.6)
+frame #5: <unknown function> + 0x129c3c (0x14a732b29c3c in /lib/x86_64-linux-gnu/libc.so.6)
+
+W0730 05:10:39.140000 50412 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 50635 closing signal SIGTERM
+W0730 05:10:39.143000 50412 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 50636 closing signal SIGTERM
+W0730 05:10:39.144000 50412 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 50637 closing signal SIGTERM
+E0730 05:10:40.627000 50412 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: -6) local_rank: 0 (pid: 50634) of binary: /usr/bin/python
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.8.0a0+5228986c39.nv25.5', 'console_scripts', 'torchrun')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+======================================================
+to_submit_torchrun.py FAILED
+------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-07-30_05:10:39
+  host      : ravg1181.hpc.mpcdf.mpg.de
+  rank      : 0 (local_rank: 0)
+  exitcode  : -6 (pid: 50634)
+  error_file: <N/A>
+  traceback : Signal 6 (SIGABRT) received by PID 50634
+======================================================

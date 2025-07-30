@@ -12,7 +12,7 @@ CONST       = torch.tensor(2.16258, device=DEFAULT_DEVICE, dtype=DEFAULT_DTYPE)
 PI          = torch.tensor(torch.pi, device=DEFAULT_DEVICE, dtype=DEFAULT_DTYPE)
 G           = torch.tensor(units.G, device=DEFAULT_DEVICE, dtype=DEFAULT_DTYPE)
 C_SQUARED   = torch.tensor(units.c**2, device=DEFAULT_DEVICE, dtype=DEFAULT_DTYPE)
-EPSILON     = torch.tensor(1e-8, device=DEFAULT_DEVICE, dtype=DEFAULT_DTYPE)
+EPSILON     = torch.tensor(3e-7, device=DEFAULT_DEVICE, dtype=DEFAULT_DTYPE) # very important
 FOUR        = torch.tensor(4.0, device=DEFAULT_DEVICE, dtype=DEFAULT_DTYPE)
 TWO         = torch.tensor(2.0, device=DEFAULT_DEVICE, dtype=DEFAULT_DTYPE)
 ONE         = torch.tensor(1.0, device=DEFAULT_DEVICE, dtype=DEFAULT_DTYPE)
@@ -144,24 +144,33 @@ class NFW(MassComponent):
         # 4) Compute relative positions via broadcasted subtraction:
         pos_expanded = self.pos.view(B, 1, 1, 2)        # (B,1,1,2)
         torch.sub(lens_grid, pos_expanded, out=self._xrel)  # -> (B,H,W,2)
+        # print(f"[4b] xrel  shape={self._xrel.shape}")
+        # print(f"[4b] xrel min={torch.min(self._xrel).item():.3e} max={torch.max(self._xrel).item():.3e}")
+        # print(f"[4b] xrel non‑finite={(~torch.isfinite(self._xrel)).sum().item()}")
 
         # 5) radius² = x² + y² (in-place)
         x = self._xrel[..., 0]
         y = self._xrel[..., 1]
         torch.mul(x, x, out=self._rs2)
         torch.addcmul(self._rs2, y, y, value=1.0, out=self._rs2)
+        # print(f"[5b] rs2   min={torch.min(self._rs2).item():.3e} max={torch.max(self._rs2).item():.3e}")
+        # print(f"[5b] rs2   non‑finite={(~torch.isfinite(self._rs2)).sum().item()}")
 
         # 6) radius = sqrt(rs2) with epsilon floor
         torch.sqrt(self._rs2, out=self._rs)
         torch.maximum(self._rs, self.epsilon, out=self._rs)
+        # print(f"[6b] rs    min={torch.min(self._rs).item():.3e} max={torch.max(self._rs).item():.3e}")
+        # print(f"[6b] rs    <= epsilon? {(self._rs <= self.epsilon).sum().item()}") 
+
 
         # 7) dimensionless radius = (rs * D_l) / r_s
         D_l_exp = self.D_l.view(-1, 1, 1)               # (B,1,1)
         r_s_exp = self.r_s.view(-1, 1, 1)               # (B,1,1)
         torch.mul(self._rs,     D_l_exp, out=self._rs_nodim)
         torch.div(self._rs_nodim, r_s_exp, out=self._rs_nodim)
-
-        # 8) compute F(rs_nodim) in one tensor
+        # print(f"[7b] rs_nodim  min={torch.min(self._rs_nodim).item():.3e} max={torch.max(self._rs_nodim).item():.3e}")
+        # print(f"[7b] rs_nodim  non‑finite={(~torch.isfinite(self._rs_nodim)).sum().item()}")
+        # # 8) compute F(rs_nodim) in one tensor
         sq = self._rs_nodim * self._rs_nodim
         t1 = torch.sqrt(torch.clamp(1 - sq,     min=self.epsilon))
         t3 = torch.sqrt(torch.clamp(sq - 1,     min=self.epsilon))
@@ -172,7 +181,11 @@ class NFW(MassComponent):
         self._F = torch.where(cond1, F1,
                     torch.where(cond3, F3,
                                 torch.ones_like(self._rs_nodim)))
-
+        # 8a) Debug t1/t3 branches
+        # print(f"[8a] sq      min={torch.min(sq).item():.3e} max={torch.max(sq).item():.3e}")
+        # print(f"[8a] t1      min={torch.min(t1).item():.3e} max={torch.max(t1).item():.3e}")
+        # print(f"[8a] t3      min={torch.min(t3).item():.3e} max={torch.max(t3).item():.3e}")
+    
         # 9) log term = log(rs_nodim / 2)
         torch.div(self._rs_nodim, self.two, out=self._log_term)
         torch.log(self._log_term,      out=self._log_term)

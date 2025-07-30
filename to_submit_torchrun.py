@@ -118,41 +118,41 @@ batch_size = 1024 * 1
 max_epochs = 20
 test_every_n_batches = 100
 
-# first_stage = InputData(
-#     catalog_name_train="min_mass_10e11",
-#     catalog_name_test="min_mass_10e11_test",
-#     samples_used=samp_used,
-#     samples_used_test=samp_used_test,
-#     img_size=80,
-#     img_width=8.0,
-#     upscaling=5,
-#     noiser=EuclidNoiser(),
-#     last_image_proc=Normalizer(),
-# )
+first_stage = InputData(
+    catalog_name_train="min_mass_10e11",
+    catalog_name_test="min_mass_10e11_test",
+    samples_used=samp_used,
+    samples_used_test=samp_used_test,
+    img_size=80,
+    img_width=8.0,
+    upscaling=5,
+    noiser=EuclidNoiser(),
+    last_image_proc=Normalizer(),
+)
 
-# second_stage = InputData(
-#     catalog_name_train="min_mass_10e10",
-#     catalog_name_test="min_mass_10e10_test",
-#     samples_used=samp_used,
-#     samples_used_test=samp_used_test,
-#     img_size=80,
-#     img_width=8.0,
-#     upscaling=5,
-#     noiser=EuclidNoiser(),
-#     last_image_proc=Normalizer(),
-# )
+second_stage = InputData(
+    catalog_name_train="min_mass_10e10",
+    catalog_name_test="min_mass_10e10_test",
+    samples_used=samp_used,
+    samples_used_test=samp_used_test,
+    img_size=80,
+    img_width=8.0,
+    upscaling=5,
+    noiser=EuclidNoiser(),
+    last_image_proc=Normalizer(),
+)
 
-# third_stage = InputData(
-#     catalog_name_train="min_mass_10e9",
-#     catalog_name_test="min_mass_10e9_test",
-#     samples_used=samp_used,
-#     samples_used_test=samp_used_test,
-#     img_size=80,
-#     img_width=8.0,
-#     upscaling=5,
-#     noiser=EuclidNoiser(),
-#     last_image_proc=Normalizer(),
-# )
+third_stage = InputData(
+    catalog_name_train="min_mass_10e9",
+    catalog_name_test="min_mass_10e9_test",
+    samples_used=samp_used,
+    samples_used_test=samp_used_test,
+    img_size=80,
+    img_width=8.0,
+    upscaling=5,
+    noiser=EuclidNoiser(),
+    last_image_proc=Normalizer(),
+)
 
 fourth_stage = InputData(
     catalog_name_train="min_mass_10e8_6",
@@ -176,8 +176,8 @@ training_settings = TrainingSettings(
     optimizer_args={"weight_decay": 1e-4},
     first_lr=0.001,
     following_lr=0.0001,
-    patience_lr=2,
-    patience_stage=6,
+    patience_lr=3,
+    patience_stage=9,
     max_epochs=max_epochs,
     batch_size=batch_size,
     test_every_n_batches=test_every_n_batches,
@@ -186,7 +186,7 @@ training_settings = TrainingSettings(
 )
 
 trainer_config = TrainerConfig(
-    stages=[ fourth_stage], #first_stage, second_stage, third_stage,
+    stages=[first_stage, second_stage, third_stage, fourth_stage], #first_stage, second_stage, third_stage,
     choosen_model=choosen_model,
     training_settings=training_settings,
 )
@@ -564,7 +564,7 @@ if __name__ == "__main__":
     local_rank, world_size = setup()
 
     trainer = Trainer(
-        classifier_name="RUN1",
+        classifier_name="RUN1cluster",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,
@@ -573,7 +573,7 @@ if __name__ == "__main__":
     trainer.Train()
 
     trainer = Trainer(
-        classifier_name="RUN2",
+        classifier_name="RUN2cluster",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,
