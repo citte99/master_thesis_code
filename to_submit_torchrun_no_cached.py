@@ -20,10 +20,7 @@ import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 import wandb
 
-from torch.utils.data import TensorDataset, DataLoader, DistributedSampler
-
 from deep_learning.NN_datasets import NoNoiseDataset
-from deep_learning.NN_datasets.dataloaders import custom_dataloader
 from deep_learning.NN_datasets.dataloaders import distributed_dataloader
 from deep_learning.NN_models import ResNet50
 from noise_applicator.noisers.base_noiser import BaseNoiser, EuclidNoiser
@@ -243,11 +240,15 @@ class EpochBasedPatienceTracker:
         return lr_trigger, stop_trigger
 
 # ------------------------ Trainer ------------------------
-
 class Trainer:
-    def __init__(self, classifier_name: str, train_config: TrainerConfig,
-                 local_rank: int, gpu_id: int, world_size: int):
-        # ensure TRAINED_CLASSIFIERS_DIR exists
+    def __init__(
+        self,
+        classifier_name: str,
+        train_config: TrainerConfig,
+        local_rank: int,
+        gpu_id: int,
+        world_size: int,
+    ):
         self.classifier_name = classifier_name
         self.local_rank = local_rank
         self.train_config = train_config
@@ -267,90 +268,7 @@ class Trainer:
                     "device_count": torch.cuda.device_count(),
                 },
             )
-        if local_rank == 0:
-            Path(TRAINED_CLASSIFIERS_DIR).mkdir(parents=True, exist_ok=True)
 
-    def _cache_dataset(self, catalog_name: str, samples: int):
-        cache_dir = Path(TRAINED_CLASSIFIERS_DIR) / self.classifier_name / "cache" / catalog_name
-        cache_dir.mkdir(parents=True, exist_ok=True)
-        cache_file = cache_dir / f"{samples}.pt"
-        rank = self.local_rank
-        world_size = dist.get_world_size()
-
-        # only build if missing
-        if not cache_file.exists():
-            # each rank builds its slice
-            ds = NoNoiseDataset(
-                catalog_name,
-                grid_pixel_side=self.train_config.stages[0].img_size,
-                grid_width_arcsec=self.train_config.stages[0].img_width,
-                broadcasting=True,
-                samples_used=samples,
-                upscaling=self.train_config.stages[0].upscaling
-            )
-            loader = distributed_dataloader(
-                ds,
-                batch_size=self.train_config.training_settings.batch_size,
-            )
-
-            local_imgs = []
-            local_labels = []
-            for x, y in loader:
-                # move straight to CPU
-                local_imgs.append(x.cpu())
-                local_labels.append(y.cpu())
-                # free any residual GPU memory
-                torch.cuda.empty_cache()
-
-            # concat local shard
-            local_imgs = torch.cat(local_imgs, dim=0)
-            local_labels = torch.cat(local_labels, dim=0)
-            # save per-rank
-            part_file = cache_dir / f"{samples}.rank{rank}.pt"
-            torch.save((local_imgs, local_labels), part_file)
-
-            # sync before merge
-            dist.barrier()
-
-            if rank == 0:
-                # rank 0 loads all parts and merges
-                all_imgs = []
-                all_labels = []
-                for r in range(world_size):
-                    shard = torch.load(cache_dir / f"{samples}.rank{r}.pt", map_location="cpu")
-                    all_imgs.append(shard[0])
-                    all_labels.append(shard[1])
-                full_imgs = torch.cat(all_imgs, dim=0)
-                full_labels = torch.cat(all_labels, dim=0)
-                # write the single cache
-                torch.save((full_imgs, full_labels), cache_file)
-                # optional: cleanup partials
-                for r in range(world_size):
-                    (cache_dir / f"{samples}.rank{r}.pt").unlink()
-
-            # final sync so every rank sees the merged cache
-            dist.barrier()
-
-        # now every rank loads the merged cache off CPU
-        data = torch.load(cache_file, map_location="cpu")
-        ds = TensorDataset(data[0], data[1])
-        sampler = DistributedSampler(ds, shuffle=True)
-        return DataLoader(
-            ds,
-            batch_size=self.train_config.training_settings.batch_size,
-            sampler=sampler,
-            num_workers=4,
-            pin_memory=True,
-        )
-
-    def _load_loaders(self, stage: InputData):
-        # train
-        train_loader = self._cache_dataset(stage.catalog_name_train, stage.samples_used)
-        # test
-        test_loader = self._cache_dataset(stage.catalog_name_test, stage.samples_used_test)
-        return train_loader, test_loader
-
-    
     def _find_better_method_name(self, model: nn.Module, lr: float):
         loss = nn.CrossEntropyLoss()
         loss_test = nn.CrossEntropyLoss(reduction="none")
@@ -359,6 +277,31 @@ class Trainer:
         )
         return optimizer, loss, loss_test
 
+    def _load_loaders(self, stage: InputData):
+        train_dataset = NoNoiseDataset(
+            stage.catalog_name_train,
+            grid_pixel_side=stage.img_size,
+            grid_width_arcsec=stage.img_width,
+            broadcasting=True,
+            samples_used=stage.samples_used,
+            upscaling=stage.upscaling,
+        )
+        test_dataset = NoNoiseDataset(
+            stage.catalog_name_test,
+            grid_pixel_side=stage.img_size,
+            grid_width_arcsec=stage.img_width,
+            broadcasting=True,
+            samples_used=stage.samples_used_test,
+            upscaling=stage.upscaling,
+        )
+
+        train_loader = distributed_dataloader(
+            train_dataset, batch_size=self.train_config.training_settings.batch_size
+        )
+        test_loader = distributed_dataloader(
+            test_dataset, batch_size=self.train_config.training_settings.batch_size
+        )
+        return train_loader, test_loader
 
     def _load_model(self, checkpoint=None):
         model = self.train_config.choosen_model.model(**self.train_config.choosen_model.model_init)
