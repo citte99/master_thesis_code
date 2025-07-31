@@ -86,7 +86,7 @@ class TrainingSettings:
     patience_stage: int
     max_epochs: int
     batch_size: int
-#    test_every_n_batches: int
+    test_every_n_batches: int
     compile_model: bool
     checkpoints_every_m_test: int
 
@@ -99,7 +99,7 @@ class TrainingSettings:
             "patience_stage": self.patience_stage,
             "max_epochs": self.max_epochs,
             "batch_size": self.batch_size,
- #           "test_every_n_batches": self.test_every_n_batches,
+            "test_every_n_batches": self.test_every_n_batches,
             "compile_model": self.compile_model,
             "checkpoints_every_m_test": self.checkpoints_every_m_test,
         }
@@ -113,10 +113,10 @@ class TrainerConfig:
 
 # ------------------------ Example training config ------------------------
 samp_used = 2_000_000
-samp_used_test = 100_000
+samp_used_test = 10_000
 batch_size = 1024 * 1
-max_epochs = 100
-#test_every_n_batches = 100
+max_epochs = 20
+test_every_n_batches = 100
 
 first_stage = InputData(
     catalog_name_train="min_mass_10e11",
@@ -172,15 +172,15 @@ choosen_model = ChoosenModel(
 )
 
 training_settings = TrainingSettings(
-    optimizer=torch.optim.AdamW,
-    optimizer_args={"weight_decay":1e-2, "betas":(0.9, 0.999) },
+    optimizer=torch.optim.Adam,
+    optimizer_args={"weight_decay": 1e-4},
     first_lr=0.001,
     following_lr=0.0001,
-    patience_lr=3, #epochs
-    patience_stage=8, #stop
+    patience_lr=10,
+    patience_stage=30,
     max_epochs=max_epochs,
     batch_size=batch_size,
-#    test_every_n_batches=test_every_n_batches,
+    test_every_n_batches=test_every_n_batches,
     compile_model=False,
     checkpoints_every_m_test=5,
 )
@@ -193,51 +193,53 @@ trainer_config = TrainerConfig(
 
 
 # ------------------------ Patience tracker ------------------------
-class EpochBasedPatienceTracker:
-    def __init__(self, patience_epochs_lr: int = 3, patience_epochs_stop: int = 8, 
-                 local_rank: int = 0, min_improvement: float = 1e-4):
-        self.patience_epochs_lr = patience_epochs_lr
-        self.patience_epochs_stop = patience_epochs_stop
-        self.min_improvement = min_improvement
-        self.local_rank = local_rank
-        
+class PatienceTracker:
+    def __init__(self, patience_lr: int, patience_stage: int, local_rank: int):
+        if patience_lr > patience_stage:
+            raise ValueError("patience_lr cannot be higher than patience_stage")
+        self.patience_stage = patience_stage
+        self.patience_lr = patience_lr
+        self.counts_lr = 0
+        self.counts_tot = 0
         self.best_loss = float("inf")
-        self.best_epoch = 0
-        self.current_epoch = 0
-        
-    def end_epoch(self, avg_epoch_loss: float):
-        """Call this at the end of each epoch with average loss"""
-        self.current_epoch += 1
-        
+        self.local_rank = local_rank
+
+    def check_new_loss(self, loss: torch.Tensor, sem: torch.Tensor):
         lr_trigger = False
         stop_trigger = False
-        
-        # Check for improvement
-        if avg_epoch_loss < (self.best_loss - self.min_improvement):
-            self.best_loss = avg_epoch_loss
-            self.best_epoch = self.current_epoch
-        
-        epochs_since_improvement = self.current_epoch - self.best_epoch
-        
-        # Trigger LR reduction
-        if epochs_since_improvement >= self.patience_epochs_lr:
+
+        # Treat as improvement only if we beat best_loss by more than "sem"
+        loss_val = float(loss)
+        sem_val = float(sem)
+
+        if loss_val < self.best_loss: # - sem_val:
+            self.best_loss = loss_val
+            self.counts_lr = 0
+            self.counts_tot = 0
+        else:
+            self.counts_lr += 1
+            self.counts_tot += 1
+
+        if self.counts_lr >= self.patience_lr:
             lr_trigger = True
-            
-        # Trigger early stopping
-        if epochs_since_improvement >= self.patience_epochs_stop:
+            self.counts_lr = 0
+
+        if self.counts_tot >= self.patience_stage:
             stop_trigger = True
-            
+
         if self.local_rank == 0:
-            wandb.log({
-                "patience/epochs_since_improvement": epochs_since_improvement,
-                "patience/best_loss": self.best_loss,
-                "patience/best_epoch": self.best_epoch,
-                "patience/current_epoch": self.current_epoch,
-                "patience/lr_trigger": lr_trigger,
-                "patience/stop_trigger": stop_trigger,
-            })
-            
+            wandb.log(
+                {
+                    "patience/lr_counter": self.counts_lr,
+                    "patience/stage_counter": self.counts_tot,
+                    "patience/best_loss": float(self.best_loss),
+                    "patience/lr_reduction_triggered": lr_trigger,
+                    "patience/stage_stop_triggered": stop_trigger,
+                }
+            )
+
         return lr_trigger, stop_trigger
+
 
 # ------------------------ Trainer ------------------------
 class Trainer:
@@ -356,11 +358,11 @@ class Trainer:
             torch.save(checkpoint, path / name)
 
     def _train_stage(self, stage: InputData, index_stage: int, checkpoint=None):
-    
         self._save_stage_conf(stage, index=index_stage)
         model = self._load_model(checkpoint)
 
         lr = self.train_config.training_settings.first_lr if index_stage == 0 else self.train_config.training_settings.following_lr
+        current_lr = {"value": lr}
 
         if self.local_rank == 0:
             wandb.log(
@@ -404,42 +406,39 @@ class Trainer:
 
             losses = torch.cat(losses, dim=0).double()
             total_loss = losses.sum().to(device)
+            sum_sq = (losses**2).sum().to(device)
             count = torch.tensor(losses.numel(), device=device, dtype=torch.long)
 
             dist.all_reduce(total_loss, op=dist.ReduceOp.SUM)
+            dist.all_reduce(sum_sq, op=dist.ReduceOp.SUM)
             dist.all_reduce(count, op=dist.ReduceOp.SUM)
 
             mean_global = total_loss / count.float()
+            var_global = (sum_sq - count * mean_global**2) / (count - 1).float()
+            sem_global = torch.sqrt(var_global / count.float())
 
             if self.local_rank == 0:
                 wandb.log(
                     {
                         "test/loss_mean_global": float(mean_global),
+                        "test/loss_sem_global": float(sem_global),
                         "test/num_test_samples_global": int(count),
                     }
                 )
 
             model.train()
-            return mean_global
+            return mean_global, sem_global
 
-        # Initialize epoch-based tracker
-        tracker = EpochBasedPatienceTracker(
-            patience_epochs_lr=self.train_config.training_settings.patience_lr,
-            patience_epochs_stop=self.train_config.training_settings.patience_stage,
-            local_rank=self.local_rank,
-        )
-
-        # Main epoch loop
-        for epoch in range(self.train_config.training_settings.max_epochs):
+        def _run_epoch(epoch: int, tracker: PatienceTracker):
             device = torch.device(f"cuda:{self.gpu_id}")
-            epoch_losses = []
+            endstage = False
+            ckpt = None
+            last_test_loss = None
 
-            # Show effective batch size
+            # Show effective batch size of the loader
             b_sz = len(next(iter(train_loader))[0])
-            if self.local_rank == 0:
-                print(f"[GPU{self.gpu_id}] Epoch {epoch} | Batchsize: {b_sz} | Steps: {len(train_loader)}")
+            print(f"[GPU{self.gpu_id}] Epoch {epoch} | Batchsize: {b_sz} | Steps: {len(train_loader)}")
 
-            # Log sample images only once at start
             if epoch == 0 and self.local_rank == 0:
                 train_batch = next(iter(train_loader))
                 test_batch = next(iter(test_loader))
@@ -448,64 +447,93 @@ class Trainer:
                 wandb.log({f"stage_{index_stage}/train_samples": [wandb.Image(train_processed[i]) for i in range(train_processed.size(0))]})
                 wandb.log({f"stage_{index_stage}/test_samples": [wandb.Image(test_processed[i]) for i in range(test_processed.size(0))]})
 
-            # Training loop for entire epoch
-            for batch_idx, (source, targets) in enumerate(train_loader):
+            for index, (source, targets) in enumerate(train_loader):
+                torch.cuda.reset_peak_memory_stats(self.gpu_id)
+                start_time = time.time()
+
                 source = noiser(source)
                 source = normalizer(source)
                 loss = _run_batch(source, targets)
-                epoch_losses.append(loss.item())
 
-            # Test once per epoch
-            test_loss = _run_test()
-            avg_train_loss = sum(epoch_losses) / len(epoch_losses)
+                if index % self.train_config.training_settings.test_every_n_batches == 0:
+                    batch_processing_time = time.time() - start_time
 
-            # Check patience using epoch-based tracker
-            lr_trigger, stop_trigger = tracker.end_epoch(float(test_loss))
+                    mean_global, sem_global = _run_test()
 
-            # Broadcast decisions to all GPUs
-            flags = torch.tensor([lr_trigger, stop_trigger], dtype=torch.uint8, device=device)
-            if self.local_rank == 0:
-                flags[0] = lr_trigger
-                flags[1] = stop_trigger
-            dist.broadcast(flags, src=0)
-            lr_trigger = bool(flags[0].item())
-            stop_trigger = bool(flags[1].item())
+                    if self.local_rank == 0:
+                        torch.cuda.synchronize(self.gpu_id)
+                        peak_mem = torch.cuda.max_memory_allocated(self.gpu_id) / 1e9
+                        wandb.log(
+                            {
+                                "train/batch_loss": float(loss.item()),
+                                "train/test_loss_global": float(mean_global),
+                                "train/learning_rate": float(current_lr["value"]),
+                                "train/epoch": epoch,
+                                "train/batch_idx": index,
+                                "system/gpu_memory_allocated": torch.cuda.memory_allocated(self.gpu_id) / 1e9,
+                                "system/gpu_memory_cached": torch.cuda.memory_reserved(self.gpu_id) / 1e9,
+                                "system/batch_time": batch_processing_time,
+                                "system/gpu_memory_peak_allocated": peak_mem,
+                            }
+                        )
+                        print(
+                            f"[GPU {self.gpu_id} | Epoch {epoch} | Batch {index}] "
+                            f"Loss: {loss.item():.4f} | LR: {current_lr['value']:.2e} | "
+                            f"Test Loss (global): {float(mean_global):.4f} | "
+                            f"Time: {batch_processing_time:.3f}s | "
+                            f"Mem Alloc: {torch.cuda.memory_allocated(self.gpu_id) / 1e9:.2f} GB | "
+                            f"Peak Mem: {peak_mem:.2f} GB | "
+                            f"Mem Cached: {torch.cuda.memory_reserved(self.gpu_id) / 1e9:.2f} GB"
+                        )
 
-            # Apply LR reduction
-            if lr_trigger:
-                for param_group in optimizer.param_groups:
-                    param_group['lr'] *= 0.5
+                    # ---- Global patience decision ----
+                    if self.local_rank == 0:
+                        lr_trigger, stop_trigger = tracker.check_new_loss(mean_global, sem_global)
+                    else:
+                        lr_trigger, stop_trigger = False, False
 
-            # Epoch-level logging
-            if self.local_rank == 0:
-                wandb.log({
-                    "epoch/train_loss_avg": avg_train_loss,
-                    "epoch/test_loss": float(test_loss),
-                    "epoch/learning_rate": optimizer.param_groups[0]['lr'],
-                    "epoch/epoch_num": epoch,
-                })
-                print(f"[GPU {self.gpu_id}] Epoch {epoch}: Train Loss: {avg_train_loss:.6f} | Test Loss: {float(test_loss):.6f} | LR: {optimizer.param_groups[0]['lr']:.2e}")
+                    flags = torch.tensor([lr_trigger, stop_trigger], dtype=torch.uint8, device=device)
+                    dist.broadcast(flags, src=0)
+                    lr_trigger = bool(flags[0].item())
+                    stop_trigger = bool(flags[1].item())
 
-            # Save checkpoint periodically or if stopping
-            if epoch % 5 == 0 or stop_trigger:
-                self._save_checkpoint(stage, index_stage, epoch, model, optimizer, 
-                                    test_loss, optimizer.param_groups[0]['lr'], is_last=stop_trigger)
+                    if lr_trigger:
+                        for pg in optimizer.param_groups:
+                            pg["lr"] = float(pg["lr"]) / 10.0
+                        current_lr["value"] /= 10.0
 
-            if stop_trigger:
-                if self.local_rank == 0:
-                    print(f"[GPU {self.gpu_id}] Early stopping at epoch {epoch}")
-                break
+                    if stop_trigger:
+                        self._save_checkpoint(stage, index_stage, epoch, model, optimizer, mean_global, current_lr["value"], is_last=True)
+                        endstage = True
+                        ckpt = model.module.state_dict()
+                        return endstage, ckpt, mean_global
 
-        # Final checkpoint if didn't early stop
-        if not stop_trigger:
-            self._save_checkpoint(stage, index_stage, epoch, model, optimizer, test_loss, optimizer.param_groups[0]['lr'], is_last=True)
+                    # periodic checkpointing
+                    if (index // self.train_config.training_settings.test_every_n_batches) % self.train_config.training_settings.checkpoints_every_m_test == 0:
+                        self._save_checkpoint(stage, index_stage, epoch, model, optimizer, mean_global, current_lr["value"], is_last=False)
 
-        # Cleanup
-        final_checkpoint = model.module.state_dict()
+            return endstage, ckpt, mean_global
+
+        tracker = PatienceTracker(
+            self.train_config.training_settings.patience_lr,
+            self.train_config.training_settings.patience_stage,
+            local_rank=self.local_rank,
+        )
+
+        endstage = False
+        ckpt = None
+        last_test_loss = None
+        for epoch in range(self.train_config.training_settings.max_epochs):
+            if not endstage:
+                endstage, ckpt, last_test_loss = _run_epoch(epoch, tracker=tracker)
+
+        if not endstage:
+            self._save_checkpoint(stage, index_stage, epoch, model, optimizer, last_test_loss, current_lr["value"], is_last=True)
+
         del model, optimizer, train_loader, test_loader
         torch.cuda.empty_cache()
         gc.collect()
-        return final_checkpoint
+        return ckpt
 
     def Train(self):
         self._save_classifier_conf()
@@ -536,7 +564,7 @@ if __name__ == "__main__":
     local_rank, world_size = setup()
 
     trainer = Trainer(
-        classifier_name="RUN1clusterEpochPatience",
+        classifier_name="RUN1clusterLongerPatience",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,
@@ -545,7 +573,7 @@ if __name__ == "__main__":
     trainer.Train()
 
     trainer = Trainer(
-        classifier_name="RUN2clusterEpochPatience",
+        classifier_name="RUN2clusterLongerPatience",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,

@@ -1,0 +1,71 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+W0730 20:01:11.809000 51039 torch/distributed/run.py:766] 
+W0730 20:01:11.809000 51039 torch/distributed/run.py:766] *****************************************
+W0730 20:01:11.809000 51039 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0730 20:01:11.809000 51039 torch/distributed/run.py:766] *****************************************
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+/workspace/to_submit_torchrun.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/native/Scalar.cpp:22.)
+  "train/batch_loss": float(loss.item()),
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:               patience/best_loss ▇▇▆▅▄▄▄▄▃▃▁███████████████████████▇▇▇▇▇▇
+wandb:              patience/lr_counter ▁▁▂▂▆▆▁▂▂▅▄▆▄▆▄▃▄▁▃▂█▄▂▇▁▁▄▇▁▃█▁▃▄▅▂▂▃▆▆
+wandb:           patience/stage_counter ▁▁▁▂▁▂▁▂▂▂▂▃▁▂▁▂▃▃▄▅█▂▂▃▁▁▂▆▁▁▃▁▁▂▂▁▁▁▁▆
+wandb:              stage/current_stage ▁▃▆█
+wandb:                   stage/img_size ▁▁▁▁
+wandb:      stage/learning_rate_initial █▁▁▁
+wandb:               stage/samples_test ▁▁▁▁
+wandb:              stage/samples_train ▁▁▁▁
+wandb:                system/batch_time ▃▃▂▃▂▃▂▄▄▃▃▃▂▄▃▄▃▄▂█▃▂▃▂▃▁▂▂▁▄▂▄▄▃▄▄▃▅▂▃
+wandb:      system/gpu_memory_allocated ▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁██▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+wandb:         system/gpu_memory_cached ▄▄▄▄▄▄▄▄▄▄▄▁▁▅▅▅▅▃▃▃▃▃▃▃▃▃▃▃▃███████████
+wandb: system/gpu_memory_peak_allocated ▁▁▂▁▂▂▁▁▁▁▁▁▂▂▁▅▅▁▁▁▁▁██████████████████
+wandb:            test/loss_mean_global ▇▇▇▆▆▄▆▅▄▆▅▄▁▁█████████████████▇▇▇▇▇▇▇▇▇
+wandb:             test/loss_sem_global █▇▃▅█▆▆▆█▇▇▇▇▇▂▂▁▂▂▂▃▂▁▁▁▁▃▂▂▃▃▃▂▂▃▂▂▂▂▃
+wandb:     test/num_test_samples_global ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                  train/batch_idx █▆██▆█▅▃▅▆▆▆▅▅▆██▁▆▆▆▆▁▃▆▆▁▁▃▆▆█▁▅▅█▆▆▆▅
+wandb:                 train/batch_loss ███▇▆▅▄▄▃▃▂▁▂▁██████████▇████████▇▇▇▇▇▇▇
+wandb:                      train/epoch ▁▂▂▄▄▄▄▅▆▇▇▇▇██▂▂▂▂▃▄▄▄▅▁▅▅▁▂▂▂▂▃▃▄▄▆▆▇█
+wandb:              train/learning_rate ██████████▂▂▂▂▁▁▁▂▂▂▂▁▁▁▁▁▁▂▂▂▂▂▁▁▁▁▁▁▁▁
+wandb:           train/test_loss_global ▅▅▄▃▃▃▃▃▃▃▁▅▅▅▅▅▅▅▅▅▅▅▅▅▅█▅▅▅▅▄▄▄▄▄▄▄▄▄▄
+wandb: 
+wandb: Run summary:
+wandb:               patience/best_loss 0.66258
+wandb:              patience/lr_counter 4
+wandb:  patience/lr_reduction_triggered False
+wandb:           patience/stage_counter 24
+wandb:    patience/stage_stop_triggered False
+wandb:               stage/catalog_test min_mass_10e8_6_test...
+wandb:              stage/catalog_train min_mass_10e8_6
+wandb:              stage/current_stage 3
+wandb:                   stage/img_size 80
+wandb:      stage/learning_rate_initial 0.0001
+wandb:               stage/samples_test 10000
+wandb:              stage/samples_train 2000000
+wandb:                system/batch_time 0.25819
+wandb:      system/gpu_memory_allocated 0.9506
+wandb:         system/gpu_memory_cached 24.63315
+wandb: system/gpu_memory_peak_allocated 15.39613
+wandb:            test/loss_mean_global 0.66369
+wandb:             test/loss_sem_global 0.00219
+wandb:     test/num_test_samples_global 10000
+wandb:                  train/batch_idx 400
+wandb:                 train/batch_loss 0.66006
+wandb:                      train/epoch 19
+wandb:              train/learning_rate 0.0
+wandb:           train/test_loss_global 0.66369
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /workspace/wandb/offline-run-20250730_200203-f7lnnm86
+wandb: Find logs at: ./wandb/offline-run-20250730_200203-f7lnnm86/logs
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+slurmstepd: error: *** JOB 21007146 ON ravg1103 CANCELLED AT 2025-07-31T02:01:03 DUE TO TIME LIMIT ***
+W0731 02:01:03.701000 51039 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 51266 closing signal SIGTERM
+W0731 02:01:03.705000 51039 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 51267 closing signal SIGTERM
+W0731 02:01:03.707000 51039 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 51268 closing signal SIGTERM
+W0731 02:01:03.709000 51039 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 51269 closing signal SIGTERM

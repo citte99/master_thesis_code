@@ -17,6 +17,33 @@ $(which python) -m torch.distributed.run \
   to_submit_torchrun.py 2>&1 | tee -a logs/train.log
   
   
+  
+  
+  
+  
+  
+cat ~/.ssh/vast_rsync_key.pub
+  
+  
+ssh -i ~/.ssh/vast_rsync_key -p 32132 root@157.90.56.162
+
+ssh -p 31161 root@88.207.87.159 -L 8080:localhost:8080
+rsync -avzh \
+  -e "ssh -i ~/.ssh/vast_rsync_key -p 31161" \
+  root@88.207.87.159:/workspace/ \
+  ~/vast_backup2/
+
+
+rsync -avzh \
+  -e "ssh -i ~/.ssh/vast_rsync_key -p 32132" \
+  root@88.207.87.159:/workspace/ \
+  ~/vast_backup2/
+  
+  
+  
+  
+  
+  
 import os, torch
 rank = int(os.environ.get("LOCAL_RANK", 0))
 print(f"[rank{rank}] PID={os.getpid()}  cuda_available={torch.cuda.is_available()}  "
