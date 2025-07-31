@@ -293,55 +293,75 @@ class Trainer:
                 batch_size=self.train_config.training_settings.batch_size,
             )
 
+            total_batches = len(loader)
+            print(f"[rank{rank}] → Starting cache build for {samples} samples "
+                  f"({total_batches} batches)")
+
             local_imgs = []
             local_labels = []
-            for x, y in loader:
+            for batch_idx, (x, y) in enumerate(loader, start=1):
                 # move straight to CPU
                 local_imgs.append(x.cpu())
                 local_labels.append(y.cpu())
                 # free any residual GPU memory
                 torch.cuda.empty_cache()
 
+                # progress every 10%
+                if batch_idx % max(1, total_batches // 10) == 0 or batch_idx == total_batches:
+                    pct = batch_idx / total_batches * 100
+                    print(f"[rank{rank}]   Cached {batch_idx}/{total_batches} batches "
+                          f"({pct:.0f}%)")
+
             # concat local shard
+            print(f"[rank{rank}] → Concatenating {len(local_imgs)} batches into one tensor…")
             local_imgs = torch.cat(local_imgs, dim=0)
             local_labels = torch.cat(local_labels, dim=0)
+
             # save per-rank
             part_file = cache_dir / f"{samples}.rank{rank}.pt"
             torch.save((local_imgs, local_labels), part_file)
+            print(f"[rank{rank}] → Saved shard to {part_file.name}")
 
             # sync before merge
             dist.barrier()
 
             if rank == 0:
-                # rank 0 loads all parts and merges
+                print(f"[rank0] → Merging {world_size} shards…")
                 all_imgs = []
                 all_labels = []
                 for r in range(world_size):
-                    shard = torch.load(cache_dir / f"{samples}.rank{r}.pt", map_location="cpu")
+                    shard_file = cache_dir / f"{samples}.rank{r}.pt"
+                    print(f"[rank0]    Loading shard {shard_file.name}")
+                    shard = torch.load(shard_file, map_location="cpu")
                     all_imgs.append(shard[0])
                     all_labels.append(shard[1])
                 full_imgs = torch.cat(all_imgs, dim=0)
                 full_labels = torch.cat(all_labels, dim=0)
-                # write the single cache
+                print(f"[rank0] → Writing merged cache {cache_file.name}")
                 torch.save((full_imgs, full_labels), cache_file)
                 # optional: cleanup partials
                 for r in range(world_size):
                     (cache_dir / f"{samples}.rank{r}.pt").unlink()
+                    print(f"[rank0]    Deleted shard {samples}.rank{r}.pt")
 
             # final sync so every rank sees the merged cache
             dist.barrier()
+            print(f"[rank{rank}] ← Cache ready: {cache_file.name}")
 
         # now every rank loads the merged cache off CPU
+        print(f"[rank{rank}] Loading final cache from {cache_file.name}")
         data = torch.load(cache_file, map_location="cpu")
         ds = TensorDataset(data[0], data[1])
         sampler = DistributedSampler(ds, shuffle=True)
-        return DataLoader(
+        loader = DataLoader(
             ds,
             batch_size=self.train_config.training_settings.batch_size,
             sampler=sampler,
             num_workers=4,
             pin_memory=True,
         )
+        print(f"[rank{rank}] Returning DataLoader with {len(loader)} batches")
+        return loader
 
     def _load_loaders(self, stage: InputData):
         # train
