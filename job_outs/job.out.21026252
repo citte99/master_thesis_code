@@ -1,0 +1,32 @@
+Starting job on nodes: ravg1002
+Master address: ravg1002
+Master port: 29500
+Node starting with MASTER_ADDR=ravg1002
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: fcitterio(76052)
+Job name:  multinode-example
+Node list: ravg1002
+Job start: Thu Jul 31 23:14:28 CEST 2025
+Job end:   Thu Jul 31 23:19:53 CEST 2025
+Work dir:  /u/fcitterio/master_thesis_code/./
+Command:   /raven/u/fcitterio/master_thesis_code/sbatch_multiple_node_training.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID            JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode
+------------- ---------- ------ ------ ------ ------------ ------------ ---------- --------
+21026252      multinode-      1           144                             00:05:25      0:0
+21026252.0     apptainer      1      1    144     1623.26M     1623.26M   00:05:25      0:7
+  
+Maximum memory per node: 1.702112 GB (defined as MaxRSS*Ntasks/NNodes)
+CPU utilization: 0.1 %
+  

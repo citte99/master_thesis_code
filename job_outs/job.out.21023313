@@ -1,0 +1,34 @@
+MASTER_ADDR: ravg1002
+MASTER_PORT: 13313
+SLURM_JOB_NODELIST: ravg1002
+SLURM_NODEID: 0
+SLURM_NNODES: 1
+SLURM_GPUS_ON_NODE: 4
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: fcitterio(76052)
+Job name:  multinode-example
+Node list: ravg1002
+Job start: Thu Jul 31 22:21:46 CEST 2025
+Job end:   Thu Jul 31 22:37:10 CEST 2025
+Work dir:  /u/fcitterio/master_thesis_code/./
+Command:   /raven/u/fcitterio/master_thesis_code/sbatch_multiple_node_training.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID            JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode
+------------- ---------- ------ ------ ------ ------------ ------------ ---------- --------
+21023313      multinode-      1           144                             00:15:24      0:0
+21023313.0     apptainer      1      1    144     1625.35M     1625.35M   00:15:25      0:7
+  
+Maximum memory per node: 1.704298 GB (defined as MaxRSS*Ntasks/NNodes)
+CPU utilization: 0.0 %
+  
