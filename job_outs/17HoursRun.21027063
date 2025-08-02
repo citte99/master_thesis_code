@@ -444,3 +444,600 @@ Currently this dataloader is calculating the images in float32
 [GPU0] Epoch 6 | Batchsize: 1024 | Steps: 489
 [GPU 0] Epoch 6: Train Loss: 0.405769 | Test Loss: 0.427425 | LR: 4.00e-04
 [GPU0] Epoch 7 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 7: Train Loss: 0.400881 | Test Loss: 0.429947 | LR: 4.00e-04
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 8: Train Loss: 0.394998 | Test Loss: 0.431893 | LR: 4.00e-04
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 9: Train Loss: 0.390118 | Test Loss: 0.430096 | LR: 4.00e-04
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 10: Train Loss: 0.384894 | Test Loss: 0.432711 | LR: 2.00e-04
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 11: Train Loss: 0.373309 | Test Loss: 0.435105 | LR: 1.00e-04
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 12: Train Loss: 0.365350 | Test Loss: 0.439094 | LR: 5.00e-05
+[GPU0] Epoch 13 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 13: Train Loss: 0.360151 | Test Loss: 0.444114 | LR: 2.50e-05
+[GPU0] Epoch 14 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 14: Train Loss: 0.358346 | Test Loss: 0.445970 | LR: 1.25e-05
+[GPU0] Epoch 15 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 15: Train Loss: 0.356028 | Test Loss: 0.444256 | LR: 6.25e-06
+[GPU0] Epoch 16 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 16: Train Loss: 0.356215 | Test Loss: 0.442994 | LR: 3.13e-06
+[GPU0] Epoch 17 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 17: Train Loss: 0.354932 | Test Loss: 0.439257 | LR: 1.56e-06
+[GPU0] Epoch 18 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 18: Train Loss: 0.355785 | Test Loss: 0.441176 | LR: 7.81e-07
+[GPU0] Epoch 19 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 19: Train Loss: 0.354649 | Test Loss: 0.439251 | LR: 3.91e-07
+[GPU0] Epoch 20 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 20: Train Loss: 0.355113 | Test Loss: 0.439006 | LR: 1.95e-07
+[GPU0] Epoch 21 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 21: Train Loss: 0.355016 | Test Loss: 0.439925 | LR: 9.77e-08
+[GPU0] Epoch 22 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 22: Train Loss: 0.354729 | Test Loss: 0.437145 | LR: 4.88e-08
+[GPU 0] Early stopping at epoch 22
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+
+Using device: cuda
+Using device: cudaCurrently this dataloader is calculating the images in float32
+
+Currently this dataloader is calculating the images in float32Using device: cuda
+
+2000000Currently this dataloader is calculating the images in float32
+
+2000000
+2000000
+100000
+100000
+100000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+100000
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 0: Train Loss: 0.560147 | Test Loss: 0.559744 | LR: 4.00e-04
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 1: Train Loss: 0.553729 | Test Loss: 0.558260 | LR: 4.00e-04
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 2: Train Loss: 0.550012 | Test Loss: 0.557888 | LR: 4.00e-04
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 3: Train Loss: 0.546741 | Test Loss: 0.559664 | LR: 4.00e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 4: Train Loss: 0.543530 | Test Loss: 0.559666 | LR: 4.00e-04
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 5: Train Loss: 0.539752 | Test Loss: 0.561186 | LR: 4.00e-04
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 6: Train Loss: 0.536027 | Test Loss: 0.562813 | LR: 4.00e-04
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 7: Train Loss: 0.530406 | Test Loss: 0.566552 | LR: 4.00e-04
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 8: Train Loss: 0.525238 | Test Loss: 0.574042 | LR: 2.00e-04
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 9: Train Loss: 0.512637 | Test Loss: 0.574916 | LR: 1.00e-04
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 10: Train Loss: 0.504281 | Test Loss: 0.578326 | LR: 5.00e-05
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 11: Train Loss: 0.499069 | Test Loss: 0.584609 | LR: 2.50e-05
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 12: Train Loss: 0.496134 | Test Loss: 0.586701 | LR: 1.25e-05
+[GPU0] Epoch 13 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 13: Train Loss: 0.495729 | Test Loss: 0.589628 | LR: 6.25e-06
+[GPU0] Epoch 14 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 14: Train Loss: 0.493957 | Test Loss: 0.590823 | LR: 3.13e-06
+[GPU0] Epoch 15 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 15: Train Loss: 0.494763 | Test Loss: 0.593563 | LR: 1.56e-06
+[GPU0] Epoch 16 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 16: Train Loss: 0.493411 | Test Loss: 0.595303 | LR: 7.81e-07
+[GPU0] Epoch 17 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 17: Train Loss: 0.493362 | Test Loss: 0.595374 | LR: 3.91e-07
+[GPU0] Epoch 18 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 18: Train Loss: 0.493369 | Test Loss: 0.597185 | LR: 1.95e-07
+[GPU0] Epoch 19 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 19: Train Loss: 0.493002 | Test Loss: 0.595757 | LR: 9.77e-08
+[GPU0] Epoch 20 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 20: Train Loss: 0.494183 | Test Loss: 0.595872 | LR: 4.88e-08
+[GPU 0] Early stopping at epoch 20
+Using broadcasting modeUsing broadcasting mode
+
+Using broadcasting mode
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+1000002000000
+
+Using device: cuda
+100000Currently this dataloader is calculating the images in float32
+
+2000000
+100000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+100000
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 0: Train Loss: 0.581121 | Test Loss: 0.577661 | LR: 4.00e-04
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 1: Train Loss: 0.576325 | Test Loss: 0.578018 | LR: 4.00e-04
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 2: Train Loss: 0.573459 | Test Loss: 0.577634 | LR: 4.00e-04
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 3: Train Loss: 0.570114 | Test Loss: 0.579788 | LR: 4.00e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 4: Train Loss: 0.568179 | Test Loss: 0.580471 | LR: 4.00e-04
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 5: Train Loss: 0.563498 | Test Loss: 0.581374 | LR: 4.00e-04
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 6: Train Loss: 0.559056 | Test Loss: 0.585613 | LR: 2.00e-04
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 7: Train Loss: 0.549831 | Test Loss: 0.588660 | LR: 1.00e-04
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 8: Train Loss: 0.541739 | Test Loss: 0.593067 | LR: 5.00e-05
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 9: Train Loss: 0.537480 | Test Loss: 0.594936 | LR: 2.50e-05
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 10: Train Loss: 0.535259 | Test Loss: 0.596913 | LR: 1.25e-05
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 11: Train Loss: 0.534135 | Test Loss: 0.597261 | LR: 6.25e-06
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 12: Train Loss: 0.533689 | Test Loss: 0.600542 | LR: 3.13e-06
+[GPU0] Epoch 13 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 13: Train Loss: 0.532863 | Test Loss: 0.603525 | LR: 1.56e-06
+[GPU0] Epoch 14 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 14: Train Loss: 0.532985 | Test Loss: 0.605613 | LR: 7.81e-07
+[GPU0] Epoch 15 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 15: Train Loss: 0.532885 | Test Loss: 0.606041 | LR: 3.91e-07
+[GPU0] Epoch 16 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 16: Train Loss: 0.532756 | Test Loss: 0.606023 | LR: 1.95e-07
+[GPU0] Epoch 17 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 17: Train Loss: 0.532531 | Test Loss: 0.606411 | LR: 9.77e-08
+[GPU0] Epoch 18 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 18: Train Loss: 0.532699 | Test Loss: 0.605376 | LR: 4.88e-08
+[GPU 0] Early stopping at epoch 18
+Using broadcasting modeUsing broadcasting modeUsing broadcasting mode
+
+
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+100000
+Using device: cudaUsing device: cuda
+Currently this dataloader is calculating the images in float32Using device: cuda
+
+Currently this dataloader is calculating the images in float32
+
+2000000
+2000000
+Currently this dataloader is calculating the images in float32100000100000
+
+
+2000000
+100000
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 0: Train Loss: 0.728606 | Test Loss: 0.898282 | LR: 4.00e-03
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 1: Train Loss: 0.676446 | Test Loss: 1.112958 | LR: 4.00e-03
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 2: Train Loss: 0.669081 | Test Loss: 0.681272 | LR: 4.00e-03
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 3: Train Loss: 0.663556 | Test Loss: 0.993530 | LR: 4.00e-03
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 4: Train Loss: 0.654659 | Test Loss: 0.983297 | LR: 4.00e-03
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 5: Train Loss: 0.619213 | Test Loss: 0.899019 | LR: 4.00e-03
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 6: Train Loss: 0.576904 | Test Loss: 0.603061 | LR: 4.00e-03
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 7: Train Loss: 0.544648 | Test Loss: 0.584164 | LR: 4.00e-03
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 8: Train Loss: 0.519385 | Test Loss: 0.578239 | LR: 4.00e-03
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 9: Train Loss: 0.501751 | Test Loss: 0.642540 | LR: 4.00e-03
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 10: Train Loss: 0.483307 | Test Loss: 0.540950 | LR: 4.00e-03
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 11: Train Loss: 0.467970 | Test Loss: 0.549196 | LR: 4.00e-03
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 12: Train Loss: 0.455676 | Test Loss: 0.497044 | LR: 4.00e-03
+[GPU0] Epoch 13 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 13: Train Loss: 0.442512 | Test Loss: 0.986924 | LR: 4.00e-03
+[GPU0] Epoch 14 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 14: Train Loss: 0.435339 | Test Loss: 0.471490 | LR: 4.00e-03
+[GPU0] Epoch 15 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 15: Train Loss: 0.421897 | Test Loss: 0.459598 | LR: 4.00e-03
+[GPU0] Epoch 16 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 16: Train Loss: 0.411806 | Test Loss: 0.468763 | LR: 4.00e-03
+[GPU0] Epoch 17 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 17: Train Loss: 0.403867 | Test Loss: 0.489840 | LR: 4.00e-03
+[GPU0] Epoch 18 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 18: Train Loss: 0.391224 | Test Loss: 0.437319 | LR: 4.00e-03
+[GPU0] Epoch 19 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 19: Train Loss: 0.382415 | Test Loss: 0.432139 | LR: 4.00e-03
+[GPU0] Epoch 20 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 20: Train Loss: 0.368879 | Test Loss: 0.442019 | LR: 4.00e-03
+[GPU0] Epoch 21 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 21: Train Loss: 0.356475 | Test Loss: 0.408281 | LR: 4.00e-03
+[GPU0] Epoch 22 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 22: Train Loss: 0.341931 | Test Loss: 0.383567 | LR: 4.00e-03
+[GPU0] Epoch 23 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 23: Train Loss: 0.327014 | Test Loss: 0.367990 | LR: 4.00e-03
+[GPU0] Epoch 24 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 24: Train Loss: 0.312259 | Test Loss: 0.353202 | LR: 4.00e-03
+[GPU0] Epoch 25 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 25: Train Loss: 0.299408 | Test Loss: 0.333150 | LR: 4.00e-03
+[GPU0] Epoch 26 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 26: Train Loss: 0.287303 | Test Loss: 0.346162 | LR: 4.00e-03
+[GPU0] Epoch 27 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 27: Train Loss: 0.273634 | Test Loss: 0.376305 | LR: 4.00e-03
+[GPU0] Epoch 28 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 28: Train Loss: 0.265312 | Test Loss: 0.316181 | LR: 4.00e-03
+[GPU0] Epoch 29 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 29: Train Loss: 0.255183 | Test Loss: 0.303256 | LR: 4.00e-03
+[GPU0] Epoch 30 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 30: Train Loss: 0.247703 | Test Loss: 0.304803 | LR: 4.00e-03
+[GPU0] Epoch 31 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 31: Train Loss: 0.240798 | Test Loss: 0.300904 | LR: 4.00e-03
+[GPU0] Epoch 32 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 32: Train Loss: 0.235813 | Test Loss: 0.300240 | LR: 4.00e-03
+[GPU0] Epoch 33 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 33: Train Loss: 0.228248 | Test Loss: 0.293513 | LR: 4.00e-03
+[GPU0] Epoch 34 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 34: Train Loss: 0.224305 | Test Loss: 0.282961 | LR: 4.00e-03
+[GPU0] Epoch 35 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 35: Train Loss: 0.218080 | Test Loss: 0.315814 | LR: 4.00e-03
+[GPU0] Epoch 36 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 36: Train Loss: 0.214240 | Test Loss: 0.323473 | LR: 4.00e-03
+[GPU0] Epoch 37 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 37: Train Loss: 0.209626 | Test Loss: 0.355100 | LR: 4.00e-03
+[GPU0] Epoch 38 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 38: Train Loss: 0.206060 | Test Loss: 0.329041 | LR: 4.00e-03
+[GPU0] Epoch 39 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 39: Train Loss: 0.203160 | Test Loss: 0.312586 | LR: 4.00e-03
+[GPU0] Epoch 40 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 40: Train Loss: 0.196833 | Test Loss: 0.352743 | LR: 2.00e-03
+[GPU0] Epoch 41 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 41: Train Loss: 0.167173 | Test Loss: 0.294351 | LR: 1.00e-03
+[GPU0] Epoch 42 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 42: Train Loss: 0.137989 | Test Loss: 0.270914 | LR: 1.00e-03
+[GPU0] Epoch 43 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 43: Train Loss: 0.130487 | Test Loss: 0.277988 | LR: 1.00e-03
+[GPU0] Epoch 44 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 44: Train Loss: 0.125198 | Test Loss: 0.300162 | LR: 1.00e-03
+[GPU0] Epoch 45 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 45: Train Loss: 0.120763 | Test Loss: 0.302063 | LR: 1.00e-03
+[GPU0] Epoch 46 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 46: Train Loss: 0.116096 | Test Loss: 0.307798 | LR: 1.00e-03
+[GPU0] Epoch 47 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 47: Train Loss: 0.112959 | Test Loss: 0.330008 | LR: 1.00e-03
+[GPU0] Epoch 48 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 48: Train Loss: 0.108964 | Test Loss: 0.323702 | LR: 5.00e-04
+[GPU0] Epoch 49 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 49: Train Loss: 0.097696 | Test Loss: 0.328814 | LR: 2.50e-04
+[GPU0] Epoch 50 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 50: Train Loss: 0.088815 | Test Loss: 0.333961 | LR: 1.25e-04
+[GPU0] Epoch 51 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 51: Train Loss: 0.082782 | Test Loss: 0.329443 | LR: 6.25e-05
+[GPU0] Epoch 52 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 52: Train Loss: 0.080916 | Test Loss: 0.322155 | LR: 3.13e-05
+[GPU0] Epoch 53 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 53: Train Loss: 0.079578 | Test Loss: 0.324958 | LR: 1.56e-05
+[GPU0] Epoch 54 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 54: Train Loss: 0.078563 | Test Loss: 0.321471 | LR: 7.81e-06
+[GPU0] Epoch 55 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 55: Train Loss: 0.078062 | Test Loss: 0.323829 | LR: 3.91e-06
+[GPU0] Epoch 56 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 56: Train Loss: 0.077225 | Test Loss: 0.321974 | LR: 1.95e-06
+[GPU0] Epoch 57 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 57: Train Loss: 0.076719 | Test Loss: 0.323625 | LR: 9.77e-07
+[GPU0] Epoch 58 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 58: Train Loss: 0.077387 | Test Loss: 0.323908 | LR: 4.88e-07
+[GPU0] Epoch 59 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 59: Train Loss: 0.076687 | Test Loss: 0.319597 | LR: 2.44e-07
+[GPU0] Epoch 60 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 60: Train Loss: 0.077071 | Test Loss: 0.320086 | LR: 1.22e-07
+[GPU 0] Early stopping at epoch 60
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+Using broadcasting mode
+
+Using device: cudaUsing device: cuda
+Currently this dataloader is calculating the images in float32
+
+Currently this dataloader is calculating the images in float32
+2000000
+2000000
+100000100000
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+100000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+100000
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 0: Train Loss: 0.458325 | Test Loss: 0.420998 | LR: 4.00e-04
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 1: Train Loss: 0.416126 | Test Loss: 0.417318 | LR: 4.00e-04
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 2: Train Loss: 0.409196 | Test Loss: 0.411667 | LR: 4.00e-04
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 3: Train Loss: 0.403188 | Test Loss: 0.408196 | LR: 4.00e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 4: Train Loss: 0.397443 | Test Loss: 0.408097 | LR: 4.00e-04
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 5: Train Loss: 0.393229 | Test Loss: 0.405418 | LR: 4.00e-04
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 6: Train Loss: 0.388098 | Test Loss: 0.406937 | LR: 4.00e-04
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 7: Train Loss: 0.384552 | Test Loss: 0.405283 | LR: 4.00e-04
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 8: Train Loss: 0.379563 | Test Loss: 0.402948 | LR: 4.00e-04
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 9: Train Loss: 0.375645 | Test Loss: 0.406531 | LR: 4.00e-04
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 10: Train Loss: 0.372280 | Test Loss: 0.405221 | LR: 4.00e-04
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 11: Train Loss: 0.368297 | Test Loss: 0.407629 | LR: 4.00e-04
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 12: Train Loss: 0.364553 | Test Loss: 0.407177 | LR: 4.00e-04
+[GPU0] Epoch 13 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 13: Train Loss: 0.359034 | Test Loss: 0.407572 | LR: 4.00e-04
+[GPU0] Epoch 14 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 14: Train Loss: 0.354552 | Test Loss: 0.409627 | LR: 2.00e-04
+[GPU0] Epoch 15 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 15: Train Loss: 0.345878 | Test Loss: 0.413567 | LR: 1.00e-04
+[GPU0] Epoch 16 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 16: Train Loss: 0.339733 | Test Loss: 0.411346 | LR: 5.00e-05
+[GPU0] Epoch 17 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 17: Train Loss: 0.336912 | Test Loss: 0.410821 | LR: 2.50e-05
+[GPU0] Epoch 18 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 18: Train Loss: 0.335437 | Test Loss: 0.410844 | LR: 1.25e-05
+[GPU0] Epoch 19 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 19: Train Loss: 0.334382 | Test Loss: 0.412514 | LR: 6.25e-06
+[GPU0] Epoch 20 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 20: Train Loss: 0.333888 | Test Loss: 0.410372 | LR: 3.13e-06
+[GPU0] Epoch 21 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 21: Train Loss: 0.334246 | Test Loss: 0.410711 | LR: 1.56e-06
+[GPU0] Epoch 22 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 22: Train Loss: 0.333857 | Test Loss: 0.410740 | LR: 7.81e-07
+[GPU0] Epoch 23 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 23: Train Loss: 0.332813 | Test Loss: 0.411485 | LR: 3.91e-07
+[GPU0] Epoch 24 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 24: Train Loss: 0.333003 | Test Loss: 0.411679 | LR: 1.95e-07
+[GPU0] Epoch 25 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 25: Train Loss: 0.333493 | Test Loss: 0.410641 | LR: 9.77e-08
+[GPU0] Epoch 26 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 26: Train Loss: 0.333819 | Test Loss: 0.410086 | LR: 4.88e-08
+[GPU 0] Early stopping at epoch 26
+Using broadcasting modeUsing broadcasting mode
+
+Using broadcasting mode
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting modeUsing broadcasting mode
+
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+100000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+Using device: cuda100000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+
+Currently this dataloader is calculating the images in float322000000
+
+2000000
+100000
+100000
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 0: Train Loss: 0.551817 | Test Loss: 0.548384 | LR: 4.00e-04
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 1: Train Loss: 0.542868 | Test Loss: 0.549244 | LR: 4.00e-04
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 2: Train Loss: 0.540252 | Test Loss: 0.546692 | LR: 4.00e-04
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 3: Train Loss: 0.537283 | Test Loss: 0.547906 | LR: 4.00e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 4: Train Loss: 0.534117 | Test Loss: 0.551109 | LR: 4.00e-04
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 5: Train Loss: 0.531316 | Test Loss: 0.551267 | LR: 4.00e-04
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 6: Train Loss: 0.528273 | Test Loss: 0.551629 | LR: 4.00e-04
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 7: Train Loss: 0.524685 | Test Loss: 0.553082 | LR: 4.00e-04
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 8: Train Loss: 0.520492 | Test Loss: 0.553654 | LR: 2.00e-04
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 9: Train Loss: 0.513909 | Test Loss: 0.553509 | LR: 1.00e-04
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 10: Train Loss: 0.508333 | Test Loss: 0.554673 | LR: 5.00e-05
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 11: Train Loss: 0.505731 | Test Loss: 0.554845 | LR: 2.50e-05
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 12: Train Loss: 0.503715 | Test Loss: 0.554187 | LR: 1.25e-05
+[GPU0] Epoch 13 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 13: Train Loss: 0.503379 | Test Loss: 0.553871 | LR: 6.25e-06
+[GPU0] Epoch 14 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 14: Train Loss: 0.502264 | Test Loss: 0.555669 | LR: 3.13e-06
+[GPU0] Epoch 15 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 15: Train Loss: 0.502423 | Test Loss: 0.556488 | LR: 1.56e-06
+[GPU0] Epoch 16 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 16: Train Loss: 0.502088 | Test Loss: 0.555634 | LR: 7.81e-07
+[GPU0] Epoch 17 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 17: Train Loss: 0.502084 | Test Loss: 0.556500 | LR: 3.91e-07
+[GPU0] Epoch 18 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 18: Train Loss: 0.502363 | Test Loss: 0.554383 | LR: 1.95e-07
+[GPU0] Epoch 19 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 19: Train Loss: 0.501549 | Test Loss: 0.554997 | LR: 9.77e-08
+[GPU0] Epoch 20 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 20: Train Loss: 0.502523 | Test Loss: 0.554602 | LR: 4.88e-08
+[GPU 0] Early stopping at epoch 20
+Using broadcasting modeUsing broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting modeUsing broadcasting mode
+Using broadcasting mode
+
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+2000000
+Using device: cuda100000
+100000
+Using device: cuda
+
+Currently this dataloader is calculating the images in float32
+2000000
+Currently this dataloader is calculating the images in float32
+100000
+2000000
+100000
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 0: Train Loss: 0.572838 | Test Loss: 0.569987 | LR: 4.00e-04
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 1: Train Loss: 0.568434 | Test Loss: 0.569930 | LR: 4.00e-04
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 2: Train Loss: 0.565638 | Test Loss: 0.573098 | LR: 4.00e-04
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 3: Train Loss: 0.563018 | Test Loss: 0.570890 | LR: 4.00e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 4: Train Loss: 0.559987 | Test Loss: 0.572330 | LR: 4.00e-04
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 5: Train Loss: 0.557161 | Test Loss: 0.576672 | LR: 4.00e-04
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 6: Train Loss: 0.553854 | Test Loss: 0.575845 | LR: 2.00e-04
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 7: Train Loss: 0.547043 | Test Loss: 0.574929 | LR: 1.00e-04
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 8: Train Loss: 0.542523 | Test Loss: 0.577225 | LR: 5.00e-05
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 9: Train Loss: 0.539976 | Test Loss: 0.577530 | LR: 2.50e-05
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 10: Train Loss: 0.537919 | Test Loss: 0.577752 | LR: 1.25e-05
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 11: Train Loss: 0.536977 | Test Loss: 0.577007 | LR: 6.25e-06
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 12: Train Loss: 0.537142 | Test Loss: 0.577402 | LR: 3.13e-06
+[GPU0] Epoch 13 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 13: Train Loss: 0.536699 | Test Loss: 0.578373 | LR: 1.56e-06
+[GPU0] Epoch 14 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 14: Train Loss: 0.537137 | Test Loss: 0.576877 | LR: 7.81e-07
+[GPU0] Epoch 15 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 15: Train Loss: 0.536456 | Test Loss: 0.577284 | LR: 3.91e-07
+[GPU0] Epoch 16 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 16: Train Loss: 0.536432 | Test Loss: 0.577594 | LR: 1.95e-07
+[GPU0] Epoch 17 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 17: Train Loss: 0.536610 | Test Loss: 0.577530 | LR: 9.77e-08
+[GPU0] Epoch 18 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 18: Train Loss: 0.536288 | Test Loss: 0.579067 | LR: 4.88e-08
+[GPU 0] Early stopping at epoch 18
+ravg1196:43450:74009 [2] NCCL INFO comm 0x3b5d9cc0 rank 2 nranks 4 cudaDev 2 busId ca000 - Destroy COMPLETE
+ravg1196:43449:74007 [1] NCCL INFO comm 0x470ad180 rank 1 nranks 4 cudaDev 1 busId 4b000 - Destroy COMPLETE
+ravg1196:43451:74010 [3] NCCL INFO comm 0x33691540 rank 3 nranks 4 cudaDev 3 busId e3000 - Destroy COMPLETE
+ravg1196:43448:74012 [0] NCCL INFO comm 0x44353240 rank 0 nranks 4 cudaDev 0 busId 31000 - Destroy COMPLETE
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: fcitterio(76052)
+Job name:  multinode-example
+Node list: ravg1196
+Job start: Fri Aug  1 07:05:31 CEST 2025
+Job end:   Fri Aug  1 23:19:27 CEST 2025
+Work dir:  /u/fcitterio/master_thesis_code/./
+Command:   /raven/u/fcitterio/master_thesis_code/sbatch_to_submit_torchrun.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID            JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode
+------------- ---------- ------ ------ ------ ------------ ------------ ---------- --------
+21027063      multinode-      1           144                             16:13:56      0:0
+  
+Maximum memory per node: 9.765699 GB (defined as MaxRSS*Ntasks/NNodes)
+CPU utilization: 5.6 %
+  
