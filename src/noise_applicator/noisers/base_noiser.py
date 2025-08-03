@@ -127,7 +127,7 @@ class PthPSF(PSF):
     def __init__(self, psf_name):
         path = PSFS_DIR / "processed_psfs" / (psf_name + ".pth")
         psf_tensor = torch.as_tensor(torch.load(path, weights_only=False))
-        self.psf_tensor = psf_tensor.unsqueeze(0).unsqueeze(0)
+        self.psf_tensor = psf_tensor.float().unsqueeze(0).unsqueeze(0)
 
     def get_tensor_psf(self, pixel_scale=None):
         print("The PthPSF is loaded as it is. All the physical considerations must be done building it.")

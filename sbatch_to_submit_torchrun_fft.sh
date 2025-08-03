@@ -17,7 +17,7 @@
 
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=francescocitterio99@gmail.com
-#SBATCH --time=20:00:00
+#SBATCH --time=24:00:00
 
 module purge
 module load apptainer/1.3.6  

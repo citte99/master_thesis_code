@@ -47,6 +47,11 @@ class NormalizerInterf(ImgLastProc):
         # Shift and scale to [-1, 1]
         imgs = 2 * (imgs - min_val) / (max_val - min_val) - 1
         return imgs
+    
+class AstroNormalizer(ImgLastProc):
+    def __call__(self, imgs):
+    # Your data is naturally zero-centered, so only scale by std
+    return imgs / 4.24e-17  # Use the final std value when computation finishes
 
 # ------------------------ Config dataclasses ------------------------
 @dataclass
@@ -136,7 +141,7 @@ first_stage = InputData(
     img_width=8.0,
     upscaling=5,
     noiser=EuclidNoiserInterfPSF(),
-    last_image_proc=NormalizerInterf(),
+    last_image_proc=AstroNormalizer(),
 )
 
 second_stage = InputData(
@@ -148,7 +153,7 @@ second_stage = InputData(
     img_width=8.0,
     upscaling=5,
     noiser=EuclidNoiserInterfPSF(),
-    last_image_proc=NormalizerInterf(),
+    last_image_proc=AstroNormalizer(),
 )
 
 third_stage = InputData(
@@ -160,7 +165,7 @@ third_stage = InputData(
     img_width=8.0,
     upscaling=5,
     noiser=EuclidNoiserInterfPSF(),
-    last_image_proc=NormalizerInterf(),
+    last_image_proc=AstroNormalizer(),
 )
 
 fourth_stage = InputData(
@@ -172,7 +177,7 @@ fourth_stage = InputData(
     img_width=8.0,
     upscaling=5,
     noiser=EuclidNoiserInterfPSF(),
-    last_image_proc=NormalizerInterf(),
+    last_image_proc=AstroNormalizer(),
 )
 
 choosen_model = ChoosenModel(
