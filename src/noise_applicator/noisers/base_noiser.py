@@ -256,7 +256,7 @@ class PSFConvolveFFTNoiser(BaseNoiser):
     """
     def __init__(self, psf : PSF, device = "cuda"):
         self.PSF = psf
-        self.tensor_PSF_filter = psf.get_tensor_psf(pixel_scale)
+        self.tensor_PSF_filter = psf.get_tensor_psf()
         self.tensor_PSF_filter = self.tensor_PSF_filter.to(device)
         self._first_call = True
 
@@ -308,40 +308,117 @@ class EuclidNoiser(BaseNoiser):
         return (poiss_images)
 
 
-@NOISERS_REGISTRY.register()
-class EuclidNoiserInterfPSF(BaseNoiser):
-    def __init__(self, device= 'cuda'):
-        self.psf = PthPSF(psf_name="temp_bad_psf")
-        self.conv_noiser=PSFConvolveFFTNoiser(
-            psf = self.psf, device=device
-        )
-        self.poisson_noiser = PoissonNoiser(EuclidVis)
+# @NOISERS_REGISTRY.register()
+# class EuclidNoiserInterfPSF(BaseNoiser):
+#     def __init__(self, device= 'cuda'):
+#         self.psf = PthPSF(psf_name="temp_bad_psf")
+#         self.conv_noiser=PSFConvolveFFTNoiser(
+#             psf = self.psf, device=device
+#         )
+#         self.poisson_noiser = PoissonNoiser(EuclidVis)
     
+#     def set_device(self, device):
+#         self.device = device
+#         self.conv_noiser=PSFConvolveFFTNoiser(
+#             psf = self.psf, device=device
+#         )
+
+#     def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
+#         images = super().__call__(image_s)
+#         B, C, H, W = images.shape
+#         means = images.mean(dim=(2, 3), keepdim=True)
+#         original_99_5 = torch.quantile(images.reshape(B, C, -1), 0.995, dim=2, keepdim=True).unsqueeze(-1)
+        
+        
+#         conv_images = self.conv_noiser(images)
+#         #clip the images to 0 if they are negative
+#         conv_images = torch.clamp(conv_images, min=0.0)
+
+#         clamped_99_5 = torch.quantile(conv_images.reshape(B, C, -1), 0.995, dim=2, keepdim=True).unsqueeze(-1)
+#         conv_images = conv_images * (original_99_5 / clamped_99_5)
+        
+
+#         poiss_images = self.poisson_noiser(conv_images)
+
+#         return (poiss_images)
+import numpy as np
+
+class EuclidNoiserInterfPSF(BaseNoiser):
+    def __init__(self, device='cuda', percentile=0.7, blend_factor=1.):
+        self.psf = PthPSF(psf_name="temp_bad_psf")
+        self.conv_noiser = PSFConvolveFFTNoiser(psf=self.psf, device=device)
+        self.instrument = EuclidVis # THIS IS THE INSTRUMENT WHOSE SIGNAL TO NOISE RATIO IS MOCKED
+        self.percentile = percentile
+        self.blend_factor = blend_factor
+        
+        # Precompute conversion factors from PoissonNoiser
+        self.K = (10 ** (0.4 * (self.instrument.zero_point + 48.60))
+                  * self.instrument.pixel_arcsec**2
+                  * self.instrument.gain)
     def set_device(self, device):
         self.device = device
         self.conv_noiser=PSFConvolveFFTNoiser(
-            psf = self.psf, device=device
+            psf=self.psf, device = device
         )
 
-    def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
+        
+    def estimate_snr_from_images(self, images):
+        """Analytically estimate SNR without running PoissonNoiser"""
+        # Convert to photon counts (from PoissonNoiser logic)
+        I_nu = images / self.instrument.eff_with_f
+        m_ab = -2.5 * torch.log10(I_nu) - 48.60
+        R = 10**(-0.4 * (m_ab - self.instrument.zero_point))
+        R_sky = 10**(-0.4 * (self.instrument.sky_mag - self.instrument.zero_point))
+        R_pix = (R + R_sky) * self.instrument.pixel_arcsec**2
+        exp_phot = R_pix * self.instrument.t_obs * self.instrument.gain
+        
+        # Poisson noise: std = sqrt(counts)
+        poisson_std_counts = torch.sqrt(torch.clamp(exp_phot, min=0))
+        
+        # Convert back to image units
+        poisson_std_image = poisson_std_counts * self.instrument.eff_with_f / (self.K * self.instrument.t_obs)
+        
+        # Calculate SNR
+        overall_snr = images.std() / poisson_std_image.mean()
+        
+        # Bright region SNR
+        threshold = torch.quantile(images.reshape(-1), self.percentile)
+        bright_mask = images > threshold
+        bright_signal = images[bright_mask].mean()
+        bright_noise = poisson_std_image[bright_mask].mean()
+        bright_snr = bright_signal / bright_noise
+        
+        return self.blend_factor * bright_snr + (1 - self.blend_factor) * overall_snr
+        
+    def __call__(self, image_s: torch.Tensor) -> torch.Tensor:
         images = super().__call__(image_s)
         B, C, H, W = images.shape
-        means = images.mean(dim=(2, 3), keepdim=True)
-
-        conv_images = self.conv_noiser(images)
-        #clip the images to 0 if they are negative
-        conv_images = torch.clamp(conv_images, min=0.0)
-
-        conv_means = conv_images.mean(dim=(2, 3), keepdim=True)
-        #rescale the mean to the original image mean
-        conv_images = conv_images * (means / conv_means)
-
         
-
-        poiss_images = self.poisson_noiser(conv_images)
-
-        return (poiss_images)
-
+        # Apply interferometric PSF
+        conv_images = self.conv_noiser(images)
+        
+        # Analytically estimate target SNR
+        target_snr = self.estimate_snr_from_images(images)
+        
+        # Set noise based on convolved image statistics
+        conv_signal = conv_images.std()
+        desired_noise_std = conv_signal / target_snr
+        
+        # Scale for Fourier space
+        fourier_noise_std = desired_noise_std * np.sqrt(H * W)
+        
+        # Add noise
+        conv_fft = torch.fft.fft2(conv_images)
+        noise_real = torch.randn_like(conv_fft.real) * fourier_noise_std
+        noise_imag = torch.randn_like(conv_fft.imag) * fourier_noise_std
+        noisy_fft = conv_fft + torch.complex(noise_real, noise_imag)
+        noisy_images = torch.fft.ifft2(noisy_fft).real
+        
+        return noisy_images
+    
+    
+    
+    
 class AlmaNoiser(BaseNoiser):
      pass
 
