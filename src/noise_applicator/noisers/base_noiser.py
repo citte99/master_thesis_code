@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from noise_applicator.registry import NOISERS_REGISTRY, INSTRUMENTS_REGISTRY
+from config import PSFS_DIR
 import torch
 from typing import Union, Any
 from dataclasses import dataclass
@@ -113,14 +114,27 @@ class GaussPSF(AnalyticPSF):
         psf  = torch.exp(-0.5 * rsq / (self.sigma_arcsec**2))
         psf = psf / psf.sum()
         return psf.unsqueeze(0).unsqueeze(0)  # shape (1,1,npix,npix)
+    
+    def get_max(self, pixel_scale: float) -> float: # this method is ad hoc for this psf
+        """
+        Returns the maximum (peak) value of the normalized PSF.
+        """
+        psf_tensor = self.get_tensor_psf(pixel_scale)
+        return psf_tensor.max().item()
 
 
-class FitsPSF(PSF):
-     def get_tensor_psf(pixel_scale):
-          #here we will have to check that the pixel size matches
-          #the fits file, or eventually make an interpolation but not very meaningful
-          pass
-     pass
+class PthPSF(PSF): 
+    def __init__(self, psf_name):
+        path = PSFS_DIR / "processed_psfs" / (psf_name + ".pth")
+        psf_tensor = torch.as_tensor(torch.load(path, weights_only=False))
+        self.psf_tensor = psf_tensor.unsqueeze(0).unsqueeze(0)
+
+    def get_tensor_psf(self, pixel_scale=None):
+        print("The PthPSF is loaded as it is. All the physical considerations must be done building it.")
+        #here we will have to check that the pixel size matches
+        #the fits file, or eventually make an interpolation but not very meaningful
+        return self.psf_tensor
+    
 
 
 
@@ -235,6 +249,42 @@ class PSFConvolveNoiser(BaseNoiser):
 
 
 @NOISERS_REGISTRY.register()
+class PSFConvolveFFTNoiser(BaseNoiser):
+    """
+        the assumption is that the input psf has already double the size of the image.
+        This can be checked.
+    """
+    def __init__(self, psf : PSF, device = "cuda"):
+        self.PSF = psf
+        self.tensor_PSF_filter = psf.get_tensor_psf(pixel_scale)
+        self.tensor_PSF_filter = self.tensor_PSF_filter.to(device)
+        self._first_call = True
+
+    def __call__(self, image_s: torch.Tensor) -> torch.Tensor:
+        images = super().__call__(image_s)
+        B, C, H, W = images.shape
+        
+        # Check PSF size on first call
+        if self._first_call:
+            psf_h, psf_w = self.tensor_PSF_filter.shape[-2:]
+            if psf_h != 2*H or psf_w != 2*W:
+                raise ValueError(f"PSF size {(psf_h, psf_w)} must be exactly 2x the image size {(H, W)}. "
+                            f"Expected PSF size: {(2*H, 2*W)}")
+            self._first_call = False
+        
+        # FFT of images (no padding needed since PSF is already 2x size)
+        images_fft = torch.fft.fft2(images)
+        # FFT of PSF (assuming it's already 2x the image size)
+        psf_fft = torch.fft.fft2(self.tensor_PSF_filter, s=(H, W))
+        # Multiply in frequency domain
+        convolved_fft = images_fft * psf_fft
+        # Inverse FFT and take real part
+        convolved = torch.fft.ifft2(convolved_fft).real
+        return convolved
+
+
+
+@NOISERS_REGISTRY.register()
 class EuclidNoiser(BaseNoiser):
     def __init__(self, device= 'cuda'):
         self.conv_noiser=PSFConvolveNoiser(
@@ -256,7 +306,41 @@ class EuclidNoiser(BaseNoiser):
         poiss_images = self.poisson_noiser(conv_images)
 
         return (poiss_images)
+
+
+@NOISERS_REGISTRY.register()
+class EuclidNoiserInterfPSF(BaseNoiser):
+    def __init__(self, device= 'cuda'):
+        self.psf = PthPSF(psf_name="temp_bad_psf")
+        self.conv_noiser=PSFConvolveFFTNoiser(
+            psf = self.psf, device=device
+        )
+        self.poisson_noiser = PoissonNoiser(EuclidVis)
+    
+    def set_device(self, device):
+        self.device = device
+        self.conv_noiser=PSFConvolveFFTNoiser(
+            psf = self.psf, device=device
+        )
+
+    def __call__(self, image_s: torch.Tensor)-> torch.Tensor:
+        images = super().__call__(image_s)
+        B, C, H, W = images.shape
+        means = images.mean(dim=(2, 3), keepdim=True)
+
+        conv_images = self.conv_noiser(images)
+        #clip the images to 0 if they are negative
+        conv_images = torch.clamp(conv_images, min=0.0)
+
+        conv_means = conv_images.mean(dim=(2, 3), keepdim=True)
+        #rescale the mean to the original image mean
+        conv_images = conv_images * (means / conv_means)
+
         
+
+        poiss_images = self.poisson_noiser(conv_images)
+
+        return (poiss_images)
 
 class AlmaNoiser(BaseNoiser):
      pass
@@ -276,7 +360,7 @@ if __name__ == "__main__":
     # for euclid a fast chat gpt search gives ~ 28 ab per arcsec
 
     # lets make a ring , 
-    pixel_scale = 0.01 #arcsec,
+    pixel_scale = 0.1 #arcsec,
     FOV_arcsec = 8 #arcsec
     npix = int(FOV_arcsec / pixel_scale)
     coords = np.linspace (-4., 4., npix)
@@ -285,8 +369,11 @@ if __name__ == "__main__":
 
     # m pix+ = mu - 2.5 log10 A_pix
     #referece_mag_bright_pix = 28-2.5*np.log10(pixel_scale**2)
-    SB =1./((np.abs(R-2.0))**4+1e-4)*1e-18 #[ erg s-1 cm -2 arcsec -2]
+    I_0 = 1e-14  # Peak intensity in [erg s^-1 cm^-2 arcsec^-2]
+    R_0 = 2.0    # Radius of the peak in arcseconds
+    sigma = 0.1  # Width of the Gaussian in arcseconds
 
+    SB = I_0 * np.exp(-((np.sqrt(R) - R_0)**2) / (2 * sigma**2))  
     print(SB.max()) #gives 10-14, which makes sense with the I vis expected
 
     img= SB
@@ -302,25 +389,33 @@ if __name__ == "__main__":
     img_tensor = torch.tensor (img).float()
     noisy_image = Noiser(img_tensor)
 
-    plt.imshow(noisy_image[0][0])
+    plt.imshow(noisy_image[0][0].cpu())
     plt.show()
 
+    img_tensor = img_tensor.to("cuda")
     print("Poisson")
     Noiser = PoissonNoiser(Instrument= EuclidVis)
     noisy_image = Noiser(img_tensor)
-    plt.imshow(noisy_image[0][0])
+    plt.imshow(noisy_image[0][0].cpu())
     plt.show()
 
     print("Psf gauss")
     psf= GaussPSF(FWHM_arcsec=0.03, n_sigma_trunc=3)
     Noiser = PSFConvolveNoiser(psf, 0.01)
     noisy_image = Noiser(img_tensor)
-    plt.imshow(noisy_image[0][0])
+    plt.imshow(noisy_image[0][0].cpu())
     plt.show()
 
     
     print("Euclid")
     Noiser = EuclidNoiser()
     noisy_image = Noiser(img_tensor)
-    plt.imshow(noisy_image[0][0])
+    plt.imshow(noisy_image[0][0].cpu())
+    plt.show()
+
+
+    print("FFT + euclid poisson")
+    Noiser = EuclidNoiserInterfPSF()
+    noisy_image = Noiser(img_tensor)
+    plt.imshow(noisy_image[0][0].cpu())
     plt.show()
