@@ -336,7 +336,7 @@ psf_path = os.path.join(PSFS_DIR, psf_name + '.fits')
 
 with fits.open(psf_path) as hdul:
                     psf_data = hdul[0].data
-                    psf_data = psf_data.byteswap().newbyteorder()
+                    psf_data = psf_data.byteswap().view(psf_data.dtype.newbyteorder())
             
             
 psf_tensor = torch.from_numpy(psf_data).float().to("cuda")

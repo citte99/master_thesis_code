@@ -1,288 +1,69 @@
 #!/usr/bin/env python3
-
-#!/usr/bin/env python3
 """
-Fast computation of global dataset statistics for normalization.
-Designed to work with your custom dataset that uses get_batch().
+Compute dataset-wide mean and standard deviation for multiple interferometric image catalogs
+using NoNoiseDataset's get_batch method. Processes 10,000 samples in chunks of 1024.
 """
+import math
+from deep_learning.NN_datasets import NoNoiseDataset
 
-import torch
-import numpy as np
-from pathlib import Path
-import json
-
-def compute_global_dataset_statistics(catalog_name="min_mass_10e11", samples_to_analyze=10000, batch_size=64):
+def compute_mean_std(catalog_name: str,
+                     img_size: int = 80,
+                     img_width: float = 8.0,
+                     upscaling: int = 5,
+                     batch_size: int = 1024,
+                     samples_used: int = 10000) -> (float, float):
     """
-    Compute global mean and std for your dataset efficiently.
-    
-    Args:
-        catalog_name: Name of your catalog
-        samples_to_analyze: How many samples to use (more = more accurate)
-        batch_size: Batch size for processing
-    
-    Returns:
-        dict with global_mean, global_std, and other useful stats
+    Compute global mean and std for a given NoNoiseDataset catalog by manually
+    drawing batches via its get_batch method.
     """
-    
-    print(f"🔍 COMPUTING GLOBAL DATASET STATISTICS")
-    print("=" * 50)
-    print(f"Catalog: {catalog_name}")
-    print(f"Samples to analyze: {samples_to_analyze}")
-    print(f"Batch size: {batch_size}")
-    
-    # Import your dataset
-    from deep_learning.NN_datasets import NoNoiseDataset
-    from noise_applicator.noisers.base_noiser import EuclidNoiserInterfPSF
-    
-    # Create dataset (same config as your training)
-    print(f"\n📊 Creating dataset...")
+    # Initialize dataset (prints its own info)
     dataset = NoNoiseDataset(
         catalog_name,
-        grid_pixel_side=80,
-        grid_width_arcsec=8.0,
+        grid_pixel_side=img_size,
+        grid_width_arcsec=img_width,
         broadcasting=True,
-        samples_used=samples_to_analyze,
-        upscaling=5,
+        samples_used=samples_used,
+        upscaling=upscaling,
     )
-    
-    # Set up noiser (same as training)
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    noiser = EuclidNoiserInterfPSF()
-    noiser.set_device(device)
-    
-    print(f"✅ Dataset created with {len(dataset)} samples")
-    print(f"Using device: {device}")
-    
-    # Online statistics computation (memory efficient)
-    print(f"\n📊 Computing statistics...")
-    
-    n_samples = 0
-    running_mean = 0.0
-    running_m2 = 0.0  # For variance calculation
-    
-    # Additional statistics
-    min_val = float('inf')
-    max_val = float('-inf')
-    
-    # Histogram bins for distribution analysis
-    hist_bins = torch.linspace(-1e-13, 1e-13, 1000)
-    hist_counts = torch.zeros(len(hist_bins) - 1)
-    
-    num_batches = (samples_to_analyze + batch_size - 1) // batch_size
-    
-    for batch_idx in range(num_batches):
-        # Get batch indices
-        start_idx = batch_idx * batch_size
-        end_idx = min(start_idx + batch_size, samples_to_analyze)
-        indices = list(range(start_idx, end_idx))
-        
-        if len(indices) == 0:
-            break
-            
-        try:
-            # Get batch (same preprocessing as training)
-            raw_images, _ = dataset.get_batch(indices)
-            raw_images = raw_images.to(device)
-            
-            # Apply noiser (same as training)
-            processed_images = noiser(raw_images)
-            
-            # Move to CPU for statistics (save GPU memory)
-            processed_images = processed_images.cpu()
-            
-            # Flatten for statistics
-            batch_values = processed_images.flatten()
-            batch_size_actual = batch_values.numel()
-            
-            # Online mean and variance (Welford's algorithm)
-            for value in batch_values:
-                n_samples += 1
-                delta = value - running_mean
-                running_mean += delta / n_samples
-                delta2 = value - running_mean
-                running_m2 += delta * delta2
-            
-            # Update min/max
-            batch_min = batch_values.min().item()
-            batch_max = batch_values.max().item()
-            min_val = min(min_val, batch_min)
-            max_val = max(max_val, batch_max)
-            
-            # Update histogram
-            hist_counts += torch.histc(batch_values, bins=len(hist_bins)-1, 
-                                     min=hist_bins[0].item(), max=hist_bins[-1].item())
-            
-            # Progress
-            if (batch_idx + 1) % 10 == 0 or batch_idx == 0:
-                current_std = torch.sqrt(running_m2 / (n_samples - 1)) if n_samples > 1 else 0
-                print(f"  Batch {batch_idx+1:4d}/{num_batches}: "
-                      f"mean={running_mean:.2e}, std={current_std:.2e}, "
-                      f"range=[{min_val:.2e}, {max_val:.2e}]")
-            
-        except Exception as e:
-            print(f"  ❌ Error in batch {batch_idx}: {e}")
-            continue
-    
-    # Final statistics
-    if n_samples > 1:
-        global_variance = running_m2 / (n_samples - 1)
-        global_std = torch.sqrt(torch.tensor(global_variance)).item()
-    else:
-        global_variance = 0
-        global_std = 1e-14  # Fallback
-    
-    print(f"\n✅ Statistics computed from {n_samples:,} pixels")
-    
-    # Results
-    results = {
-        'global_mean': running_mean,
-        'global_std': global_std,
-        'global_var': global_variance,
-        'min_value': min_val,
-        'max_value': max_val,
-        'n_samples': n_samples,
-        'catalog_name': catalog_name,
-        'samples_analyzed': samples_to_analyze,
-    }
-    
-    # Print results
-    print(f"\n📊 FINAL RESULTS")
-    print("-" * 30)
-    print(f"Global mean: {results['global_mean']:.6e}")
-    print(f"Global std:  {results['global_std']:.6e}")
-    print(f"Global var:  {results['global_var']:.6e}")
-    print(f"Min value:   {results['min_value']:.6e}")
-    print(f"Max value:   {results['max_value']:.6e}")
-    print(f"Range:       {results['max_value'] - results['min_value']:.6e}")
-    print(f"Pixels analyzed: {results['n_samples']:,}")
-    
-    # Additional analysis
-    print(f"\n📊 ANALYSIS")
-    print("-" * 30)
-    
-    # Check if data is naturally zero-centered
-    if abs(running_mean) < global_std * 0.1:
-        print("✅ Data appears naturally zero-centered")
-        print("   → Recommendation: Use only std normalization")
-        recommended_normalizer = f"imgs / {global_std:.2e}"
-    else:
-        print("⚠️  Data has significant mean offset")
-        print("   → Recommendation: Use mean and std normalization")
-        recommended_normalizer = f"(imgs - {running_mean:.2e}) / {global_std:.2e}"
-    
-    # Check data scale
-    typical_scale = global_std
-    orders_of_magnitude = np.log10(typical_scale)
-    print(f"Typical scale: {typical_scale:.2e} (10^{orders_of_magnitude:.1f})")
-    
-    if abs(orders_of_magnitude + 14) < 1:  # Close to 1e-14
-        print("✅ Data scale matches expected astrophysical range")
-    else:
-        print("⚠️  Data scale different from expected 1e-14")
-    
-    # Distribution analysis
-    print(f"\n📊 DISTRIBUTION ANALYSIS")
-    print("-" * 30)
-    
-    # Find percentiles
-    sorted_values = torch.sort(hist_counts)[0]
-    total_counts = hist_counts.sum()
-    
-    if total_counts > 0:
-        # Rough percentile estimation from histogram
-        print("Value distribution:")
-        percentiles = [1, 5, 25, 50, 75, 95, 99]
-        
-        for p in percentiles:
-            target_count = total_counts * p / 100
-            # Find bin closest to this percentile
-            cumsum = torch.cumsum(hist_counts, 0)
-            bin_idx = torch.searchsorted(cumsum, target_count).item()
-            bin_idx = min(bin_idx, len(hist_bins) - 2)
-            value_estimate = hist_bins[bin_idx].item()
-            print(f"  {p:2d}%: ~{value_estimate:.2e}")
-    
-    print(f"\n🔧 RECOMMENDED NORMALIZER CODE")
-    print("-" * 30)
-    print("class GlobalNormalizer(ImgLastProc):")
-    print("    def __call__(self, imgs):")
-    if abs(running_mean) < global_std * 0.1:
-        print(f"        return imgs / {global_std:.6e}")
-    else:
-        print(f"        return (imgs - {running_mean:.6e}) / {global_std:.6e}")
-    
-    # Save results
-    results_file = f"global_stats_{catalog_name}.json"
-    with open(results_file, 'w') as f:
-        # Convert to JSON-serializable format
-        json_results = {k: float(v) if isinstance(v, (torch.Tensor, np.ndarray)) else v 
-                       for k, v in results.items()}
-        json.dump(json_results, f, indent=2)
-    
-    print(f"\n💾 Results saved to: {results_file}")
-    
-    return results
 
-def quick_stats_check(catalog_name="min_mass_10e11", n_batches=5):
-    """
-    Quick statistics check with just a few batches for rapid testing.
-    """
-    print(f"🚀 QUICK STATS CHECK")
-    print("=" * 30)
-    
-    from deep_learning.NN_datasets import NoNoiseDataset
-    from noise_applicator.noisers.base_noiser import EuclidNoiserInterfPSF
-    
-    dataset = NoNoiseDataset(
-        catalog_name,
-        grid_pixel_side=80,
-        grid_width_arcsec=8.0,
-        broadcasting=True,
-        samples_used=500,  # Small for quick test
-        upscaling=5,
-    )
-    
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    noiser = EuclidNoiserInterfPSF()
-    noiser.set_device(device)
-    
-    all_values = []
-    
-    for i in range(n_batches):
-        indices = list(range(i*16, (i+1)*16))
-        images, _ = dataset.get_batch(indices)
-        images = images.to(device)
-        processed = noiser(images)
-        all_values.append(processed.cpu().flatten())
-    
-    all_values = torch.cat(all_values)
-    
-    mean = all_values.mean().item()
-    std = all_values.std().item()
-    
-    print(f"Quick estimate from {len(all_values)} pixels:")
-    print(f"  Mean: {mean:.6e}")
-    print(f"  Std:  {std:.6e}")
-    print(f"  Range: [{all_values.min().item():.2e}, {all_values.max().item():.2e}]")
-    
+    sum_ = 0.0
+    sum_sq = 0.0
+    count = 0
+
+    # Determine how many batches to draw
+    n_batches = math.ceil(samples_used / batch_size)
+
+    for _ in range(n_batches):
+        imgs, _ = dataset.get_batch(batch_size)
+        # imgs shape: [B, C, H, W]
+        B, C, H, W = imgs.shape
+        flat = imgs.view(B, C, -1)
+        sum_ += float(flat.sum())
+        sum_sq += float((flat * flat).sum())
+        count += B * H * W
+
+    mean = sum_ / count
+    var = (sum_sq / count) - (mean ** 2)
+    std = var ** 0.5
     return mean, std
 
-if __name__ == "__main__":
-    # Quick check first
-    print("Running quick check...")
-    quick_mean, quick_std = quick_stats_check()
-    
-    print(f"\n" + "="*60)
-    
-    # Full analysis
-    results = compute_global_dataset_statistics(
-        catalog_name="min_mass_10e11",
-        samples_to_analyze=5000,  # Adjust based on your needs
-        batch_size=32
-    )
-    
-    print(f"\n✅ Global statistics computation completed!")
-# """
+
+if __name__ == '__main__':
+    catalogs = [
+        'min_mass_10e11',
+        'min_mass_10e10',
+        'min_mass_10e9',
+        'min_mass_10e8_6'
+    ]
+
+    for catalog in catalogs:
+        mean, std = compute_mean_std(catalog)
+        print(f"Catalog       : {catalog}")
+        print(f"Samples used  : 10000")
+        print(f"Batch size    : 1024")
+        print(f"Mean          : {mean:.6e}")
+        print(f"Std           : {std:.6e}\n")
+        
 # Debug script adapted for your custom dataset that uses get_batch instead of __getitem__.
 # """
 

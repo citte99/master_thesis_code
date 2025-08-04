@@ -14,6 +14,7 @@ src/deep_learning/NN_datasets/dataloaders.py
 src/deep_learning/NN_datasets/samplers.py
 src/deep_learning/NN_datasets/custom_datasets/__init__.py
 src/deep_learning/NN_datasets/custom_datasets/alma_single_psf_dataset.py
+src/deep_learning/NN_datasets/custom_datasets/deflection_field_dataset.py
 src/deep_learning/NN_datasets/custom_datasets/example_custom_dataset.py
 src/deep_learning/NN_datasets/custom_datasets/no_noise_dataset.py
 src/deep_learning/NN_datasets/custom_datasets/single_telescope_noise_dataset.py
