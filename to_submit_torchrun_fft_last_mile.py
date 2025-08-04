@@ -324,7 +324,7 @@ class Trainer:
             model.load_state_dict(checkpoint)
         else:
             checkpoint = torch.load(
-                "trained_classifiers/RUN1clusterEpochFFT/3_min_mass_10e8_6/checkpoints/LAST_checkpoint_epoch_18_2025-08-04_13-33-39.pth",
+                "./LAST_checkpoint_epoch_18_2025-08-04_13-33-39.pth",
                 map_location=f"cuda:{self.gpu_id}"
             )
             model.load_state_dict(checkpoint["model_state_dict"])

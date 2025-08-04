@@ -737,3 +737,7 @@ The PthPSF is loaded as it is. All the physical considerations must be done buil
 [GPU0] Epoch 38 | Batchsize: 1024 | Steps: 489
 [GPU 0] Epoch 38: Train Loss: 0.445585 | Test Loss: 0.653095 | LR: 3.91e-06
 [GPU0] Epoch 39 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 39: Train Loss: 0.445507 | Test Loss: 0.650071 | LR: 1.95e-06
+[GPU0] Epoch 40 | Batchsize: 1024 | Steps: 489
+[GPU 0] Epoch 40: Train Loss: 0.445088 | Test Loss: 0.649014 | LR: 9.77e-07
+[GPU0] Epoch 41 | Batchsize: 1024 | Steps: 489
