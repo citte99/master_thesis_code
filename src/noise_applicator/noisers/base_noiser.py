@@ -343,6 +343,7 @@ class EuclidNoiser(BaseNoiser):
 #         return (poiss_images)
 import numpy as np
 
+@NOISERS_REGISTRY.register()
 class EuclidNoiserInterfPSF(BaseNoiser):
     def __init__(self, device='cuda', percentile=0.7, blend_factor=1.):
         self.psf = PthPSF(psf_name="temp_bad_psf")
@@ -417,7 +418,32 @@ class EuclidNoiserInterfPSF(BaseNoiser):
         return noisy_images
     
     
-    
+@NOISERS_REGISTRY.register()
+class OnlyInterfPSF(BaseNoiser):
+    def __init__(self, device='cuda', percentile=0.7, blend_factor=1.):
+        self.psf = PthPSF(psf_name="temp_bad_psf")
+        self.conv_noiser = PSFConvolveFFTNoiser(psf=self.psf, device=device)
+        
+        
+    def set_device(self, device):
+        self.device = device
+        self.conv_noiser=PSFConvolveFFTNoiser(
+            psf=self.psf, device = device
+        )
+
+        
+    def __call__(self, image_s: torch.Tensor) -> torch.Tensor:
+        images = super().__call__(image_s)
+        B, C, H, W = images.shape
+        
+        # Apply interferometric PSF
+        conv_images = self.conv_noiser(images)
+        
+        
+        # Set noise based on convolved image statistics
+        
+        
+        return conv_images
     
 class AlmaNoiser(BaseNoiser):
      pass
