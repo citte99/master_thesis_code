@@ -14,7 +14,7 @@ $(which python) -m torch.distributed.run \
   --nnodes=1 \
   --nproc_per_node=${NPROC} \
   --standalone \
-  to_submit_torchrun_fft_last_mile.py 2>&1 | tee -a logs/train.log
+  to_submit_torchrun_fft.py 2>&1 | tee -a logs/train.log
   
   
   
