@@ -1,0 +1,11 @@
+{
+    "catalog_name_train": "min_mass_10e10",
+    "catalog_name_test": "min_mass_10e10_test",
+    "samples_used": 20000,
+    "samples_used_test": 10000,
+    "img_size": 80,
+    "img_width": 8.0,
+    "upscaling": 5,
+    "noiser": "EuclidNoiserInterfPSF",
+    "last_image_proc": "NormalizerInterf"
+}

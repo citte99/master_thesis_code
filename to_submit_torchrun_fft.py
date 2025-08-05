@@ -23,7 +23,7 @@ import wandb
 from deep_learning.NN_datasets import NoNoiseDataset
 from deep_learning.NN_datasets.dataloaders import distributed_dataloader
 from deep_learning.NN_models import ResNet50
-from noise_applicator.noisers.base_noiser import BaseNoiser, EuclidNoiser, EuclidNoiserInterfPSF, OnlyInterfPSF
+from noise_applicator.noisers.base_noiser import BaseNoiser, EuclidNoiser, EuclidNoiserInterfPSF
 from config import TRAINED_CLASSIFIERS_DIR
 
 
@@ -47,11 +47,6 @@ class NormalizerInterf(ImgLastProc):
         # Shift and scale to [-1, 1]
         imgs = 2 * (imgs - min_val) / (max_val - min_val) - 1
         return imgs
-    
-class AstroNormalizer(ImgLastProc):
-    def __call__(self, imgs):
-    # Your data is naturally zero-centered, so only scale by std
-        return imgs / 4.24e-17  # Use the final std value when computation finishes
 
 # ------------------------ Config dataclasses ------------------------
 @dataclass
@@ -126,58 +121,58 @@ class TrainerConfig:
 
 
 # ------------------------ Example training config ------------------------
-samp_used = 2_000_000
+samp_used = 5_000_000
 samp_used_test = 100_000
 batch_size = 1024 * 1
-max_epochs = 100
+max_epochs = 50
 #test_every_n_batches = 100
 
 first_stage = InputData(
-    catalog_name_train="min_mass_10e11",
+    catalog_name_train="min_mass_10e11_long",
     catalog_name_test="min_mass_10e11_test",
     samples_used=samp_used,
     samples_used_test=samp_used_test,
     img_size=80,
     img_width=8.0,
     upscaling=5,
-    noiser=OnlyInterfPSF(),
-    last_image_proc=AstroNormalizer(),
+    noiser=EuclidNoiserInterfPSF(),
+    last_image_proc=NormalizerInterf(),
 )
 
 second_stage = InputData(
-    catalog_name_train="min_mass_10e10",
+    catalog_name_train="min_mass_10e10_long",
     catalog_name_test="min_mass_10e10_test",
     samples_used=samp_used,
     samples_used_test=samp_used_test,
     img_size=80,
     img_width=8.0,
     upscaling=5,
-    noiser=OnlyInterfPSF(),
-    last_image_proc=AstroNormalizer(),
+    noiser=EuclidNoiserInterfPSF(),
+    last_image_proc=NormalizerInterf(),
 )
 
 third_stage = InputData(
-    catalog_name_train="min_mass_10e9",
+    catalog_name_train="min_mass_10e9_long",
     catalog_name_test="min_mass_10e9_test",
     samples_used=samp_used,
     samples_used_test=samp_used_test,
     img_size=80,
     img_width=8.0,
     upscaling=5,
-    noiser=OnlyInterfPSF(),
-    last_image_proc=AstroNormalizer(),
+    noiser=EuclidNoiserInterfPSF(),
+    last_image_proc=NormalizerInterf(),
 )
 
 fourth_stage = InputData(
-    catalog_name_train="min_mass_10e8_6",
+    catalog_name_train="min_mass_10e8_6_long",
     catalog_name_test="min_mass_10e8_6_test",
     samples_used=samp_used,
     samples_used_test=samp_used_test,
     img_size=80,
     img_width=8.0,
     upscaling=5,
-    noiser=OnlyInterfPSF(),
-    last_image_proc=AstroNormalizer(),
+    noiser=EuclidNoiserInterfPSF(),
+    last_image_proc=NormalizerInterf(),
 )
 
 choosen_model = ChoosenModel(
@@ -188,8 +183,8 @@ choosen_model = ChoosenModel(
 training_settings = TrainingSettings(
     optimizer=torch.optim.AdamW,
     optimizer_args={"weight_decay":1e-3, "betas":(0.9, 0.999) },
-    first_lr=0.001,
-    following_lr=0.0001,
+    first_lr=0.0003,
+    following_lr=0.00003,
     patience_lr=4, #epochs
     patience_stage=6, #stop
     max_epochs=max_epochs,
@@ -324,8 +319,6 @@ class Trainer:
             model.load_state_dict(checkpoint)
 
         model = model.to(self.gpu_id)
-        model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
-        
         if self.train_config.training_settings.compile_model:
             model = torch.compile(model)
         model = DDP(model, device_ids=[self.gpu_id])
@@ -371,6 +364,7 @@ class Trainer:
             }
             name = ("LAST_" if is_last else "") + f"checkpoint_epoch_{epoch}_{checkpoint['timestamp']}.pth"
             torch.save(checkpoint, path / name)
+          
 
     def _train_stage(self, stage: InputData, index_stage: int, checkpoint=None):
     
@@ -429,49 +423,13 @@ class Trainer:
             mean_global = total_loss / count.float()
 
             if self.local_rank == 0:
-                current_epoch = getattr(self, '_debug_epoch_counter', 0)
-                if current_epoch % 5 == 0:
-                    # Get small test batch
-                    test_sample = next(iter(test_loader))
-                    test_input = test_sample[0][:8].to(device)
-                    test_targets = test_sample[1][:8].to(device)
-                    test_input = normalizer(noiser(test_input))
-
-                    # Test in eval mode
-                    model.eval()
-                    with torch.no_grad():
-                        eval_output = model(test_input)
-                        eval_loss = loss_test_fn(eval_output, test_targets).mean()
-
-                    # Test in train mode  
-                    model.train()
-                    with torch.no_grad():
-                        train_output = model(test_input)
-                        train_loss = loss_test_fn(train_output, test_targets).mean()
-
-                    output_diff = torch.abs(eval_output - train_output).mean()
-                    loss_diff = abs(eval_loss.item() - train_loss.item())
-
-                    print(f"[EPOCH {current_epoch}] Train vs Eval mode test:")
-                    print(f"  Output difference: {output_diff:.6f}")
-                    print(f"  Loss difference: {loss_diff:.6f}")
-
-                    if output_diff > 0.1 or loss_diff > 0.1:
-                        print("  ⚠️  WARNING: Large train/eval difference detected!")
-
-                    wandb.log({
-                        f"debug/train_eval_output_diff": output_diff.item(),
-                        f"debug/train_eval_loss_diff": loss_diff,
-                    })
-
-                self._debug_epoch_counter = getattr(self, '_debug_epoch_counter', 0) + 1
                 wandb.log(
                     {
                         "test/loss_mean_global": float(mean_global),
                         "test/num_test_samples_global": int(count),
                     }
                 )
-            
+
             model.train()
             return mean_global
 
@@ -481,7 +439,10 @@ class Trainer:
             patience_epochs_stop=self.train_config.training_settings.patience_stage,
             local_rank=self.local_rank,
         )
-
+        
+        best_test_loss = float('inf')
+        best_checkpoint = None
+        
         # Main epoch loop
         for epoch in range(self.train_config.training_settings.max_epochs):
             device = torch.device(f"cuda:{self.gpu_id}")
@@ -510,6 +471,8 @@ class Trainer:
 
             # Test once per epoch
             test_loss = _run_test()
+            
+                    
             avg_train_loss = sum(epoch_losses) / len(epoch_losses)
 
             # Check patience using epoch-based tracker
@@ -537,23 +500,21 @@ class Trainer:
                     "epoch/learning_rate": optimizer.param_groups[0]['lr'],
                     "epoch/epoch_num": epoch,
                 })
-                # ADD THIS CRITICAL DEBUG BLOCK:
-                if epoch % 2 == 0:  # Check every 2 epochs
-                    for name, module in model.named_modules():
-                        if isinstance(module, (nn.BatchNorm2d, nn.SyncBatchNorm)):
-                            mean_range = module.running_mean.abs().max().item()
-                            var_max = module.running_var.max().item()
-                            print(f"[EPOCH {epoch}] BN Layer {name}: mean_range={mean_range:.6f}, var_max={var_max:.6f}")
-                            wandb.log({f"bn_stats/{name}_mean_range": mean_range, f"bn_stats/{name}_var_max": var_max})
-                            break  # Just check first layer
-
                 print(f"[GPU {self.gpu_id}] Epoch {epoch}: Train Loss: {avg_train_loss:.6f} | Test Loss: {float(test_loss):.6f} | LR: {optimizer.param_groups[0]['lr']:.2e}")
 
             # Save checkpoint periodically or if stopping
             if epoch % 5 == 0 or stop_trigger:
                 self._save_checkpoint(stage, index_stage, epoch, model, optimizer, 
                                     test_loss, optimizer.param_groups[0]['lr'], is_last=stop_trigger)
-
+            
+            if test_loss < best_test_loss:
+                best_test_loss = test_loss
+                best_checkpoint = model.module.state_dict().copy()
+                if self.local_rank == 0:
+                    print(f"New best model at epoch {epoch} with test loss {test_loss:.6f}")
+                    torch.save({"model_state_dict": best_checkpoint, "test_loss": float(best_test_loss)}, 
+                   Path(TRAINED_CLASSIFIERS_DIR) / self.classifier_name / f"{index_stage}_{stage.catalog_name_train}" / "checkpoints" / "BEST_checkpoint.pth")
+                    
             if stop_trigger:
                 if self.local_rank == 0:
                     print(f"[GPU {self.gpu_id}] Early stopping at epoch {epoch}")
@@ -568,7 +529,7 @@ class Trainer:
         del model, optimizer, train_loader, test_loader
         torch.cuda.empty_cache()
         gc.collect()
-        return final_checkpoint
+        return best_checkpoint if best_checkpoint is not None else final_checkpoint
 
     def Train(self):
         self._save_classifier_conf()
@@ -599,7 +560,7 @@ if __name__ == "__main__":
     local_rank, world_size = setup()
 
     trainer = Trainer(
-        classifier_name="RUN1clusterEpochFFT2",
+        classifier_name="FFTBigCatalogs1",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,
@@ -608,7 +569,7 @@ if __name__ == "__main__":
     trainer.Train()
 
     trainer = Trainer(
-        classifier_name="RUN2clusterEpochFFT2",
+        classifier_name="FFTBigCatalogs2",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,

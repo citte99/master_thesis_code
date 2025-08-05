@@ -5,183 +5,183 @@ import numpy as np
 from config import CATALOGS_DIR
 from shared_utils.physics_relations import r_max_moline
 
-# min_mass_log = 10.999
-# sampling_inputs = SamplingInputs(
+min_mass_log = 10.999
+sampling_inputs = SamplingInputs(
 
-#         ThetaE_min   = 0.5,
-#         ThetaE_max   = 2.5,
-#         z_min=0.0,
-#         z_max=5.0,
-#         prior_lens_ThetaE=[0.5, 2.5],
+        ThetaE_min   = 0.5,
+        ThetaE_max   = 2.5,
+        z_min=0.0,
+        z_max=5.0,
+        prior_lens_ThetaE=[0.5, 2.5],
 
-#         prior_lens_orient=[0, 2.* np.pi],
-#         prior_lens_pos=[-0.5, 0.5],
-#         prior_lens_q= [0.2, 1.0],
-#         prior_lens_slope_normal=[1.0, 0.1],
-#         prior_lens_VelDisp = [50, 400], 
+        prior_lens_orient=[0, 2.* np.pi],
+        prior_lens_pos=[-0.5, 0.5],
+        prior_lens_q= [0.2, 1.0],
+        prior_lens_slope_normal=[1.0, 0.1],
+        prior_lens_VelDisp = [50, 400], 
     
-#         prior_sub_max_n = 1,
-#         prior_sub_pos= [- 3.0, + 3.0 ], # according to conor
-#         prior_sub_log_mass= [min_mass_log, 11.0], 
-#         prior_sub_r_max = [r_max_moline(10**min_mass_log) , r_max_moline(10**11.0) ],
+        prior_sub_max_n = 1,
+        prior_sub_pos= [- 3.0, + 3.0 ], # according to conor
+        prior_sub_log_mass= [min_mass_log, 11.0], 
+        prior_sub_r_max = [r_max_moline(10**min_mass_log) , r_max_moline(10**11.0) ],
 
-#         prior_source_I = 5e-14,         #if only one number, is fixed
-#         prior_source_std_main = 1.0, #kpc, a little bit low
-#         prior_source_frac_of_theta_pos= 0.3, #similar to conor
-#         prior_source_orient= 0., # not elliptical
-#         prior_source_q = 1. , # not elliptical
+        prior_source_I = 5e-14,         #if only one number, is fixed
+        prior_source_std_main = 1.0, #kpc, a little bit low
+        prior_source_frac_of_theta_pos= 0.3, #similar to conor
+        prior_source_orient= 0., # not elliptical
+        prior_source_q = 1. , # not elliptical
 
-#         prior_shear_d = [0., np.pi],
-#         prior_shear_s = [0., 0.1]
-#     )
+        prior_shear_d = [0., np.pi],
+        prior_shear_s = [0., 0.1]
+    )
 
 
 
-# My_Pypeline = [
-#     RedshiftsVelDispModes.RESAMPLE_THETA,
-#     MainLensModes.PEMD,
-#     SecondaryLensModes.EXTERNAL_SHEAR,
-#     SubStrucModes.NFW_SUBS_FREE_R_MAX,
-#     SourceModes.GAUSS_SOURCE,
-#     SourcePosModes.RAND_FRAC_THETA_E
+My_Pypeline = [
+    RedshiftsVelDispModes.RESAMPLE_THETA,
+    MainLensModes.PEMD,
+    SecondaryLensModes.EXTERNAL_SHEAR,
+    SubStrucModes.NFW_SUBS_FREE_R_MAX,
+    SourceModes.GAUSS_SOURCE,
+    SourcePosModes.RAND_FRAC_THETA_E
 
-# ]
+]
 
    
 
-# full_sys_conf = Sampler(
-#     My_Pypeline,
-#     sampling_inputs,
-#     N_samples=100000,
-#     cat_name="min_mass_10e11_test"
-# )
+full_sys_conf = Sampler(
+    My_Pypeline,
+    sampling_inputs,
+    N_samples=100000,
+    cat_name="min_mass_10e11_test"
+)
 
-# full_sys_conf = Sampler(
-#     My_Pypeline,
-#     sampling_inputs,
-#     N_samples=2_000_000,
-#     cat_name="min_mass_10e11"
-# )
+full_sys_conf = Sampler(
+    My_Pypeline,
+    sampling_inputs,
+    N_samples=5_000_000,
+    cat_name="min_mass_10e11_long"
+)
 
 
-# min_mass_log = 10.0 
-# sampling_inputs = SamplingInputs(
+min_mass_log = 10.0 
+sampling_inputs = SamplingInputs(
 
-#         ThetaE_min   = 0.5,
-#         ThetaE_max   = 2.5,
-#         z_min=0.0,
-#         z_max=5.0,
-#         prior_lens_ThetaE=[0.5, 2.5],
+        ThetaE_min   = 0.5,
+        ThetaE_max   = 2.5,
+        z_min=0.0,
+        z_max=5.0,
+        prior_lens_ThetaE=[0.5, 2.5],
 
-#         prior_lens_orient=[0, 2.* np.pi],
-#         prior_lens_pos=[-0.5, 0.5],
-#         prior_lens_q= [0.2, 1.0],
-#         prior_lens_slope_normal=[1.0, 0.1],
-#         prior_lens_VelDisp = [50, 400], 
+        prior_lens_orient=[0, 2.* np.pi],
+        prior_lens_pos=[-0.5, 0.5],
+        prior_lens_q= [0.2, 1.0],
+        prior_lens_slope_normal=[1.0, 0.1],
+        prior_lens_VelDisp = [50, 400], 
     
-#         prior_sub_max_n = 1,
-#         prior_sub_pos= [- 3.0, + 3.0 ], # according to conor
-#         prior_sub_log_mass= [min_mass_log, 11.0], 
-#         prior_sub_r_max = [r_max_moline(10**min_mass_log) , r_max_moline(10**11.0) ],
+        prior_sub_max_n = 1,
+        prior_sub_pos= [- 3.0, + 3.0 ], # according to conor
+        prior_sub_log_mass= [min_mass_log, 11.0], 
+        prior_sub_r_max = [r_max_moline(10**min_mass_log) , r_max_moline(10**11.0) ],
 
-#         prior_source_I = 5e-14,         #if only one number, is fixed
-#         prior_source_std_main = 1.0, #kpc, a little bit low
-#         prior_source_frac_of_theta_pos= 0.3, #similar to conor
-#         prior_source_orient= 0., # not elliptical
-#         prior_source_q = 1. , # not elliptical
+        prior_source_I = 5e-14,         #if only one number, is fixed
+        prior_source_std_main = 1.0, #kpc, a little bit low
+        prior_source_frac_of_theta_pos= 0.3, #similar to conor
+        prior_source_orient= 0., # not elliptical
+        prior_source_q = 1. , # not elliptical
 
-#         prior_shear_d = [0., np.pi],
-#         prior_shear_s = [0., 0.1]
-#     )
+        prior_shear_d = [0., np.pi],
+        prior_shear_s = [0., 0.1]
+    )
 
 
 
-# My_Pypeline = [
-#     RedshiftsVelDispModes.RESAMPLE_THETA,
-#     MainLensModes.PEMD,
-#     SecondaryLensModes.EXTERNAL_SHEAR,
-#     SubStrucModes.NFW_SUBS_FREE_R_MAX,
-#     SourceModes.GAUSS_SOURCE,
-#     SourcePosModes.RAND_FRAC_THETA_E
+My_Pypeline = [
+    RedshiftsVelDispModes.RESAMPLE_THETA,
+    MainLensModes.PEMD,
+    SecondaryLensModes.EXTERNAL_SHEAR,
+    SubStrucModes.NFW_SUBS_FREE_R_MAX,
+    SourceModes.GAUSS_SOURCE,
+    SourcePosModes.RAND_FRAC_THETA_E
 
-# ]
+]
 
    
 
-# full_sys_conf = Sampler(
-#     My_Pypeline,
-#     sampling_inputs,
-#     N_samples=100000,
-#     cat_name="min_mass_10e10_test"
-# )
+full_sys_conf = Sampler(
+    My_Pypeline,
+    sampling_inputs,
+    N_samples=100000,
+    cat_name="min_mass_10e10_test"
+)
 
-# full_sys_conf = Sampler(
-#     My_Pypeline,
-#     sampling_inputs,
-#     N_samples=2_000_000,
-#     cat_name="min_mass_10e10"
-# )
-
-
+full_sys_conf = Sampler(
+    My_Pypeline,
+    sampling_inputs,
+    N_samples=5_000_000,
+    cat_name="min_mass_10e10_long"
+)
 
 
-# min_mass_log = 9.0
-# sampling_inputs = SamplingInputs(
 
-#         ThetaE_min   = 0.5,
-#         ThetaE_max   = 2.5,
-#         z_min=0.0,
-#         z_max=5.0,
-#         prior_lens_ThetaE=[0.5, 2.5],
 
-#         prior_lens_orient=[0, 2.* np.pi],
-#         prior_lens_pos=[-0.5, 0.5],
-#         prior_lens_q= [0.2, 1.0],
-#         prior_lens_slope_normal=[1.0, 0.1],
-#         prior_lens_VelDisp = [50, 400], 
+min_mass_log = 9.0
+sampling_inputs = SamplingInputs(
+
+        ThetaE_min   = 0.5,
+        ThetaE_max   = 2.5,
+        z_min=0.0,
+        z_max=5.0,
+        prior_lens_ThetaE=[0.5, 2.5],
+
+        prior_lens_orient=[0, 2.* np.pi],
+        prior_lens_pos=[-0.5, 0.5],
+        prior_lens_q= [0.2, 1.0],
+        prior_lens_slope_normal=[1.0, 0.1],
+        prior_lens_VelDisp = [50, 400], 
     
-#         prior_sub_max_n = 1,
-#         prior_sub_pos= [- 3.0, + 3.0 ], # according to conor
-#         prior_sub_log_mass= [min_mass_log, 11.0], 
-#         prior_sub_r_max = [r_max_moline(10**min_mass_log) , r_max_moline(10**11.0) ],
+        prior_sub_max_n = 1,
+        prior_sub_pos= [- 3.0, + 3.0 ], # according to conor
+        prior_sub_log_mass= [min_mass_log, 11.0], 
+        prior_sub_r_max = [r_max_moline(10**min_mass_log) , r_max_moline(10**11.0) ],
 
-#         prior_source_I = 5e-14,         #if only one number, is fixed
-#         prior_source_std_main = 1.0, #kpc, a little bit low
-#         prior_source_frac_of_theta_pos= 0.3, #similar to conor
-#         prior_source_orient= 0., # not elliptical
-#         prior_source_q = 1. , # not elliptical
+        prior_source_I = 5e-14,         #if only one number, is fixed
+        prior_source_std_main = 1.0, #kpc, a little bit low
+        prior_source_frac_of_theta_pos= 0.3, #similar to conor
+        prior_source_orient= 0., # not elliptical
+        prior_source_q = 1. , # not elliptical
 
-#         prior_shear_d = [0., np.pi],
-#         prior_shear_s = [0., 0.1]
-#     )
+        prior_shear_d = [0., np.pi],
+        prior_shear_s = [0., 0.1]
+    )
 
 
 
-# My_Pypeline = [
-#     RedshiftsVelDispModes.RESAMPLE_THETA,
-#     MainLensModes.PEMD,
-#     SecondaryLensModes.EXTERNAL_SHEAR,
-#     SubStrucModes.NFW_SUBS_FREE_R_MAX,
-#     SourceModes.GAUSS_SOURCE,
-#     SourcePosModes.RAND_FRAC_THETA_E
+My_Pypeline = [
+    RedshiftsVelDispModes.RESAMPLE_THETA,
+    MainLensModes.PEMD,
+    SecondaryLensModes.EXTERNAL_SHEAR,
+    SubStrucModes.NFW_SUBS_FREE_R_MAX,
+    SourceModes.GAUSS_SOURCE,
+    SourcePosModes.RAND_FRAC_THETA_E
 
-# ]
+]
 
    
 
-# full_sys_conf = Sampler(
-#     My_Pypeline,
-#     sampling_inputs,
-#     N_samples=100000,
-#     cat_name="min_mass_10e9_test"
-# )
+full_sys_conf = Sampler(
+    My_Pypeline,
+    sampling_inputs,
+    N_samples=100000,
+    cat_name="min_mass_10e9_test"
+)
 
-# full_sys_conf = Sampler(
-#     My_Pypeline,
-#     sampling_inputs,
-#     N_samples=2_000_000,
-#     cat_name="min_mass_10e9"
-# )
+full_sys_conf = Sampler(
+    My_Pypeline,
+    sampling_inputs,
+    N_samples=5_000_000,
+    cat_name="min_mass_10e9_long"
+)
 
 
 
@@ -239,8 +239,8 @@ full_sys_conf = Sampler(
 full_sys_conf = Sampler(
     My_Pypeline,
     sampling_inputs,
-    N_samples=2_000_000,
-    cat_name="min_mass_10e8_6"
+    N_samples=5_000_000,
+    cat_name="min_mass_10e8_6_long"
 )
 
 
