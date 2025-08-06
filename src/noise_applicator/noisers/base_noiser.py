@@ -345,7 +345,7 @@ import numpy as np
 
 @NOISERS_REGISTRY.register()
 class EuclidNoiserInterfPSF(BaseNoiser):
-    def __init__(self, device='cuda', percentile=0.7, blend_factor=1.):
+    def __init__(self, device='cuda', percentile=0.7, blend_factor=0.0):
         self.psf = PthPSF(psf_name="temp_bad_psf")
         self.conv_noiser = PSFConvolveFFTNoiser(psf=self.psf, device=device)
         self.instrument = EuclidVis # THIS IS THE INSTRUMENT WHOSE SIGNAL TO NOISE RATIO IS MOCKED
