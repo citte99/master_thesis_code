@@ -23,7 +23,7 @@ import wandb
 from deep_learning.NN_datasets import NoNoiseDataset
 from deep_learning.NN_datasets.dataloaders import distributed_dataloader
 from deep_learning.NN_models import ResNet50
-from noise_applicator.noisers.base_noiser import BaseNoiser, EuclidNoiser, EuclidNoiserInterfPSF
+from noise_applicator.noisers.base_noiser import BaseNoiser, EuclidNoiser, EuclidNoiserInterfPSF, EuclidNoiserInterfPSFVariableNoise
 from config import TRAINED_CLASSIFIERS_DIR
 
 
@@ -135,7 +135,7 @@ first_stage = InputData(
     img_size=80,
     img_width=8.0,
     upscaling=5,
-    noiser=EuclidNoiserInterfPSF(),
+    noiser=EuclidNoiserInterfPSFVariableNoise(),
     last_image_proc=NormalizerInterf(),
 )
 
@@ -147,7 +147,7 @@ second_stage = InputData(
     img_size=80,
     img_width=8.0,
     upscaling=5,
-    noiser=EuclidNoiserInterfPSF(),
+    noiser=EuclidNoiserInterfPSFVariableNoise(),
     last_image_proc=NormalizerInterf(),
 )
 
@@ -159,7 +159,7 @@ third_stage = InputData(
     img_size=80,
     img_width=8.0,
     upscaling=5,
-    noiser=EuclidNoiserInterfPSF(),
+    noiser=EuclidNoiserInterfPSFVariableNoise(),
     last_image_proc=NormalizerInterf(),
 )
 
@@ -171,7 +171,7 @@ fourth_stage = InputData(
     img_size=80,
     img_width=8.0,
     upscaling=5,
-    noiser=EuclidNoiserInterfPSF(),
+    noiser=EuclidNoiserInterfPSFVariableNoise(),
     last_image_proc=NormalizerInterf(),
 )
 
@@ -560,7 +560,7 @@ if __name__ == "__main__":
     local_rank, world_size = setup()
 
     trainer = Trainer(
-        classifier_name="FFTBigCatalogs1",
+        classifier_name="FFTBigCatalogsVariableNoise",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,
@@ -569,7 +569,7 @@ if __name__ == "__main__":
     trainer.Train()
 
     trainer = Trainer(
-        classifier_name="FFTBigCatalogs2",
+        classifier_name="FFTBigCatalogsVariableNoise",
         train_config=trainer_config,
         local_rank=local_rank,
         gpu_id=local_rank,

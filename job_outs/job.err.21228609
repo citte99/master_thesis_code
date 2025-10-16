@@ -1,0 +1,108 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+W0813 02:06:21.520000 71547 torch/distributed/run.py:766] 
+W0813 02:06:21.520000 71547 torch/distributed/run.py:766] *****************************************
+W0813 02:06:21.520000 71547 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0813 02:06:21.520000 71547 torch/distributed/run.py:766] *****************************************
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+/workspace/to_submit_torchrun_fft-style_for_euclid.py:460: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/native/Scalar.cpp:22.)
+  epoch_losses.append(loss.item())
+/workspace/to_submit_torchrun_fft-style_for_euclid.py:460: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/native/Scalar.cpp:22.)
+  epoch_losses.append(loss.item())
+/workspace/to_submit_torchrun_fft-style_for_euclid.py:460: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/native/Scalar.cpp:22.)
+  epoch_losses.append(loss.item())
+/workspace/to_submit_torchrun_fft-style_for_euclid.py:460: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/native/Scalar.cpp:22.)
+  epoch_losses.append(loss.item())
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                   epoch/epoch_num ▁▁▂▂▂▂▃▃▃▃▄▄▄▄▄▅▅▅▆▆▇▇▇██▂▂▂▂▂▁▁▂▂▂▁▁▁▁▂
+wandb:               epoch/learning_rate ██████████████▄▄▃▃▃▃▂▁▂▂▂▂▂▂▂▂▁▁▂▂▂▂▁▂▂▁
+wandb:                   epoch/test_loss █▅▅▄▃▃▃▃▃▂▂▂▂▂▂▂▂▂▁▁▁▁▂▁▃▃▃▃▃▃▄▄▄▄▄▅▄▄▅▅
+wandb:              epoch/train_loss_avg ██▇▇▆▆▅▅▅▅▄▄▃▃▃▃▃▂▂▁▁▁▅▅▅▅▅▅▅▅▄▄▆▆▆▆▆▇▇▆
+wandb:               patience/best_epoch ▁▁▂▂▂▃▃▄▄▄▄▄▅▅▅▆▆▇▇▇█▁▁▁▂▂▂▂▂▂▁▁▂▂▂▂▁▁▁▁
+wandb:                patience/best_loss █▇▇▅▅▄▄▄▄▄▃▂▂▂▂▂▂▁▁▁▁▁▁▁▁▄▃▃▃▃▃▅▅▅▅▅▅▆▆▆
+wandb:            patience/current_epoch ▁▁▁▂▂▃▃▄▄▄▄▄▅▅▅▆▆▆▆▇▇███▁▁▂▂▂▂▁▁▁▂▂▁▁▁▁▂
+wandb: patience/epochs_since_improvement ▂▁▂▁▁▁▅▁▂▁▁▂▁▂▃▂▃▅▁▂▆▃▆▁▁▁▂▃▅▆▁▁▁▂▃▇▁▁▅█
+wandb:               stage/current_stage ▁▃▆█
+wandb:                    stage/img_size ▁▁▁▁
+wandb:       stage/learning_rate_initial █▁▁▁
+wandb:                stage/samples_test ▁▁▁▁
+wandb:               stage/samples_train ▁▁▁▁
+wandb:             test/loss_mean_global █▆▅▄▅▃▃▃▃▃▃▂▂▂▂▂▁▁▂▁▁▂▁▄▄▄▄▄▄▄▆▆▆▆▆▆▆▆▇▇
+wandb:      test/num_test_samples_global ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:                   epoch/epoch_num 7
+wandb:               epoch/learning_rate 2e-05
+wandb:                   epoch/test_loss 0.601
+wandb:              epoch/train_loss_avg 0.56959
+wandb:               patience/best_epoch 2
+wandb:                patience/best_loss 0.59561
+wandb:            patience/current_epoch 8
+wandb: patience/epochs_since_improvement 6
+wandb:               patience/lr_trigger True
+wandb:             patience/stop_trigger True
+wandb:                stage/catalog_test min_mass_10e8_6_test...
+wandb:               stage/catalog_train min_mass_10e8_6_long...
+wandb:               stage/current_stage 3
+wandb:                    stage/img_size 80
+wandb:       stage/learning_rate_initial 0.00012
+wandb:                stage/samples_test 100000
+wandb:               stage/samples_train 2000000
+wandb:             test/loss_mean_global 0.601
+wandb:      test/num_test_samples_global 100000
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /workspace/wandb/offline-run-20250813_020711-ysisrl1m
+wandb: Find logs at: ./wandb/offline-run-20250813_020711-ysisrl1m/logs
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                   epoch/epoch_num ▁▁▁▂▂▃▃▃▄▄▄▄▅▅▅▆▆▆▆▇▇▇▇█▁▂▂▃▃▃▄▁▁▂▂▁▁▁▂▂
+wandb:               epoch/learning_rate █████████████████▄▄▄▂▂▂▂▂▂▂▂▂▂▁▁▂▂▂▁▁▁▂▁
+wandb:                   epoch/test_loss █▇▆▆▆▆▅▄▄▅▃▄▅▃▃▂▂▂▁▁▂▃▄▄▄▄▄▄▄▄▄▆▆▆▆▆▆▆▆▆
+wandb:              epoch/train_loss_avg ██▇▇▆▅▅▅▅▅▄▄▄▄▃▃▃▃▂▂▁▆▅▅▅▅▅▅▅▄▇▇▇▇▇▇▇▇▇▇
+wandb:               patience/best_epoch ▁▁▂▂▃▄▄▄▄▄▅▅▆▆▇▇▇▇█████▁▂▂▂▂▃▃▃▁▁▁▁▁▁▁▁▁
+wandb:                patience/best_loss ██▇▆▅▄▄▄▃▃▃▃▃▃▃▃▂▂▁▁▁▄▄▄▄▄▄▄▄▄▄▄▆▆▆▆▆▆▆▆
+wandb:            patience/current_epoch ▁▁▂▂▂▃▃▃▄▄▄▅▅▅▅▆▆▆▇▇▇██▁▁▂▂▂▂▃▄▄▁▁▂▂▁▁▂▂
+wandb: patience/epochs_since_improvement ▁▁▁▁▁▁▁▁▁▃▃▅▃▁▁▅▁▂▅▆▁▁▂▁▂▁▃▅▇█▁▁▂▃▆█▁▂▆█
+wandb:               stage/current_stage ▁▃▆█
+wandb:                    stage/img_size ▁▁▁▁
+wandb:       stage/learning_rate_initial █▁▁▁
+wandb:                stage/samples_test ▁▁▁▁
+wandb:               stage/samples_train ▁▁▁▁
+wandb:             test/loss_mean_global █▇▆▇▆▅▄▃▄▄▃▃▂▂▂▂▁▁▂▃▁▄▄▄▄▄▄▄▄▄▆▆▆▆▆▆▆▆▆▆
+wandb:      test/num_test_samples_global ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:                   epoch/epoch_num 6
+wandb:               epoch/learning_rate 2e-05
+wandb:                   epoch/test_loss 0.59646
+wandb:              epoch/train_loss_avg 0.57502
+wandb:               patience/best_epoch 1
+wandb:                patience/best_loss 0.59574
+wandb:            patience/current_epoch 7
+wandb: patience/epochs_since_improvement 6
+wandb:               patience/lr_trigger True
+wandb:             patience/stop_trigger True
+wandb:                stage/catalog_test min_mass_10e8_6_test...
+wandb:               stage/catalog_train min_mass_10e8_6_long...
+wandb:               stage/current_stage 3
+wandb:                    stage/img_size 80
+wandb:       stage/learning_rate_initial 0.00012
+wandb:                stage/samples_test 100000
+wandb:               stage/samples_train 2000000
+wandb:             test/loss_mean_global 0.59646
+wandb:      test/num_test_samples_global 100000
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /workspace/wandb/offline-run-20250813_075351-xk1sdr2g
+wandb: Find logs at: ./wandb/offline-run-20250813_075351-xk1sdr2g/logs

@@ -23,6 +23,10 @@ from shared_utils import units
 from shared_utils import _arcsec_to_rad
 from config import CATALOGS_DIR
 import os
+from deep_learning import NoNoiseDataset, custom_dataloader
+
+from shared_utils.physics_relations import r_max_moline
+
 import json
 # the idea here is that we will write 
 # to a file both the methods used for

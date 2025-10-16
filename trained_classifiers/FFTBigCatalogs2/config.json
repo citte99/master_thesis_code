@@ -1,0 +1,19 @@
+{
+    "model": {
+        "model": "ResNet50",
+        "model_init": {
+            "num_classes": 2
+        }
+    },
+    "training_settings": {
+        "optimizer": "AdamW",
+        "first_lr": 0.0003,
+        "following_lr": 3e-05,
+        "patience_lr": 4,
+        "patience_stage": 6,
+        "max_epochs": 50,
+        "batch_size": 1024,
+        "compile_model": false,
+        "checkpoints_every_m_test": 5
+    }
+}

@@ -1,0 +1,889 @@
+[rank2] PID=21164  cuda_available=True  device_count=4  name=NVIDIA A100-SXM4-40GB
+[rank3] PID=21165  cuda_available=True  device_count=4  name=NVIDIA A100-SXM4-40GB
+[rank0] PID=21162  cuda_available=True  device_count=4  name=NVIDIA A100-SXM4-40GB
+[rank1] PID=21163  cuda_available=True  device_count=4  name=NVIDIA A100-SXM4-40GB
+cpucpu
+
+cpucpu
+
+The PthPSF is loaded as it is. All the physical considerations must be done building it.The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+ravg1103:21162:21162 [0] NCCL INFO Bootstrap: Using ib0:10.181.140.103<0>
+ravg1103:21162:21162 [0] NCCL INFO cudaDriverVersion 12090
+ravg1103:21162:21162 [0] NCCL INFO NCCL version 2.26.5+cuda12.9
+ravg1103:21162:21162 [0] NCCL INFO Comm config Blocking set to 1
+ravg1103:21164:21164 [2] NCCL INFO cudaDriverVersion 12090
+ravg1103:21164:21164 [2] NCCL INFO Bootstrap: Using ib0:10.181.140.103<0>
+ravg1103:21164:21164 [2] NCCL INFO NCCL version 2.26.5+cuda12.9
+ravg1103:21163:21163 [1] NCCL INFO cudaDriverVersion 12090
+ravg1103:21163:21163 [1] NCCL INFO Bootstrap: Using ib0:10.181.140.103<0>
+ravg1103:21163:21163 [1] NCCL INFO NCCL version 2.26.5+cuda12.9
+ravg1103:21164:21164 [2] NCCL INFO Comm config Blocking set to 1
+ravg1103:21165:21165 [3] NCCL INFO cudaDriverVersion 12090
+ravg1103:21163:21163 [1] NCCL INFO Comm config Blocking set to 1
+ravg1103:21165:21165 [3] NCCL INFO Bootstrap: Using ib0:10.181.140.103<0>
+ravg1103:21165:21165 [3] NCCL INFO NCCL version 2.26.5+cuda12.9
+ravg1103:21165:21165 [3] NCCL INFO Comm config Blocking set to 1
+ravg1103:21163:21412 [1] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v10 (v10)
+ravg1103:21163:21412 [1] NCCL INFO NET/Plugin: Loaded collnet plugin NCCL RDMA Plugin v10 (v10)
+ravg1103:21162:21410 [0] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v10 (v10)
+ravg1103:21163:21412 [1] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+ravg1103:21165:21413 [3] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v10 (v10)
+ravg1103:21164:21411 [2] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v10 (v10)
+ravg1103:21162:21410 [0] NCCL INFO NET/Plugin: Loaded collnet plugin NCCL RDMA Plugin v10 (v10)
+ravg1103:21163:21412 [1] NCCL INFO P2P plugin v10 IBext_v10
+ravg1103:21165:21413 [3] NCCL INFO NET/Plugin: Loaded collnet plugin NCCL RDMA Plugin v10 (v10)
+ravg1103:21164:21411 [2] NCCL INFO NET/Plugin: Loaded collnet plugin NCCL RDMA Plugin v10 (v10)
+ravg1103:21162:21410 [0] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+ravg1103:21162:21410 [0] NCCL INFO P2P plugin v10 IBext_v10
+ravg1103:21165:21413 [3] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+ravg1103:21165:21413 [3] NCCL INFO P2P plugin v10 IBext_v10
+ravg1103:21164:21411 [2] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+ravg1103:21164:21411 [2] NCCL INFO P2P plugin v10 IBext_v10
+ravg1103:21163:21412 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/IB/SHARP [2]mlx5_2:1/RoCE [RO]; OOB ib0:10.181.140.103<0>
+ravg1103:21164:21411 [2] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/IB/SHARP [2]mlx5_2:1/RoCE [RO]; OOB ib0:10.181.140.103<0>
+ravg1103:21162:21410 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/IB/SHARP [2]mlx5_2:1/RoCE [RO]; OOB ib0:10.181.140.103<0>
+ravg1103:21165:21413 [3] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/IB/SHARP [2]mlx5_2:1/RoCE [RO]; OOB ib0:10.181.140.103<0>
+ravg1103:21163:21412 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+ravg1103:21165:21413 [3] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+ravg1103:21164:21411 [2] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+ravg1103:21162:21410 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+ravg1103:21163:21412 [1] NCCL INFO Using network IBext_v10
+ravg1103:21165:21413 [3] NCCL INFO Using network IBext_v10
+ravg1103:21164:21411 [2] NCCL INFO Using network IBext_v10
+ravg1103:21162:21410 [0] NCCL INFO Using network IBext_v10
+ravg1103:21163:21412 [1] NCCL INFO ncclCommInitRankConfig comm 0x21e92c80 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 32000 commId 0x51d2a758feaf5124 - Init START
+ravg1103:21165:21413 [3] NCCL INFO ncclCommInitRankConfig comm 0x14db79c0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId e3000 commId 0x51d2a758feaf5124 - Init START
+ravg1103:21164:21411 [2] NCCL INFO ncclCommInitRankConfig comm 0x15b93f40 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId ca000 commId 0x51d2a758feaf5124 - Init START
+ravg1103:21162:21410 [0] NCCL INFO ncclCommInitRankConfig comm 0x24711340 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 31000 commId 0x51d2a758feaf5124 - Init START
+ravg1103:21164:21411 [2] NCCL INFO RAS client listening socket at ::1<28028>
+ravg1103:21165:21413 [3] NCCL INFO RAS client listening socket at ::1<28028>
+ravg1103:21163:21412 [1] NCCL INFO RAS client listening socket at ::1<28028>
+ravg1103:21162:21410 [0] NCCL INFO RAS client listening socket at ::1<28028>
+ravg1103:21164:21411 [2] NCCL INFO Bootstrap timings total 0.007365 (create 0.000047, send 0.000131, recv 0.000475, ring 0.000247, delay 0.000001)
+ravg1103:21163:21412 [1] NCCL INFO Bootstrap timings total 0.007599 (create 0.000056, send 0.000157, recv 0.000545, ring 0.000086, delay 0.000001)
+ravg1103:21162:21410 [0] NCCL INFO Bootstrap timings total 0.007232 (create 0.000047, send 0.000136, recv 0.000585, ring 0.000090, delay 0.000001)
+ravg1103:21165:21413 [3] NCCL INFO Bootstrap timings total 0.007527 (create 0.000054, send 0.000148, recv 0.000721, ring 0.000199, delay 0.000001)
+ravg1103:21162:21410 [0] NCCL INFO Setting affinity for GPU 0 to 0fff,ffffff00,0000000f,ffffffff
+ravg1103:21162:21410 [0] NCCL INFO NVLS multicast support is not available on dev 0
+ravg1103:21164:21411 [2] NCCL INFO Setting affinity for GPU 2 to ffff,fffff000,000000ff,fffffff0,00000000
+ravg1103:21164:21411 [2] NCCL INFO NVLS multicast support is not available on dev 2
+ravg1103:21163:21412 [1] NCCL INFO Setting affinity for GPU 1 to 0fff,ffffff00,0000000f,ffffffff
+ravg1103:21163:21412 [1] NCCL INFO NVLS multicast support is not available on dev 1
+ravg1103:21165:21413 [3] NCCL INFO Setting affinity for GPU 3 to ffff,fffff000,000000ff,fffffff0,00000000
+ravg1103:21165:21413 [3] NCCL INFO NVLS multicast support is not available on dev 3
+ravg1103:21162:21410 [0] NCCL INFO comm 0x24711340 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+ravg1103:21164:21411 [2] NCCL INFO comm 0x15b93f40 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+ravg1103:21165:21413 [3] NCCL INFO comm 0x14db79c0 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+ravg1103:21163:21412 [1] NCCL INFO comm 0x21e92c80 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+ravg1103:21162:21410 [0] NCCL INFO Channel 00/24 : 0 1 2 3
+ravg1103:21164:21411 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 1/-1/-1->2->0 [5] 1/-1/-1->2->0 [6] 1/-1/-1->2->0 [7] 1/-1/-1->2->0 [8] -1/-1/-1->2->3 [9] -1/-1/-1->2->3 [10] -1/-1/-1->2->3 [11] -1/-1/-1->2->3 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 1/-1/-1->2->0 [17] 1/-1/-1->2->0 [18] 1/-1/-1->2->0 [19] 1/-1/-1->2->0 [20] -1/-1/-1->2->3 [21] -1/-1/-1->2->3 [22] -1/-1/-1->2->3 [23] -1/-1/-1->2->3
+ravg1103:21162:21410 [0] NCCL INFO Channel 01/24 : 0 1 3 2
+ravg1103:21164:21411 [2] NCCL INFO P2P Chunksize set to 524288
+ravg1103:21165:21413 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->1 [5] -1/-1/-1->3->1 [6] -1/-1/-1->3->1 [7] -1/-1/-1->3->1 [8] 2/-1/-1->3->0 [9] 2/-1/-1->3->0 [10] 2/-1/-1->3->0 [11] 2/-1/-1->3->0 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->1 [17] -1/-1/-1->3->1 [18] -1/-1/-1->3->1 [19] -1/-1/-1->3->1 [20] 2/-1/-1->3->0 [21] 2/-1/-1->3->0 [22] 2/-1/-1->3->0 [23] 2/-1/-1->3->0
+ravg1103:21162:21410 [0] NCCL INFO Channel 02/24 : 0 2 3 1
+ravg1103:21165:21413 [3] NCCL INFO P2P Chunksize set to 524288
+ravg1103:21162:21410 [0] NCCL INFO Channel 03/24 : 0 2 1 3
+ravg1103:21163:21412 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 3/-1/-1->1->2 [5] 3/-1/-1->1->2 [6] 3/-1/-1->1->2 [7] 3/-1/-1->1->2 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 3/-1/-1->1->2 [17] 3/-1/-1->1->2 [18] 3/-1/-1->1->2 [19] 3/-1/-1->1->2 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
+ravg1103:21162:21410 [0] NCCL INFO Channel 04/24 : 0 3 1 2
+ravg1103:21163:21412 [1] NCCL INFO P2P Chunksize set to 524288
+ravg1103:21162:21410 [0] NCCL INFO Channel 05/24 : 0 3 2 1
+ravg1103:21162:21410 [0] NCCL INFO Channel 06/24 : 0 1 2 3
+ravg1103:21162:21410 [0] NCCL INFO Channel 07/24 : 0 1 3 2
+ravg1103:21162:21410 [0] NCCL INFO Channel 08/24 : 0 2 3 1
+ravg1103:21162:21410 [0] NCCL INFO Channel 09/24 : 0 2 1 3
+ravg1103:21162:21410 [0] NCCL INFO Channel 10/24 : 0 3 1 2
+ravg1103:21162:21410 [0] NCCL INFO Channel 11/24 : 0 3 2 1
+ravg1103:21162:21410 [0] NCCL INFO Channel 12/24 : 0 1 2 3
+ravg1103:21162:21410 [0] NCCL INFO Channel 13/24 : 0 1 3 2
+ravg1103:21162:21410 [0] NCCL INFO Channel 14/24 : 0 2 3 1
+ravg1103:21162:21410 [0] NCCL INFO Channel 15/24 : 0 2 1 3
+ravg1103:21162:21410 [0] NCCL INFO Channel 16/24 : 0 3 1 2
+ravg1103:21162:21410 [0] NCCL INFO Channel 17/24 : 0 3 2 1
+ravg1103:21162:21410 [0] NCCL INFO Channel 18/24 : 0 1 2 3
+ravg1103:21162:21410 [0] NCCL INFO Channel 19/24 : 0 1 3 2
+ravg1103:21162:21410 [0] NCCL INFO Channel 20/24 : 0 2 3 1
+ravg1103:21162:21410 [0] NCCL INFO Channel 21/24 : 0 2 1 3
+ravg1103:21162:21410 [0] NCCL INFO Channel 22/24 : 0 3 1 2
+ravg1103:21162:21410 [0] NCCL INFO Channel 23/24 : 0 3 2 1
+ravg1103:21162:21410 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 2/-1/-1->0->-1 [5] 2/-1/-1->0->-1 [6] 2/-1/-1->0->-1 [7] 2/-1/-1->0->-1 [8] 3/-1/-1->0->1 [9] 3/-1/-1->0->1 [10] 3/-1/-1->0->1 [11] 3/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 2/-1/-1->0->-1 [17] 2/-1/-1->0->-1 [18] 2/-1/-1->0->-1 [19] 2/-1/-1->0->-1 [20] 3/-1/-1->0->1 [21] 3/-1/-1->0->1 [22] 3/-1/-1->0->1 [23] 3/-1/-1->0->1
+ravg1103:21162:21410 [0] NCCL INFO P2P Chunksize set to 524288
+ravg1103:21165:21431 [3] NCCL INFO [Proxy Service] Device 3 CPU core 51
+ravg1103:21165:21432 [3] NCCL INFO [Proxy Service UDS] Device 3 CPU core 55
+ravg1103:21164:21434 [2] NCCL INFO [Proxy Service UDS] Device 2 CPU core 130
+ravg1103:21164:21433 [2] NCCL INFO [Proxy Service] Device 2 CPU core 111
+ravg1103:21162:21410 [0] NCCL INFO Check P2P Type intraNodeP2pSupport 1 directMode 0
+ravg1103:21162:21436 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 76
+ravg1103:21162:21435 [0] NCCL INFO [Proxy Service] Device 0 CPU core 74
+ravg1103:21163:21438 [1] NCCL INFO [Proxy Service UDS] Device 1 CPU core 79
+ravg1103:21163:21437 [1] NCCL INFO [Proxy Service] Device 1 CPU core 77
+ravg1103:21164:21411 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ravg1103:21164:21411 [2] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+ravg1103:21165:21413 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ravg1103:21165:21413 [3] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+ravg1103:21163:21412 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ravg1103:21163:21412 [1] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+ravg1103:21162:21410 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ravg1103:21162:21410 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+ravg1103:21162:21410 [0] NCCL INFO CC Off, workFifoBytes 1048576
+ravg1103:21164:21411 [2] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+ravg1103:21165:21413 [3] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+ravg1103:21163:21412 [1] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+ravg1103:21164:21411 [2] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v4 symbol.
+ravg1103:21165:21413 [3] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v4 symbol.
+ravg1103:21162:21410 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+ravg1103:21163:21412 [1] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v4 symbol.
+ravg1103:21164:21411 [2] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v3 symbol.
+ravg1103:21165:21413 [3] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v3 symbol.
+ravg1103:21163:21412 [1] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v3 symbol.
+ravg1103:21162:21410 [0] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v4 symbol.
+ravg1103:21164:21411 [2] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v2 symbol, using internal tuner instead.
+ravg1103:21165:21413 [3] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v2 symbol, using internal tuner instead.
+ravg1103:21163:21412 [1] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v2 symbol, using internal tuner instead.
+ravg1103:21162:21410 [0] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v3 symbol.
+ravg1103:21164:21411 [2] NCCL INFO ncclCommInitRankConfig comm 0x15b93f40 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId ca000 commId 0x51d2a758feaf5124 - Init COMPLETE
+ravg1103:21165:21413 [3] NCCL INFO ncclCommInitRankConfig comm 0x14db79c0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId e3000 commId 0x51d2a758feaf5124 - Init COMPLETE
+ravg1103:21163:21412 [1] NCCL INFO ncclCommInitRankConfig comm 0x21e92c80 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 32000 commId 0x51d2a758feaf5124 - Init COMPLETE
+ravg1103:21162:21410 [0] NCCL INFO TUNER/Plugin: Failed to find ncclTunerPlugin_v2 symbol, using internal tuner instead.
+ravg1103:21164:21411 [2] NCCL INFO Init timings - ncclCommInitRankConfig: rank 2 nranks 4 total 1.44 (kernels 0.80, alloc 0.41, bootstrap 0.01, allgathers 0.01, topo 0.14, graphs 0.00, connections 0.03, rest 0.04)
+ravg1103:21165:21413 [3] NCCL INFO Init timings - ncclCommInitRankConfig: rank 3 nranks 4 total 1.43 (kernels 0.80, alloc 0.41, bootstrap 0.01, allgathers 0.01, topo 0.14, graphs 0.00, connections 0.03, rest 0.03)
+ravg1103:21163:21412 [1] NCCL INFO Init timings - ncclCommInitRankConfig: rank 1 nranks 4 total 1.43 (kernels 0.80, alloc 0.41, bootstrap 0.01, allgathers 0.00, topo 0.14, graphs 0.02, connections 0.03, rest 0.04)
+ravg1103:21162:21410 [0] NCCL INFO ncclCommInitRankConfig comm 0x24711340 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 31000 commId 0x51d2a758feaf5124 - Init COMPLETE
+ravg1103:21162:21410 [0] NCCL INFO Init timings - ncclCommInitRankConfig: rank 0 nranks 4 total 1.45 (kernels 0.82, alloc 0.41, bootstrap 0.01, allgathers 0.00, topo 0.13, graphs 0.01, connections 0.03, rest 0.03)
+ravg1103:21165:21439 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 02/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 01/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 03/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 03/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 08/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 01/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 02/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 07/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 09/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 04/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 09/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 04/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 14/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 07/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 13/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 15/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 10/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 08/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 15/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 13/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 20/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 10/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 19/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 16/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 21/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 14/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 21/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 19/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 16/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 22/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 20/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 22/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 04/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 05/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 10/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 11/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 16/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 17/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1103:21164:21441 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 22/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Channel 23/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1103:21163:21440 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1103:21165:21439 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+ravg1103:21162:21442 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ravg1103:21165:21439 [3] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ravg1103:21164:21441 [2] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ravg1103:21163:21440 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+Using broadcasting modeUsing broadcasting mode
+
+Using broadcasting mode
+Using broadcasting mode
+Using device: cudaUsing device: cuda
+Currently this dataloader is calculating the images in float32
+
+Currently this dataloader is calculating the images in float32
+Using device: cudaUsing device: cuda
+Currently this dataloader is calculating the images in float32
+
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using device: cudaUsing device: cuda
+Currently this dataloader is calculating the images in float32
+
+Currently this dataloader is calculating the images in float32
+50000005000000
+
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 0: Train Loss: 0.686685 | Test Loss: 0.685537 | LR: 1.20e-03
+New best model at epoch 0 with test loss 0.685537
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 1: Train Loss: 0.663223 | Test Loss: 0.668805 | LR: 1.20e-03
+New best model at epoch 1 with test loss 0.668805
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 2: Train Loss: 0.622388 | Test Loss: 0.654965 | LR: 1.20e-03
+New best model at epoch 2 with test loss 0.654965
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 3: Train Loss: 0.584439 | Test Loss: 0.604348 | LR: 1.20e-03
+New best model at epoch 3 with test loss 0.604348
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 4: Train Loss: 0.558016 | Test Loss: 0.654568 | LR: 1.20e-03
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 5: Train Loss: 0.538351 | Test Loss: 0.587308 | LR: 1.20e-03
+New best model at epoch 5 with test loss 0.587308
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 6: Train Loss: 0.518552 | Test Loss: 0.555305 | LR: 1.20e-03
+New best model at epoch 6 with test loss 0.555305
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 7: Train Loss: 0.503327 | Test Loss: 0.590583 | LR: 1.20e-03
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 8: Train Loss: 0.489977 | Test Loss: 0.530948 | LR: 1.20e-03
+New best model at epoch 8 with test loss 0.530948
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 9: Train Loss: 0.478537 | Test Loss: 0.580373 | LR: 1.20e-03
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 10: Train Loss: 0.465087 | Test Loss: 0.556109 | LR: 1.20e-03
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 11: Train Loss: 0.453008 | Test Loss: 0.502965 | LR: 1.20e-03
+New best model at epoch 11 with test loss 0.502965
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 12: Train Loss: 0.442116 | Test Loss: 0.487436 | LR: 1.20e-03
+New best model at epoch 12 with test loss 0.487436
+[GPU0] Epoch 13 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 13: Train Loss: 0.430306 | Test Loss: 0.491535 | LR: 1.20e-03
+[GPU0] Epoch 14 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 14: Train Loss: 0.415636 | Test Loss: 0.470134 | LR: 1.20e-03
+New best model at epoch 14 with test loss 0.470134
+[GPU0] Epoch 15 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 15: Train Loss: 0.405598 | Test Loss: 0.472902 | LR: 1.20e-03
+[GPU0] Epoch 16 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 16: Train Loss: 0.395248 | Test Loss: 0.479143 | LR: 1.20e-03
+[GPU0] Epoch 17 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 17: Train Loss: 0.387311 | Test Loss: 0.459621 | LR: 1.20e-03
+New best model at epoch 17 with test loss 0.459621
+[GPU0] Epoch 18 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 18: Train Loss: 0.376034 | Test Loss: 0.422493 | LR: 1.20e-03
+New best model at epoch 18 with test loss 0.422493
+[GPU0] Epoch 19 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 19: Train Loss: 0.366726 | Test Loss: 0.428559 | LR: 1.20e-03
+[GPU0] Epoch 20 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 20: Train Loss: 0.368388 | Test Loss: 0.430249 | LR: 1.20e-03
+[GPU0] Epoch 21 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 21: Train Loss: 0.348729 | Test Loss: 0.424119 | LR: 1.20e-03
+[GPU0] Epoch 22 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 22: Train Loss: 0.345680 | Test Loss: 0.422649 | LR: 6.00e-04
+[GPU0] Epoch 23 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 23: Train Loss: 0.312882 | Test Loss: 0.392598 | LR: 6.00e-04
+New best model at epoch 23 with test loss 0.392598
+[GPU0] Epoch 24 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 24: Train Loss: 0.300322 | Test Loss: 0.424159 | LR: 6.00e-04
+[GPU0] Epoch 25 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 25: Train Loss: 0.291239 | Test Loss: 0.386079 | LR: 6.00e-04
+New best model at epoch 25 with test loss 0.386079
+[GPU0] Epoch 26 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 26: Train Loss: 0.284850 | Test Loss: 0.397580 | LR: 6.00e-04
+[GPU0] Epoch 27 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 27: Train Loss: 0.276832 | Test Loss: 0.439729 | LR: 6.00e-04
+[GPU0] Epoch 28 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 28: Train Loss: 0.275081 | Test Loss: 0.403640 | LR: 6.00e-04
+[GPU0] Epoch 29 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 29: Train Loss: 0.271356 | Test Loss: 0.453757 | LR: 3.00e-04
+[GPU0] Epoch 30 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 30: Train Loss: 0.246785 | Test Loss: 0.400358 | LR: 1.50e-04
+[GPU0] Epoch 31 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 31: Train Loss: 0.223495 | Test Loss: 0.401166 | LR: 7.50e-05
+[GPU 0] Early stopping at epoch 31
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cudaUsing device: cuda
+Currently this dataloader is calculating the images in float32
+
+Currently this dataloader is calculating the images in float32
+5000000
+5000000
+100000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 0: Train Loss: 0.522202 | Test Loss: 0.533067 | LR: 1.20e-04
+New best model at epoch 0 with test loss 0.533067
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 1: Train Loss: 0.508759 | Test Loss: 0.523663 | LR: 1.20e-04
+New best model at epoch 1 with test loss 0.523663
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 2: Train Loss: 0.501594 | Test Loss: 0.522212 | LR: 1.20e-04
+New best model at epoch 2 with test loss 0.522212
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 3: Train Loss: 0.497686 | Test Loss: 0.527065 | LR: 1.20e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 4: Train Loss: 0.493619 | Test Loss: 0.526716 | LR: 1.20e-04
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 5: Train Loss: 0.486213 | Test Loss: 0.518781 | LR: 1.20e-04
+New best model at epoch 5 with test loss 0.518781
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 6: Train Loss: 0.485152 | Test Loss: 0.534384 | LR: 1.20e-04
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 7: Train Loss: 0.481104 | Test Loss: 0.544493 | LR: 1.20e-04
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 8: Train Loss: 0.476399 | Test Loss: 0.529707 | LR: 1.20e-04
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 9: Train Loss: 0.475456 | Test Loss: 0.523856 | LR: 6.00e-05
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 10: Train Loss: 0.465155 | Test Loss: 0.546225 | LR: 3.00e-05
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 11: Train Loss: 0.457431 | Test Loss: 0.542940 | LR: 1.50e-05
+[GPU 0] Early stopping at epoch 11
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting modeUsing broadcasting mode
+
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+100000
+Using device: cuda
+Using device: cudaCurrently this dataloader is calculating the images in float32
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+5000000
+5000000
+
+100000
+Currently this dataloader is calculating the images in float32The PthPSF is loaded as it is. All the physical considerations must be done building it.
+
+100000
+5000000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 0: Train Loss: 0.596507 | Test Loss: 0.603060 | LR: 1.20e-04
+New best model at epoch 0 with test loss 0.603060
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 1: Train Loss: 0.592890 | Test Loss: 0.606766 | LR: 1.20e-04
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 2: Train Loss: 0.589557 | Test Loss: 0.614451 | LR: 1.20e-04
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 3: Train Loss: 0.586670 | Test Loss: 0.605064 | LR: 1.20e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 4: Train Loss: 0.584337 | Test Loss: 0.606882 | LR: 6.00e-05
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 5: Train Loss: 0.578086 | Test Loss: 0.613814 | LR: 3.00e-05
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 6: Train Loss: 0.572999 | Test Loss: 0.608531 | LR: 1.50e-05
+[GPU 0] Early stopping at epoch 6
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting modeUsing broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+5000000Currently this dataloader is calculating the images in float32
+
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.100000
+
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 0: Train Loss: 0.612246 | Test Loss: 0.621383 | LR: 1.20e-04
+New best model at epoch 0 with test loss 0.621383
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 1: Train Loss: 0.608554 | Test Loss: 0.621329 | LR: 1.20e-04
+New best model at epoch 1 with test loss 0.621329
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 2: Train Loss: 0.605380 | Test Loss: 0.626470 | LR: 1.20e-04
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 3: Train Loss: 0.602589 | Test Loss: 0.620596 | LR: 1.20e-04
+New best model at epoch 3 with test loss 0.620596
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 4: Train Loss: 0.600853 | Test Loss: 0.630987 | LR: 1.20e-04
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 5: Train Loss: 0.596550 | Test Loss: 0.626249 | LR: 1.20e-04
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 6: Train Loss: 0.594457 | Test Loss: 0.619869 | LR: 1.20e-04
+New best model at epoch 6 with test loss 0.619869
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 7: Train Loss: 0.591884 | Test Loss: 0.630661 | LR: 1.20e-04
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 8: Train Loss: 0.588394 | Test Loss: 0.633945 | LR: 1.20e-04
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 9: Train Loss: 0.584898 | Test Loss: 0.629438 | LR: 1.20e-04
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 10: Train Loss: 0.580032 | Test Loss: 0.635763 | LR: 6.00e-05
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 11: Train Loss: 0.572092 | Test Loss: 0.639252 | LR: 3.00e-05
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 12: Train Loss: 0.566395 | Test Loss: 0.657690 | LR: 1.50e-05
+[GPU 0] Early stopping at epoch 12
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting modeUsing broadcasting mode
+
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+Using device: cuda100000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+
+5000000
+Currently this dataloader is calculating the images in float32100000
+
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 0: Train Loss: 0.690137 | Test Loss: 0.679197 | LR: 1.20e-03
+New best model at epoch 0 with test loss 0.679197
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 1: Train Loss: 0.666336 | Test Loss: 0.671790 | LR: 1.20e-03
+New best model at epoch 1 with test loss 0.671790
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 2: Train Loss: 0.653945 | Test Loss: 0.654600 | LR: 1.20e-03
+New best model at epoch 2 with test loss 0.654600
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 3: Train Loss: 0.614077 | Test Loss: 0.606109 | LR: 1.20e-03
+New best model at epoch 3 with test loss 0.606109
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 4: Train Loss: 0.579693 | Test Loss: 0.586907 | LR: 1.20e-03
+New best model at epoch 4 with test loss 0.586907
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 5: Train Loss: 0.553827 | Test Loss: 0.580989 | LR: 1.20e-03
+New best model at epoch 5 with test loss 0.580989
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 6: Train Loss: 0.533386 | Test Loss: 0.560859 | LR: 1.20e-03
+New best model at epoch 6 with test loss 0.560859
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 7: Train Loss: 0.517553 | Test Loss: 0.537564 | LR: 1.20e-03
+New best model at epoch 7 with test loss 0.537564
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 8: Train Loss: 0.500737 | Test Loss: 0.543173 | LR: 1.20e-03
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 9: Train Loss: 0.489620 | Test Loss: 0.538115 | LR: 1.20e-03
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 10: Train Loss: 0.477751 | Test Loss: 0.511228 | LR: 1.20e-03
+New best model at epoch 10 with test loss 0.511228
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 11: Train Loss: 0.469455 | Test Loss: 0.497400 | LR: 1.20e-03
+New best model at epoch 11 with test loss 0.497400
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 12: Train Loss: 0.457930 | Test Loss: 0.521878 | LR: 1.20e-03
+[GPU0] Epoch 13 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 13: Train Loss: 0.449786 | Test Loss: 0.530026 | LR: 1.20e-03
+[GPU0] Epoch 14 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 14: Train Loss: 0.438314 | Test Loss: 0.566339 | LR: 1.20e-03
+[GPU0] Epoch 15 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 15: Train Loss: 0.430885 | Test Loss: 0.495296 | LR: 1.20e-03
+New best model at epoch 15 with test loss 0.495296
+[GPU0] Epoch 16 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 16: Train Loss: 0.416747 | Test Loss: 0.492006 | LR: 1.20e-03
+New best model at epoch 16 with test loss 0.492006
+[GPU0] Epoch 17 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 17: Train Loss: 0.409801 | Test Loss: 0.471649 | LR: 1.20e-03
+New best model at epoch 17 with test loss 0.471649
+[GPU0] Epoch 18 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 18: Train Loss: 0.399057 | Test Loss: 0.501528 | LR: 1.20e-03
+[GPU0] Epoch 19 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 19: Train Loss: 0.386828 | Test Loss: 0.487050 | LR: 1.20e-03
+[GPU0] Epoch 20 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 20: Train Loss: 0.379223 | Test Loss: 0.450868 | LR: 1.20e-03
+New best model at epoch 20 with test loss 0.450868
+[GPU0] Epoch 21 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 21: Train Loss: 0.370489 | Test Loss: 0.477782 | LR: 1.20e-03
+[GPU0] Epoch 22 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 22: Train Loss: 0.363425 | Test Loss: 0.461745 | LR: 1.20e-03
+[GPU0] Epoch 23 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 23: Train Loss: 0.355653 | Test Loss: 0.476436 | LR: 1.20e-03
+[GPU0] Epoch 24 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 24: Train Loss: 0.349322 | Test Loss: 0.446427 | LR: 1.20e-03
+New best model at epoch 24 with test loss 0.446427
+[GPU0] Epoch 25 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 25: Train Loss: 0.340686 | Test Loss: 0.452873 | LR: 1.20e-03
+[GPU0] Epoch 26 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 26: Train Loss: 0.332929 | Test Loss: 0.437172 | LR: 1.20e-03
+New best model at epoch 26 with test loss 0.437172
+[GPU0] Epoch 27 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 27: Train Loss: 0.330568 | Test Loss: 0.445442 | LR: 1.20e-03
+[GPU0] Epoch 28 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 28: Train Loss: 0.320019 | Test Loss: 0.472438 | LR: 1.20e-03
+[GPU0] Epoch 29 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 29: Train Loss: 0.317986 | Test Loss: 0.447464 | LR: 1.20e-03
+[GPU0] Epoch 30 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 30: Train Loss: 0.308495 | Test Loss: 0.476126 | LR: 6.00e-04
+[GPU0] Epoch 31 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 31: Train Loss: 0.271530 | Test Loss: 0.445805 | LR: 3.00e-04
+[GPU0] Epoch 32 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 32: Train Loss: 0.239003 | Test Loss: 0.455839 | LR: 1.50e-04
+[GPU 0] Early stopping at epoch 32
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+Using broadcasting mode
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting modeUsing broadcasting mode
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 0: Train Loss: 0.534177 | Test Loss: 0.541374 | LR: 1.20e-04
+New best model at epoch 0 with test loss 0.541374
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 1: Train Loss: 0.519826 | Test Loss: 0.542810 | LR: 1.20e-04
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 2: Train Loss: 0.513157 | Test Loss: 0.533514 | LR: 1.20e-04
+New best model at epoch 2 with test loss 0.533514
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 3: Train Loss: 0.508568 | Test Loss: 0.535182 | LR: 1.20e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 4: Train Loss: 0.503088 | Test Loss: 0.529862 | LR: 1.20e-04
+New best model at epoch 4 with test loss 0.529862
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 5: Train Loss: 0.500036 | Test Loss: 0.532442 | LR: 1.20e-04
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 6: Train Loss: 0.495999 | Test Loss: 0.528032 | LR: 1.20e-04
+New best model at epoch 6 with test loss 0.528032
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 7: Train Loss: 0.488356 | Test Loss: 0.532203 | LR: 1.20e-04
+[GPU0] Epoch 8 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 8: Train Loss: 0.485153 | Test Loss: 0.536085 | LR: 1.20e-04
+[GPU0] Epoch 9 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 9: Train Loss: 0.478896 | Test Loss: 0.545505 | LR: 1.20e-04
+[GPU0] Epoch 10 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 10: Train Loss: 0.475859 | Test Loss: 0.540793 | LR: 6.00e-05
+[GPU0] Epoch 11 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 11: Train Loss: 0.467804 | Test Loss: 0.537782 | LR: 3.00e-05
+[GPU0] Epoch 12 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 12: Train Loss: 0.461369 | Test Loss: 0.541069 | LR: 1.50e-05
+[GPU 0] Early stopping at epoch 12
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cudaUsing device: cuda
+5000000Currently this dataloader is calculating the images in float32100000
+
+
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+100000
+5000000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+
+Currently this dataloader is calculating the images in float32
+5000000100000
+
+100000The PthPSF is loaded as it is. All the physical considerations must be done building it.
+
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 0: Train Loss: 0.602642 | Test Loss: 0.605802 | LR: 1.20e-04
+New best model at epoch 0 with test loss 0.605802
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 1: Train Loss: 0.596680 | Test Loss: 0.606694 | LR: 1.20e-04
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 2: Train Loss: 0.593521 | Test Loss: 0.606517 | LR: 1.20e-04
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 3: Train Loss: 0.590132 | Test Loss: 0.608335 | LR: 1.20e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 4: Train Loss: 0.587161 | Test Loss: 0.613699 | LR: 6.00e-05
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 5: Train Loss: 0.581887 | Test Loss: 0.609633 | LR: 3.00e-05
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 6: Train Loss: 0.576786 | Test Loss: 0.611468 | LR: 1.50e-05
+[GPU 0] Early stopping at epoch 6
+Using broadcasting modeUsing broadcasting mode
+
+Using broadcasting modeUsing broadcasting mode
+
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting modeUsing broadcasting mode
+
+Using device: cudaUsing device: cuda
+Currently this dataloader is calculating the images in float32
+
+Currently this dataloader is calculating the images in float32
+5000000
+5000000
+100000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+Using broadcasting mode
+Using device: cuda
+Currently this dataloader is calculating the images in float32
+5000000
+100000
+The PthPSF is loaded as it is. All the physical considerations must be done building it.
+[GPU0] Epoch 0 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 0: Train Loss: 0.615132 | Test Loss: 0.621810 | LR: 1.20e-04
+New best model at epoch 0 with test loss 0.621810
+[GPU0] Epoch 1 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 1: Train Loss: 0.612686 | Test Loss: 0.621221 | LR: 1.20e-04
+New best model at epoch 1 with test loss 0.621221
+[GPU0] Epoch 2 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 2: Train Loss: 0.608873 | Test Loss: 0.624149 | LR: 1.20e-04
+[GPU0] Epoch 3 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 3: Train Loss: 0.605334 | Test Loss: 0.631049 | LR: 1.20e-04
+[GPU0] Epoch 4 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 4: Train Loss: 0.602960 | Test Loss: 0.624540 | LR: 1.20e-04
+[GPU0] Epoch 5 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 5: Train Loss: 0.599432 | Test Loss: 0.624509 | LR: 6.00e-05
+[GPU0] Epoch 6 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 6: Train Loss: 0.593344 | Test Loss: 0.626307 | LR: 3.00e-05
+[GPU0] Epoch 7 | Batchsize: 1024 | Steps: 1221
+[GPU 0] Epoch 7: Train Loss: 0.589638 | Test Loss: 0.649591 | LR: 1.50e-05
+[GPU 0] Early stopping at epoch 7
+ravg1103:21163:81857 [1] NCCL INFO comm 0x21e92c80 rank 1 nranks 4 cudaDev 1 busId 32000 - Destroy COMPLETE
+ravg1103:21164:81858 [2] NCCL INFO comm 0x15b93f40 rank 2 nranks 4 cudaDev 2 busId ca000 - Destroy COMPLETE
+ravg1103:21165:81854 [3] NCCL INFO comm 0x14db79c0 rank 3 nranks 4 cudaDev 3 busId e3000 - Destroy COMPLETE
+ravg1103:21162:81860 [0] NCCL INFO comm 0x24711340 rank 0 nranks 4 cudaDev 0 busId 31000 - Destroy COMPLETE
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: fcitterio(76052)
+Job name:  multinode-example
+Node list: ravg1103
+Job start: Thu Aug 21 00:45:14 CEST 2025
+Job end:   Fri Aug 22 00:25:07 CEST 2025
+Work dir:  /u/fcitterio/master_thesis_code/./
+Command:   /raven/u/fcitterio/master_thesis_code/sbatch_to_submit_torchrun_fft.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID            JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode
+------------- ---------- ------ ------ ------ ------------ ------------ ---------- --------
+21428976      multinode-      1           144                             23:39:53      0:0
+  
+Maximum memory per node: 10.191514 GB (defined as MaxRSS*Ntasks/NNodes)
+CPU utilization: 5.6 %
+  

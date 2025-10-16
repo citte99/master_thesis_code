@@ -23,5 +23,8 @@ notebooks/dataloaders_performance/*.ipynb
 notebooks/**/.ipynb_checkpoints/
 notebooks/dataloaders_performance/*.ipynb
 notebooks/**/.ipynb_checkpoints/
+notebooks/present_performance/*
+notebooks/sensitivity_maps/*
 *checkpoints*
 *wandb*
+notebooks/alma_psf/sim_data10.ms/
